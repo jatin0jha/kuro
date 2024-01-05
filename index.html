@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="logo-ku.png">
+    <title>Kuro</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css'>
+    <link rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css'>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        @charset "utf-8";
+
+        /******* Fonts Import Start **********/
+        @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+        /********* Fonts Face CSS End **********/
+
+        /******* Common Element CSS Start ******/
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        html{
+            background-image: url('https://i.pinimg.com/originals/69/0d/ab/690dab3fdaa3f61593bd8a5318eb5419.gif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        body{
+            margin: auto;
+            padding: 0;
+            max-width: 1000px;
+            background-color: #00000000;
+        }
+
+        .logo{
+            height: 50px;
+        }
+
+        header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .button{
+            border: none;
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 18px;
+            background-color: rgba(0, 0, 0, 0.312);
+            padding: 5px 20px;
+            border-radius: 30px;
+        }
+
+
+        .clear {
+            clear: both;
+        }
+
+        img {
+            max-width: 100%;
+            border: 0px;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            outline: none;
+            transition: all 0.4s ease-in-out;
+            -webkit-transition: all 0.4s ease-in-out;
+        }
+
+        a:focus,
+        a:active,
+        a:visited,
+        a:hover {
+            text-decoration: none;
+            outline: none;
+        }
+
+        a:hover {
+            color: #e73700;
+        }
+
+        h2 {
+            margin-bottom: 48px;
+            padding-bottom: 16px;
+            font-size: 20px;
+            line-height: 28px;
+            font-weight: 700;
+            position: relative;
+            text-transform: capitalize;
+        }
+
+        h3 {
+            margin: 0 0 10px;
+            font-size: 28px;
+            line-height: 36px;
+        }
+
+        button {
+            outline: none !important;
+        }
+
+        /******* Common Element CSS End *********/
+
+        /* -------- title style ------- */
+        .line-title {
+            position: relative;
+            width: 400px;
+            color: white;
+        }
+
+        .line-title::before,
+        .line-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            border-radius: 2px;
+        }
+
+        .line-title::before {
+            width: 100%;
+            background: #f2f2f2;
+        }
+
+        .line-title::after {
+            width: 32px;
+            background: #e73700;
+        }
+
+        /******* Middle section CSS Start ******/
+        /* -------- Landing page ------- */
+        .game-section {
+            padding: 60px 50px;
+            background-color: #00000000;
+        }
+
+        .game-section .owl-stage {
+            margin: 15px 0;
+            display: flex;
+            display: -webkit-flex;
+        }
+
+        .game-section .item {
+            margin: 0 15px 60px;
+            width: 320px;
+            height: 400px;
+            display: flex;
+            display: -webkit-flex;
+            align-items: flex-end;
+            -webkit-align-items: flex-end;
+            background: #343434 no-repeat center center / cover;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.4s ease-in-out;
+            -webkit-transition: all 0.4s ease-in-out;
+            cursor: pointer;
+        }
+
+        .game-section .item.active {
+            width: 500px;
+            box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
+            -webkit-box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .game-section .item:after {
+            content: "";
+            display: block;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+        }
+
+        .game-section .item-desc {
+            padding: 0 24px 12px;
+            color: #9c9c9c;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            transform: translateY(calc(100% - 54px));
+            -webkit-transform: translateY(calc(100% - 54px));
+            transition: all 0.4s ease-in-out;
+            -webkit-transition: all 0.4s ease-in-out;
+        }
+
+        .game-section .item.active .item-desc {
+            transform: none;
+            -webkit-transform: none;
+        }
+
+        .game-section .item-desc p {
+            opacity: 0;
+            -webkit-transform: translateY(32px);
+            transform: translateY(32px);
+            transition: all 0.4s ease-in-out 0.2s;
+            -webkit-transition: all 0.4s ease-in-out 0.2s;
+        }
+
+        .game-section .item.active .item-desc p {
+            opacity: 1;
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+        }
+
+        .game-section .owl-theme.custom-carousel .owl-dots {
+            margin-top: -20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        footer{
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            color: white;
+            font-size: 10px;
+        }
+
+        /******** Middle section CSS End *******/
+
+        /***** responsive css Start ******/
+
+        @media (min-width: 992px) and (max-width: 1199px) {
+            h2 {
+                margin-bottom: 32px;
+            }
+
+            h3 {
+                margin: 0 0 8px;
+                font-size: 24px;
+                line-height: 32px;
+            }
+
+            /* -------- Landing page ------- */
+            .game-section {
+                padding: 50px 30px;
+            }
+
+            .game-section .item {
+                margin: 0 12px 60px;
+                width: 260px;
+                height: 360px;
+            }
+
+            .game-section .item.active {
+                width: 400px;
+            }
+
+            .game-section .item-desc {
+                transform: translateY(calc(100% - 46px));
+                -webkit-transform: translateY(calc(100% - 46px));
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+            h2 {
+                margin-bottom: 32px;
+            }
+
+            h3 {
+                margin: 0 0 8px;
+                font-size: 24px;
+                line-height: 32px;
+            }
+
+            .line-title {
+                width: 330px;
+            }
+
+            /* -------- Landing page ------- */
+            .game-section {
+                padding: 50px 30px 40px;
+            }
+
+            .game-section .item-desc {
+                transform: translateY(calc(100% - 42px));
+                -webkit-transform: translateY(calc(100% - 42px));
+            }
+        }
+
+        @media (max-width: 767px) {
+            body {
+                font-size: 14px;
+            }
+
+            h2 {
+                margin-bottom: 20px;
+            }
+
+            h3 {
+                margin: 0 0 8px;
+                font-size: 19px;
+                line-height: 24px;
+            }
+
+            .line-title {
+                width: 250px;
+            }
+
+            /* -------- Landing page ------- */
+            .game-section {
+                padding: 30px 15px 20px;
+            }
+
+            .game-section .item {
+                margin: 0 10px 40px;
+                width: 200px;
+                height: 280px;
+            }
+
+            .game-section .item.active {
+                width: 270px;
+                box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
+                -webkit-box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
+            }
+
+            .game-section .item-desc {
+                padding: 0 14px 5px;
+                transform: translateY(calc(100% - 42px));
+                -webkit-transform: translateY(calc(100% - 42px));
+            }
+
+            .desk-fot-logo{
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+    <header>
+        <img src="logo.png" class="logo" alt="">
+        <a href="https://www.instagram.com/direct/t/17849336993498975/" class="button">Connect</a>
+    </header>
+    <section class="game-section">
+        <h2 class="line-title">Services</h2>
+        <div class="owl-carousel custom-carousel owl-theme">
+            <div class="item active"
+                style="background-image: url(candel-run2.gif);">
+                <div class="item-desc">
+                    <h3>Candel Run</h3>
+                    <p>Dota 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
+                        Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+                </div>
+            </div>
+            <div class="item"
+                style="background-image: url(friend2.gif);">
+                <div class="item-desc">
+                    <h3>Light Friends</h3>
+                    <p>The Witcher 3 is a multiplayer online battle arena by Valve. The game is a sequel to Defense
+                        of the Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.
+                    </p>
+                </div>
+            </div>
+            <div class="item"
+                style="background-image: url(spirit2.gif);">
+                <div class="item-desc">
+                    <h3>All Spirit Run</h3>
+                    <p>RDR 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
+                        Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+                </div>
+            </div>
+            <div class="item"
+                style="background-image: url(wings2.gif);">
+                <div class="item-desc">
+                    <h3>Collect Wings</h3>
+                    <p>PUBG 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
+                        Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+                </div>
+            </div>
+            <div class="item"
+                style="background-image: url(eden2.gif);">
+                <div class="item-desc">
+                    <h3>Eden Run</h3>
+                    <p>Battle royale where 100 players fight to be the last person standing. which was a
+                        community-created mod
+                        for Blizzard Entertainment's Warcraft III.</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>all rights reserved &copy; 2024 Kuro</p>
+        <img height="30px" class="desk-fot-logo" src="logo.png" alt="">
+        <p>powered by <a href="https://bluebranch.tech/">BlueBranch</a></p>
+    </footer>
+    <!-- partial -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'></script>
+    <script src="./script.js"></script>
+    <script>
+        $(".custom-carousel").owlCarousel({
+            autoWidth: true,
+            loop: true
+        });
+        $(document).ready(function () {
+            $(".custom-carousel .item").click(function () {
+                $(".custom-carousel .item").not($(this)).removeClass("active");
+                $(this).toggleClass("active");
+            });
+        });
+    </script>
+
+</body>
+
+</html>
