@@ -4,430 +4,733 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="logo-ku.png">
-    <title>Kuro</title>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css'>
-    <link rel='stylesheet'
-        href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css'>
-    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="https://www.svgrepo.com/show/474291/arrow-short-left.svg">
+    <link rel="manifest" href="manifest.json">
+    <title>ARTISTRY</title>
     <style>
-        @charset "utf-8";
-
-        /******* Fonts Import Start **********/
-        @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-        /********* Fonts Face CSS End **********/
-
-        /******* Common Element CSS Start ******/
-        * {
-            margin: 0px;
-            padding: 0px;
-        }
-        html{
-            background-image: url('https://i.pinimg.com/originals/69/0d/ab/690dab3fdaa3f61593bd8a5318eb5419.gif');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        }
-        body{
-            margin: auto;
-            padding: 0;
-            max-width: 1000px;
-            background-color: #00000000;
-        }
-
-        .logo{
-            height: 50px;
-        }
-
-        header{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .button{
-            border: none;
-            text-decoration: none;
-            color: #ffffff;
-            font-size: 18px;
-            background-color: rgba(0, 0, 0, 0.312);
-            padding: 5px 20px;
-            border-radius: 30px;
-        }
-
-
-        .clear {
-            clear: both;
-        }
-
-        img {
-            max-width: 100%;
-            border: 0px;
-        }
-
-        ul,
-        ol {
-            list-style: none;
+        body {
+            margin: 0;
+            background-color: #f8fafd;
         }
 
         a {
+            color: black;
             text-decoration: none;
-            color: inherit;
-            outline: none;
-            transition: all 0.4s ease-in-out;
-            -webkit-transition: all 0.4s ease-in-out;
         }
-
-        a:focus,
-        a:active,
-        a:visited,
-        a:hover {
-            text-decoration: none;
-            outline: none;
-        }
-
-        a:hover {
-            color: #e73700;
-        }
-
-        h2 {
-            margin-bottom: 48px;
-            padding-bottom: 16px;
-            font-size: 20px;
-            line-height: 28px;
-            font-weight: 700;
-            position: relative;
-            text-transform: capitalize;
-        }
-
-        h3 {
-            margin: 0 0 10px;
-            font-size: 28px;
-            line-height: 36px;
-        }
-
-        button {
-            outline: none !important;
-        }
-
-        /******* Common Element CSS End *********/
-
-        /* -------- title style ------- */
-        .line-title {
-            position: relative;
-            width: 400px;
-            color: white;
-        }
-
-        .line-title::before,
-        .line-title::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 4px;
-            border-radius: 2px;
-        }
-
-        .line-title::before {
+        .content-container {
+            border-radius: 10px;
+            display: flex;
             width: 100%;
-            background: #f2f2f2;
+            height: 250px;
         }
 
-        .line-title::after {
-            width: 32px;
-            background: #e73700;
+        .cover-image img {
+            border-radius: 10px;
+            height: 100%;
+            aspect-ratio: 10/13;
+            box-shadow: var(--dt-shadow-elevation-1, 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15));
         }
 
-        /******* Middle section CSS Start ******/
-        /* -------- Landing page ------- */
-        .game-section {
-            padding: 60px 50px;
-            background-color: #00000000;
-        }
-
-        .game-section .owl-stage {
-            margin: 15px 0;
+        .content-info {
             display: flex;
-            display: -webkit-flex;
+            justify-content: end;
+            flex-direction: column;
+            align-items: end;
+            width: 100%;
         }
 
-        .game-section .item {
-            margin: 0 15px 60px;
-            width: 320px;
-            height: 400px;
-            display: flex;
-            display: -webkit-flex;
-            align-items: flex-end;
-            -webkit-align-items: flex-end;
-            background: #343434 no-repeat center center / cover;
-            border-radius: 16px;
+        .content-info h3 {
+            text-align: left;
+            width: 100%;
+        }
+
+        .content-info p {
+            color: rgb(161, 161, 161);
+            text-align: left;
+            width: 100%;
+            min-height: 100px;
             overflow: hidden;
-            position: relative;
-            transition: all 0.4s ease-in-out;
-            -webkit-transition: all 0.4s ease-in-out;
+        }
+
+
+        #loading img {
+            height: 100%;
+        }
+
+        #loading {
+            margin: 0 auto;
+            height: 150px;
+            width: max-content;
+        }
+
+        table {
+            margin: 0 auto;
+        }
+
+        #recent {
+            display: none;
+        }
+
+        #recent:target {
+            display: block;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 250px auto;
+            grid-template-rows: 60px auto;
+            height: 100vh;
+        }
+
+        .files-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+        }
+
+
+        .search-bar {
+            background-color: #e9eef6;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            border-radius: 50px;
+            margin: 2px;
+        }
+
+        .search-icon {
+            padding: 5px;
+            margin: 4px;
+            border-radius: 50%;
+        }
+
+        .search-bar input {
+            background-color: #0000;
+            border: none;
+            width: 100%;
+            height: 30px;
+            padding: 0 20px;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+        }
+
+        .search-bar input:focus+.search-bar {
+            background-color: white !important;
+        }
+
+
+        .for-new {
+            align-items: center;
+            border-radius: 20px;
+            box-shadow: var(--dt-shadow-elevation-1, 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15));
+            grid-template-columns: auto 1fr;
+            height: 3.5rem;
+            min-width: 6.25rem;
+            background-color: white;
+            border: none;
+            padding: 1.125rem 1.25rem 1.125rem 1rem;
             cursor: pointer;
         }
 
-        .game-section .item.active {
-            width: 500px;
-            box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
-            -webkit-box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
-        }
-
-        .game-section .item:after {
-            content: "";
-            display: block;
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            left: 0;
-            top: 0;
-            background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
-        }
-
-        .game-section .item-desc {
-            padding: 0 24px 12px;
-            color: #9c9c9c;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-            transform: translateY(calc(100% - 54px));
-            -webkit-transform: translateY(calc(100% - 54px));
-            transition: all 0.4s ease-in-out;
-            -webkit-transition: all 0.4s ease-in-out;
-        }
-
-        .game-section .item.active .item-desc {
-            transform: none;
-            -webkit-transform: none;
-        }
-
-        .game-section .item-desc p {
-            opacity: 0;
-            -webkit-transform: translateY(32px);
-            transform: translateY(32px);
-            transition: all 0.4s ease-in-out 0.2s;
-            -webkit-transition: all 0.4s ease-in-out 0.2s;
-        }
-
-        .game-section .item.active .item-desc p {
-            opacity: 1;
-            -webkit-transform: translateY(0);
-            transform: translateY(0);
-        }
-
-        .game-section .owl-theme.custom-carousel .owl-dots {
-            margin-top: -20px;
-            position: relative;
-            z-index: 5;
-        }
-
-        footer{
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
+        .nav-link {
+            width: 90%;
+            margin: 10px auto;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 20px;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(0, 0, 0, 0.077);
+        }
+
+        .nav-link:active {
+            background-color: rgb(194, 231, 255);
+        }
+
+        .nav-icon {
+            background-image: url("https://www.svgrepo.com/show/297000/library-book.svg");
+        }
+
+        .bi {
+            display: inline-block;
+            position: relative;
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 0.75rem;
+            top: -1px;
+            background-size: cover;
+        }
+
+        .bi-house-door-fill-nav-menu {
+            background-image: url("https://www.svgrepo.com/show/297000/library-book.svg");
+        }
+
+        .bi-list-nested-nav-menu {
+            background-image: url("https://www.svgrepo.com/show/324204/about-information-info-help.svg");
+        }
+
+        .bi-clock-fill-nav-menu {
+            background-image: url("https://www.svgrepo.com/show/304509/recent.svg");
+        }
+
+        #about {
+            display: none;
+        }
+
+        #library,
+        #about:target {
+            display: block;
+        }
+
+        .hero {
+            background-image: url('https://i.pinimg.com/originals/a5/7e/bf/a57ebf5a082595205a53213f496a42c1.gif');
+            /* Replace 'hero-background.jpg' with your actual image */
+            background-size: cover;
+            background-position: center;
+            color: #595959;
+            text-align: center;
+            padding: 70px 0;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        /* CSS styles for about section */
+        .about {
+            padding: 50px 20px;
+        }
+
+        .about h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: rgb(164, 164, 164);
+        }
+
+        .popup {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            border-radius: 5px;
             color: white;
-            font-size: 10px;
+            font-size: 16px;
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+            /* Adjusted z-index */
         }
 
-        /******** Middle section CSS End *******/
+        .success-popup {
+            background-color: #28a745;
+            /* Green */
+        }
 
-        /***** responsive css Start ******/
+        .error-popup {
+            background-color: #dc3545;
+            /* Red */
+        }
 
-        @media (min-width: 992px) and (max-width: 1199px) {
-            h2 {
-                margin-bottom: 32px;
-            }
+        .burger{
+            display: none;
+        }
 
-            h3 {
-                margin: 0 0 8px;
-                font-size: 24px;
-                line-height: 32px;
-            }
-
-            /* -------- Landing page ------- */
-            .game-section {
-                padding: 50px 30px;
-            }
-
-            .game-section .item {
-                margin: 0 12px 60px;
-                width: 260px;
-                height: 360px;
-            }
-
-            .game-section .item.active {
-                width: 400px;
-            }
-
-            .game-section .item-desc {
-                transform: translateY(calc(100% - 46px));
-                -webkit-transform: translateY(calc(100% - 46px));
+        @media (max-width:950px) {
+            .files-grid {
+                display: grid;
+                grid-template-columns: 1fr;
             }
         }
 
-        @media (min-width: 768px) and (max-width: 991px) {
-            h2 {
-                margin-bottom: 32px;
+        @media (max-width:650px) {
+            .layout {
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: 60px 60px auto 0;
+                height: 100vh;
             }
 
-            h3 {
-                margin: 0 0 8px;
-                font-size: 24px;
-                line-height: 32px;
+            .content-container {
+                height: 200px;
             }
 
-            .line-title {
-                width: 330px;
+            .burger{
+                display: block;
             }
 
-            /* -------- Landing page ------- */
-            .game-section {
-                padding: 50px 30px 40px;
-            }
-
-            .game-section .item-desc {
-                transform: translateY(calc(100% - 42px));
-                -webkit-transform: translateY(calc(100% - 42px));
-            }
-        }
-
-        @media (max-width: 767px) {
-            body {
-                font-size: 14px;
-            }
-
-            h2 {
-                margin-bottom: 20px;
-            }
-
-            h3 {
-                margin: 0 0 8px;
-                font-size: 19px;
-                line-height: 24px;
-            }
-
-            .line-title {
-                width: 250px;
-            }
-
-            /* -------- Landing page ------- */
-            .game-section {
-                padding: 30px 15px 20px;
-            }
-
-            .game-section .item {
-                margin: 0 10px 40px;
-                width: 200px;
-                height: 280px;
-            }
-
-            .game-section .item.active {
-                width: 270px;
-                box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
-                -webkit-box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
-            }
-
-            .game-section .item-desc {
-                padding: 0 14px 5px;
-                transform: translateY(calc(100% - 42px));
-                -webkit-transform: translateY(calc(100% - 42px));
-            }
-
-            .desk-fot-logo{
+            #menu{
+                position: absolute;
+                background-color: #e9eef6;
+                left: 0;
+                right: 0;
+                top: 120px;
                 display: none;
             }
         }
     </style>
+
+    <script>
+        // Check if the URL doesn't have a hash (just the base URL)
+        if (!window.location.hash) {
+            // Append #library to the URL
+            window.location.hash = '#library';
+        }
+    </script>
 </head>
 
 <body>
-    <!-- partial:index.partial.html -->
-    <header>
-        <img src="logo.png" class="logo" alt="">
-        <a href="https://www.instagram.com/direct/t/17849336993498975/" class="button">Connect</a>
-    </header>
-    <section class="game-section">
-        <h2 class="line-title">Services</h2>
-        <div class="owl-carousel custom-carousel owl-theme">
-            <div class="item active"
-                style="background-image: url(candel-run2.gif);">
-                <div class="item-desc">
-                    <h3>Candel Run</h3>
-                    <p>Dota 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
-                        Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
-                </div>
+    <div class="layout">
+        <div style="display: flex; justify-content: space-between; margin: 5px; align-items: center;">
+            <div style="display: flex; align-items: center;">
+                <img src="https://www.svgrepo.com/show/474291/arrow-short-left.svg" height="40px" alt="">
+                <h3 style="margin: 0;">ARTISTRY</h3>
             </div>
-            <div class="item"
-                style="background-image: url(friend2.gif);">
-                <div class="item-desc">
-                    <h3>Light Friends</h3>
-                    <p>The Witcher 3 is a multiplayer online battle arena by Valve. The game is a sequel to Defense
-                        of the Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.
-                    </p>
-                </div>
-            </div>
-            <div class="item"
-                style="background-image: url(spirit2.gif);">
-                <div class="item-desc">
-                    <h3>All Spirit Run</h3>
-                    <p>RDR 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
-                        Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
-                </div>
-            </div>
-            <div class="item"
-                style="background-image: url(wings2.gif);">
-                <div class="item-desc">
-                    <h3>Collect Wings</h3>
-                    <p>PUBG 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
-                        Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
-                </div>
-            </div>
-            <div class="item"
-                style="background-image: url(eden2.gif);">
-                <div class="item-desc">
-                    <h3>Eden Run</h3>
-                    <p>Battle royale where 100 players fight to be the last person standing. which was a
-                        community-created mod
-                        for Blizzard Entertainment's Warcraft III.</p>
-                </div>
+            <div class="burger" onclick="toggleMenu()" target="_blank">
+                <img src="https://www.svgrepo.com/show/489710/burger-menu.svg" height="50px" alt="">
             </div>
         </div>
-        </div>
-    </section>
+        <div style="display: flex; align-items: center; width: 100%;">
+            <div class="top-row px-4" style="width: 100%;">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search for plots..." oninput="searchFiles()">
+                    <div class="search-icon">
+                        <svg fill="#000000" height="25px" width="25px" version="1.1" id="Capa_1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 488.4 488.4" xml:space="preserve">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <g>
+                                    <g>
+                                        <path
+                                            d="M0,203.25c0,112.1,91.2,203.2,203.2,203.2c51.6,0,98.8-19.4,134.7-51.2l129.5,129.5c2.4,2.4,5.5,3.6,8.7,3.6 s6.3-1.2,8.7-3.6c4.8-4.8,4.8-12.5,0-17.3l-129.6-129.5c31.8-35.9,51.2-83,51.2-134.7c0-112.1-91.2-203.2-203.2-203.2 S0,91.15,0,203.25z M381.9,203.25c0,98.5-80.2,178.7-178.7,178.7s-178.7-80.2-178.7-178.7s80.2-178.7,178.7-178.7 S381.9,104.65,381.9,203.25z">
+                                        </path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <script>
+                const searchBarInput = document.querySelector('.search-bar input');
+                const searchBarContainer = document.querySelector('.search-bar');
 
-    <footer>
-        <p>all rights reserved &copy; 2024 Kuro</p>
-        <img height="30px" class="desk-fot-logo" src="logo.png" alt="">
-        <p>powered by <a href="https://bluebranch.tech/">BlueBranch</a></p>
-    </footer>
-    <!-- partial -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'></script>
-    <script src="./script.js"></script>
-    <script>
-        $(".custom-carousel").owlCarousel({
-            autoWidth: true,
-            loop: true
-        });
-        $(document).ready(function () {
-            $(".custom-carousel .item").click(function () {
-                $(".custom-carousel .item").not($(this)).removeClass("active");
-                $(this).toggleClass("active");
+                searchBarInput.addEventListener('focus', function () {
+                    searchBarContainer.style.backgroundColor = 'white';
+                    searchBarContainer.style.boxShadow = 'var(--dt-shadow-elevation-1, 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15))';
+                });
+
+                searchBarInput.addEventListener('blur', function () {
+                    searchBarContainer.style.backgroundColor = '#e9eef6';
+                    searchBarContainer.style.boxShadow = 'none';
+                });
+            </script>
+        </div>
+        <div id="menu">
+            <div style="padding: 8px 16px 16px; max-width: 256px;box-sizing: border-box;">
+                <a href="https://forms.gle/Y167pEFsU8ApMCMm7" target="_blank"><button class="for-new"><span><svg
+                                width="24" height="24" viewBox="0 0 24 24" focusable="false">
+                                <path d="M20 13h-7v7h-2v-7H4v-2h7V4h2v7h7v2z"></path>
+                            </svg></span><span class="jYPt8c">New</span>
+                    </button>
+                </a>
+            </div>
+            <a href="#library" class="nav-link">
+                <div><span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span>Library</div>
+            </a>
+            <a href="#recent" class="nav-link">
+                <div><span class="bi bi-clock-fill-nav-menu" aria-hidden="true"></span>Recent</div>
+            </a>
+            <a href="#about" class="nav-link">
+                <div><span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>About</div>
+            </a>
+
+            <script>
+                function toggleMenu() {
+                    const menu = document.getElementById('menu');
+                    menu.style.display = (menu.style.display === 'none' || menu.style.display === '') ? 'block' : 'none';
+                }
+            </script>
+
+        </div>
+        <div class="bg-white p-2" style="overflow-y: scroll; border-radius: 10px;">
+            <div id="library" class="section">
+                <h1>Library</h1>
+                <div class="files-grid" id="myContentContainer">
+                </div>
+                <div id="loading">
+                    <img src="https://cdn.dribbble.com/users/1186261/screenshots/3718681/_______.gif" alt="Loading...">
+                </div>
+            </div>
+
+            <div id="recent" class="section">
+                <h1>Recent</h1>
+                <script>// Function to handle when a user clicks on a card link
+                    function handleCardClick(event) {
+                        // Capture the data of the clicked card
+                        const cardData = {
+                            title: event.currentTarget.querySelector('.content-info h2').textContent,
+                            description: event.currentTarget.querySelector('.content-info p').textContent,
+                            pdfLink: event.currentTarget.querySelector('.content-info a').getAttribute('href'),
+                            coverImage: event.currentTarget.querySelector('.cover-image img').getAttribute('src')
+                        };
+
+                        // Store the captured card data locally
+                        saveCardDataLocally(cardData);
+
+                        // Render the recently opened card
+                        renderRecentCard(cardData);
+                    }
+
+                    // Function to save card data locally
+                    function saveCardDataLocally(cardData) {
+                        // Get the previously saved card data from local storage
+                        let recentCards = JSON.parse(localStorage.getItem('recentCards')) || [];
+
+                        // Add the new card data to the array of recent cards
+                        recentCards.push(cardData);
+
+                        // Limit the number of recent cards to keep (if needed)
+                        // Adjust the limit as per your requirement
+                        const MAX_RECENT_CARDS = 10;
+                        if (recentCards.length > MAX_RECENT_CARDS) {
+                            recentCards = recentCards.slice(-MAX_RECENT_CARDS);
+                        }
+
+                        // Save the updated recent cards data back to local storage
+                        localStorage.setItem('recentCards', JSON.stringify(recentCards));
+                    }
+
+                    // Function to render the recently opened card
+                    function renderRecentCard(cardData) {
+                        const recentContainer = document.getElementById('recent');
+
+                        // Generate HTML markup for the recent card
+                        const recentCardHTML = `
+                            <div class="bg-light p-1 content-container">
+                                <div class="cover-image">
+                                    <a href="${cardData.pdfLink}" target="_blank">
+                                        <img src="${cardData.coverImage}" alt="">
+                                    </a>
+                                </div>
+                                <div class="p-2 content-info">
+                                    <h2 class="text-dark">${cardData.title}</h2>
+                                    <p>${cardData.description}</p>
+                                    <div style="height: 100%;"></div>
+                                    <a href="${cardData.pdfLink}" target="_blank">
+                                        <img src="https://raw.githubusercontent.com/jatin0jha/jatin0jha/ba706fea77d7890b95a1c0863b6213c48c317de2/upload.svg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+
+                        // Append the recent card HTML to the recent container
+                        recentContainer.insertAdjacentHTML('beforeend', recentCardHTML);
+                    }
+
+                    // Add event listeners to card links in the content container
+                    document.getElementById("myContentContainer").addEventListener('click', function (event) {
+                        if (event.target.closest('.content-container')) {
+                            handleCardClick(event);
+                        }
+                    });
+
+                    // Function to render recently opened cards from local storage
+                    function renderRecentCardsFromLocalStorage() {
+                        const recentCards = JSON.parse(localStorage.getItem('recentCards')) || [];
+
+                        // Render each recent card
+                        recentCards.forEach(cardData => {
+                            renderRecentCard(cardData);
+                        });
+                    }
+
+                    // Render the recent cards when the page loads
+                    window.addEventListener('DOMContentLoaded', function () {
+                        renderRecentCardsFromLocalStorage();
+                    });
+
+                </script>
+            </div>
+            <div id="about" class="section">
+                <div class="hero">
+                    <h1>Welcome to Artistry Hub</h1>
+                    <p>A specialized platform for 2D and 3D artists</p>
+                </div>
+                <section class="about">
+                    <h2>About Our Project</h2>
+                    <p>Welcome to Artistry Hub, a specialized platform designed with 2D and 3D artists in mind. Our
+                        project is dedicated
+                        to providing a seamless and intuitive experience for artists to showcase their work, connect
+                        with fellow
+                        creators, and explore a wealth of inspiring content.</p>
+
+                    <h2>Why This Project?</h2>
+                    <p>In the dynamic world of digital artistry, finding the right platform to exhibit your creations
+                        and connect with
+                        like-minded individuals can be challenging. That's where Artistry Hub comes in. Built by
+                        artists, for artists,
+                        our project offers a tailored environment that celebrates the diversity and creativity of the 2D
+                        and 3D art
+                        community.</p>
+
+                    <h2>What Sets Us Apart</h2>
+                    <p>- **Artist-Centric Approach:** We understand the unique needs and challenges faced by 2D and 3D
+                        artists. That's
+                        why our project is designed to prioritize the needs of creators, providing them with the tools
+                        and resources
+                        they need to thrive.</p>
+
+                    <p>- **Inspiration and Collaboration:** Whether you're looking for inspiration for your next project
+                        or seeking
+                        collaborators for a new venture, Artistry Hub is the perfect place to connect with fellow
+                        artists, share ideas,
+                        and collaborate on exciting new projects.</p>
+
+                    <p>- **Diverse Showcase:** From stunning 2D illustrations to immersive 3D renders, our platform
+                        offers a diverse
+                        showcase of artwork from talented artists around the globe. Explore a wide range of styles,
+                        techniques, and
+                        genres, and discover new favorites along the way.</p>
+
+                    <h2>Join Us Today</h2>
+                    <p>Whether you're an established artist or just starting on your creative journey, Artistry Hub is
+                        here to support
+                        you every step of the way. Join our community today and unlock a world of possibilities for your
+                        artistry. Let
+                        your imagination soar and your creativity thrive with Artistry Hub.</p>
+                </section>
+
+                <div id="successPopup" class="popup success-popup">Message sent successfully!</div>
+                <div id="errorPopup" class="popup error-popup">Failed to send message. Please try again later.</div>
+
+                <div style="display: flex; max-width: 500px; margin: 20px auto;" class="form-group">
+                    <input type="text" id="messageInput" class="form-control" placeholder="Enter your message">
+                    <button onclick="sendMessage()" class="btn btn-primary">Send</button>
+                </div>
+
+
+                <script>
+                    function sendMessage() {
+                        const webhookUrl = 'https://discord.com/api/webhooks/1228360772162424913/bBqs3_Gzdf7gZHPgaw1paDsanyn9fV5lA1PZjBkvTFH8qkZfeQyR5sVpYBJQl4X3lkjx';
+                        const message = document.getElementById('messageInput').value;
+
+                        // Make sure message is not empty
+                        if (message.trim() === '') {
+                            showAlert('Please enter a message', 'error-popup');
+                            return;
+                        }
+
+                        // Send POST request to Discord webhook
+                        fetch(webhookUrl, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ content: message })
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Failed to send message');
+                                }
+                                showAlert('Message sent successfully!', 'success-popup');
+                            })
+                            .catch(error => {
+                                console.error('Error sending message:', error);
+                                showAlert('Failed to send message. Please try again later.', 'error-popup');
+                            });
+                    }
+
+                    function showAlert(message, className) {
+                        const popup = document.createElement('div');
+                        popup.textContent = message;
+                        popup.classList.add('popup', className);
+
+                        document.body.appendChild(popup);
+
+                        setTimeout(() => {
+                            popup.style.opacity = '1';
+                            setTimeout(() => {
+                                popup.style.opacity = '0';
+                                setTimeout(() => {
+                                    document.body.removeChild(popup);
+                                }, 300);
+                            }, 2000);
+                        }, 100);
+                    }
+
+                </script>
+            </div>
+        </div>
+        <script>
+            // Select all navigation links
+            const navButtons = document.querySelectorAll('.nav-link');
+
+            // Initialize variable to store the previously clicked link
+            let previousNavButton = null;
+
+            // Set the initial active link to #library
+            const initialActiveLink = document.querySelector('a[href="#library"]');
+            initialActiveLink.style.backgroundColor = 'rgb(194, 231, 255)';
+            previousNavButton = initialActiveLink;
+
+            // Get all sections
+            const sections = document.querySelectorAll('.section');
+
+            // Show the section based on the hash in the URL
+            function showSection(hash) {
+                // Hide all sections
+                sections.forEach(section => {
+                    section.style.display = 'none';
+                });
+
+                // Show the section corresponding to the hash
+                const targetSection = document.getElementById(hash);
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                }
+            }
+
+            // Function to handle navigation link clicks
+            function handleNavClick(event) {
+                event.preventDefault(); // Prevent default anchor behavior
+                event.stopPropagation(); // Stop event propagation to prevent issues with navigation logic
+
+                const navButton = event.currentTarget;
+
+                // Reset the background color of the previously clicked link
+                if (previousNavButton) {
+                    previousNavButton.style.backgroundColor = '';
+                }
+
+                // Set the background color of the clicked link
+                navButton.style.backgroundColor = 'rgb(194, 231, 255)';
+
+                // Update the previously clicked link
+                previousNavButton = navButton;
+
+                // Show the corresponding section
+                const hash = navButton.getAttribute('href').substr(1); // Extract the hash from the href attribute
+                showSection(hash);
+            }
+
+            // Add click event listener to navigation links
+            navButtons.forEach(navButton => {
+                navButton.addEventListener('click', handleNavClick);
             });
-        });
-    </script>
 
+            // Show the appropriate section when the page loads
+            window.addEventListener('DOMContentLoaded', function () {
+                const hash = window.location.hash.substr(1); // Extract the hash from the URL
+                showSection(hash);
+            });
+        </script>
+
+    </div>
+
+    
+<a href="https://github.com/jatin0jha/artistory"><button style="background-color: black; color: white; border-radius: 15px; border: none; padding: 5px 20px; position: absolute; bottom: 20px; left: 20px;"><img src="https://www.svgrepo.com/show/439171/github.svg" height="50px" alt="">Contribute</button></a>
 </body>
+
+<script>
+    let searchData; // To store the original data for reset
+
+    // Hide the content container and show the loading animation
+    document.getElementById("myContentContainer").style.display = "none";
+    document.getElementById("loading").style.display = "block";
+
+    fetch('https://script.googleusercontent.com/macros/echo?user_content_key=q4wwBgNWIKYx4Eu7_GOqNuiQS1U6pATiPYRrojAmxjq9ELwCCRmmdDKDbnTZ8DcZm2u_5E-VUyM-TEBO7JbGIFHn_N0BhvcBm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnN3qIGTLz4U0QCznjMAiFIBjg3sDBxIuBUFb6llJZ-HsCkaRr-U-pvhhonTEC3cIx8Mz7f7RLIjIfcJSmWxs5bNBKABpDR5oUg&lib=MTKY7IWoEIUZ-OaLI0TuvsCUIHiZ-_zcK')
+        .then(res => res.json())
+        .then(data => {
+            // Once the data is loaded, hide the loading animation and show the content container
+            document.getElementById("myContentContainer").style.display = "grid";
+            document.getElementById("loading").style.display = "none";
+
+            searchData = data.content; // Store the original data for reset
+            renderFiles(data.content); // Render the files initially
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            // In case of an error, hide the loading animation and show an error message
+            document.getElementById("loading").innerHTML = "Error fetching data. Please try again later.";
+        });
+
+    // Function to render files based on search input
+    function renderFiles(data) {
+        let content = '';
+
+        // Iterate over the data to create content for each item
+        data.forEach(item => {
+            let title = item[2];
+            let description = item[3];
+            let pdfLink = item[4];
+            let coverImage = item[5]; // Assuming the cover image URL is in the 6th column
+
+            // Check if the cover image URL is valid
+            if (coverImage && (coverImage.startsWith("http://") || coverImage.startsWith("https://"))) {
+                let itemHTML = `
+                    <div class="bg-light p-1 content-container">
+                        <div class="cover-image">
+                            <a href="${pdfLink}" target="_blank">
+                                <img src="${coverImage}" alt="">
+                            </a>
+                        </div>
+                        <div class="p-2 content-info">
+                            <h3 class="text-dark">${title}</h3>
+                            <p>${description}</p>
+                            <div style="height: 100%;"></div>
+                            <a href="${pdfLink}" target="_blank">
+                                <img src="https://raw.githubusercontent.com/jatin0jha/jatin0jha/ba706fea77d7890b95a1c0863b6213c48c317de2/upload.svg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                `;
+                content += itemHTML;
+            }
+        });
+
+        // Populate the content into the content container
+        document.getElementById("myContentContainer").innerHTML = content;
+    }
+
+    // Function to handle search input
+    function searchFiles() {
+        let searchTerm = document.getElementById("searchInput").value.toLowerCase();
+        let filteredData = searchData.filter(item => {
+            let title = item[2].toLowerCase();
+            let description = item[3].toLowerCase();
+            return title.includes(searchTerm) || description.includes(searchTerm);
+        });
+        renderFiles(filteredData);
+    }
+</script>
+
+
+<script>
+    if ('serviceWorker' in navigator) {
+     window.addEventListener('load', function() {
+       navigator.serviceWorker.register('/service_worker.js').then(function(registration) {
+         // Registration was successful
+         console.log('ServiceWorker registration successful with scope: ', registration.scope);
+       }, function(err) {
+         // registration failed :(
+         console.log('ServiceWorker registration failed: ', err);
+       });
+     });
+   }
+</script>
 
 </html>
