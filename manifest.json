@@ -1,0 +1,21 @@
+{
+    "name" : "Artistry",
+    "short_name" : "Artistry",
+    "description" : "desc",
+    "icons" : [
+        {
+            "src" : "https://www.svgrepo.com/show/474291/arrow-short-left.svg",
+            "sizes" : "512x512",
+            "type" : "image/png"
+        },
+        {
+            "src" : "https://www.svgrepo.com/show/474291/arrow-short-left.svg",
+            "sizes" : "144x144",
+            "type" : "image/png"
+        }
+    ],
+    "start_url" : "/artistory",
+    "display" : "fullscreen",
+    "theme_color" : "black",
+    "background_color" : "white"
+}
