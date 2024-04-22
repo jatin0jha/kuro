@@ -8,6 +8,23 @@ a {
     text-decoration: none;
 }
 
+.bg-dark{
+    color: white;
+}
+
+.bg-black .section .files-grid .content-container{
+    background-color: rgb(39, 39, 39) !important;
+}
+
+.bg-black .section .files-grid .content-container .content-info h3{
+    color: white !important;
+}
+
+.bg-black .section .files-grid .content-container .content-info a img{
+    -webkit-filter: invert(100%); /* Safari/Chrome */
+    filter: invert(100%);
+}
+
 .content-container {
     border-radius: 10px;
     display: flex;
@@ -79,6 +96,13 @@ table {
     gap: 5px;
 }
 
+.bg-dark .search-bar{
+    background-color: black;
+}
+
+.bg-dark .search-bar .search-icon svg{
+    fill: white !important;
+}
 
 .search-bar {
     background-color: #e9eef6;
