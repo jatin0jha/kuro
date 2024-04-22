@@ -10,6 +10,305 @@
     <title>ARTISTRY</title>
     <link rel="stylesheet" href="style/style.css">
 
+    <style>
+        body {
+    margin: 0;
+    background-color: #f8fafd;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.bg-dark{
+    color: white;
+}
+
+.bg-black .section .files-grid .content-container{
+    background-color: rgb(39, 39, 39) !important;
+}
+
+.bg-black .section .files-grid .content-container .content-info h3{
+    color: white !important;
+}
+
+.bg-black .section .files-grid .content-container .content-info a img{
+    -webkit-filter: invert(100%); /* Safari/Chrome */
+    filter: invert(100%);
+}
+
+.content-container {
+    border-radius: 10px;
+    display: flex;
+    width: 100%;
+    height: 250px;
+}
+
+.cover-image img {
+    border-radius: 10px;
+    height: 100%;
+    aspect-ratio: 10/13;
+    box-shadow: var(--dt-shadow-elevation-1, 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15));
+}
+
+.content-info {
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    align-items: end;
+    width: 100%;
+}
+
+.content-info h3 {
+    text-align: left;
+    width: 100%;
+}
+
+.content-info p {
+    color: rgb(161, 161, 161);
+    text-align: left;
+    width: 100%;
+    min-height: 100px;
+    overflow: hidden;
+}
+
+
+#loading img {
+    height: 100%;
+}
+
+#loading {
+    margin: 0 auto;
+    height: 150px;
+    width: max-content;
+}
+
+table {
+    margin: 0 auto;
+}
+
+#recent {
+    display: none;
+}
+
+#recent:target {
+    display: block;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 250px auto;
+    grid-template-rows: 60px auto;
+    height: 100vh;
+}
+
+.files-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+}
+
+.bg-dark .search-bar{
+    background-color: black;
+}
+
+.bg-dark .search-bar .search-icon svg{
+    fill: white !important;
+}
+
+.search-bar {
+    background-color: #e9eef6;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-radius: 50px;
+    margin: 2px;
+}
+
+.search-icon {
+    padding: 5px;
+    margin: 4px;
+    border-radius: 50%;
+}
+
+.search-bar input {
+    background-color: #0000;
+    border: none;
+    width: 100%;
+    height: 30px;
+    padding: 0 20px;
+}
+
+.search-bar input:focus {
+    outline: none;
+}
+
+.search-bar input:focus+.search-bar {
+    background-color: white !important;
+}
+
+
+.for-new {
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: var(--dt-shadow-elevation-1, 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15));
+    grid-template-columns: auto 1fr;
+    height: 3.5rem;
+    min-width: 6.25rem;
+    background-color: white;
+    border: none;
+    padding: 1.125rem 1.25rem 1.125rem 1rem;
+    cursor: pointer;
+}
+
+.nav-link {
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link:hover {
+    background-color: rgba(0, 0, 0, 0.077);
+}
+
+.nav-link:active {
+    background-color: rgb(194, 231, 255);
+}
+
+.nav-icon {
+    background-image: url("https://www.svgrepo.com/show/297000/library-book.svg");
+}
+
+.bi {
+    display: inline-block;
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+    top: -1px;
+    background-size: cover;
+}
+
+.bi-house-door-fill-nav-menu {
+    background-image: url("https://www.svgrepo.com/show/297000/library-book.svg");
+}
+
+.bi-list-nested-nav-menu {
+    background-image: url("https://www.svgrepo.com/show/324204/about-information-info-help.svg");
+}
+
+.bi-clock-fill-nav-menu {
+    background-image: url("https://www.svgrepo.com/show/304509/recent.svg");
+}
+
+#about {
+    display: none;
+}
+
+#library,
+#about:target {
+    display: block;
+}
+
+.hero {
+    background-image: url('https://i.pinimg.com/originals/a5/7e/bf/a57ebf5a082595205a53213f496a42c1.gif');
+    /* Replace 'hero-background.jpg' with your actual image */
+    background-size: cover;
+    background-position: center;
+    color: #595959;
+    text-align: center;
+    padding: 70px 0;
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+/* CSS styles for about section */
+.about {
+    padding: 50px 20px;
+}
+
+.about h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.about p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: rgb(164, 164, 164);
+}
+
+.popup {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    /* Adjusted z-index */
+}
+
+.success-popup {
+    background-color: #28a745;
+    /* Green */
+}
+
+.error-popup {
+    background-color: #dc3545;
+    /* Red */
+}
+
+.burger {
+    display: none;
+}
+
+@media (max-width:950px) {
+    .files-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width:650px) {
+    .layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 60px 60px auto 0;
+        height: 100vh;
+    }
+
+    .content-container {
+        height: 200px;
+    }
+
+    .burger {
+        display: block;
+    }
+
+    #menu {
+        position: absolute;
+        background-color: #e9eef6;
+        left: 0;
+        right: 0;
+        top: 120px;
+        display: none;
+    }
+}
+
+    </style>
+
     <script>
         // Check if the URL doesn't have a hash (just the base URL)
         if (!window.location.hash) {
