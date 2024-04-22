@@ -69,13 +69,20 @@
             </script>
         </div>
         <div id="menu">
-            <div style="padding: 8px 16px 16px; max-width: 256px;box-sizing: border-box;">
+            <div
+                style="padding: 8px 16px 16px; max-width: 100%;box-sizing: border-box; display: flex; align-items: center; justify-content: space-between;">
                 <a href="https://forms.gle/Y167pEFsU8ApMCMm7" target="_blank"><button class="for-new"><span><svg
                                 width="24" height="24" viewBox="0 0 24 24" focusable="false">
                                 <path d="M20 13h-7v7h-2v-7H4v-2h7V4h2v7h7v2z"></path>
                             </svg></span><span class="jYPt8c">New</span>
                     </button>
                 </a>
+
+                <label class="switch">
+                    <input type="checkbox" id="toggle">
+                    <span class="slider round"></span>
+                </label>
+
             </div>
             <a href="#library" class="nav-link">
                 <div><span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span>Library</div>
@@ -87,6 +94,69 @@
                 <div><span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>About</div>
             </a>
 
+
+            <style>
+                .switch {
+                    position: relative;
+                    display: inline-block;
+                    width: 60px;
+                    height: 34px;
+                }
+
+                .switch input {
+                    opacity: 0;
+                    width: 0;
+                    height: 0;
+                }
+
+                .slider {
+                    position: absolute;
+                    cursor: pointer;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: #ccc;
+                    -webkit-transition: .4s;
+                    transition: .4s;
+                }
+
+                .slider:before {
+                    position: absolute;
+                    content: "";
+                    height: 26px;
+                    width: 26px;
+                    left: 4px;
+                    bottom: 4px;
+                    background-color: white;
+                    -webkit-transition: .4s;
+                    transition: .4s;
+                }
+
+                input:checked+.slider {
+                    background-color: #000000;
+                }
+
+                input:focus+.slider {
+                    box-shadow: 0 0 1px #000000;
+                }
+
+                input:checked+.slider:before {
+                    -webkit-transform: translateX(26px);
+                    -ms-transform: translateX(26px);
+                    transform: translateX(26px);
+                }
+
+                /* Rounded sliders */
+                .slider.round {
+                    border-radius: 34px;
+                }
+
+                .slider.round:before {
+                    border-radius: 50%;
+                }
+            </style>
+
             <script>
                 function toggleMenu() {
                     const menu = document.getElementById('menu');
@@ -95,7 +165,7 @@
             </script>
 
         </div>
-        <div class="bg-white p-2" style="overflow-y: scroll; border-radius: 10px;">
+        <div id="lib-page" class="bg-white p-2" style="overflow-y: scroll; border-radius: 10px;">
             <div id="library" class="section">
                 <h1>Library</h1>
                 <div class="files-grid" id="myContentContainer">
@@ -103,9 +173,49 @@
                 <div id="loading">
                     <img src="https://cdn.dribbble.com/users/1186261/screenshots/3718681/_______.gif" alt="Loading...">
                 </div>
-                
-<a href="https://github.com/jatin0jha/kuro"><button style="background-color: black; color: white; border-radius: 15px; border: none; padding: 5px 20px; position: absolute; bottom: 20px; left: 20px;"><img src="https://www.svgrepo.com/show/439171/github.svg" height="50px" alt="">Contribute</button></a>
+
+                <a href="https://github.com/jatin0jha/kuro"><button
+                        style="background-color: black; color: white; border-radius: 15px; border: none; padding: 5px 20px; position: absolute; bottom: 20px; left: 20px;"><img
+                            src="https://www.svgrepo.com/show/439171/github.svg" height="50px"
+                            alt="">Contribute</button></a>
             </div>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    // This event listener ensures that the JavaScript code will run after the DOM content is fully loaded.
+            
+                    const toggleSwitch = document.getElementById('toggle');
+                    const libPage = document.getElementById('lib-page');
+                    const body = document.querySelector('body');
+                    const libBookCard = document.getElementById('lib-book-card');
+                    
+                    // Retrieving necessary elements from the DOM and storing them in variables.
+            
+                    toggleSwitch.addEventListener('change', function () {
+                        // Adding an event listener for the change event on the toggle switch.
+            
+                        if (this.checked) {
+                            // If the toggle switch is checked (in the "on" position):
+            
+                            libPage.classList.remove('bg-white');
+                            libPage.classList.add('bg-black');
+                            body.classList.add('bg-dark');
+                            libBookCard.classList.remove('bg-light');
+                            libBookCard.classList.add('bg-dark');
+                            // Change the background colors and styles to the dark mode.
+                        } else {
+                            // If the toggle switch is unchecked (in the "off" position):
+            
+                            libPage.classList.remove('bg-black');
+                            libPage.classList.add('bg-white');
+                            body.classList.remove('bg-dark');
+                            libBookCard.classList.remove('bg-dark');
+                            libBookCard.classList.add('bg-light');
+                            // Change the background colors and styles back to the light mode.
+                        }
+                    });
+                });
+            </script>            
 
             <div id="recent" class="section">
                 <h1>Recent</h1>
@@ -151,7 +261,7 @@
 
                         // Generate HTML markup for the recent card
                         const recentCardHTML = `
-                            <div class="bg-light p-1 content-container">
+                            <div id="lib-book-card" class="bg-light p-1 content-container">
                                 <div class="cover-image">
                                     <a href="${cardData.pdfLink}" target="_blank">
                                         <img src="${cardData.coverImage}" alt="">
@@ -372,7 +482,7 @@
 
     </div>
 
-    
+
 
 </body>
 
@@ -413,7 +523,7 @@
             // Check if the cover image URL is valid
             if (coverImage && (coverImage.startsWith("http://") || coverImage.startsWith("https://"))) {
                 let itemHTML = `
-                    <div class="bg-light p-1 content-container">
+                    <div id="lib-book-card" class="bg-light p-1 content-container">
                         <div class="cover-image">
                             <a href="${pdfLink}" target="_blank">
                                 <img src="${coverImage}" alt="">
@@ -448,19 +558,19 @@
         renderFiles(filteredData);
     }
 </script>
- 
+
 <script>
     if ('serviceWorker' in navigator) {
-     window.addEventListener('load', function() {
-       navigator.serviceWorker.register('/service_worker.js').then(function(registration) {
-         // Registration was successful
-         console.log('ServiceWorker registration successful with scope: ', registration.scope);
-       }, function(err) {
-         // registration failed :(
-         console.log('ServiceWorker registration failed: ', err);
-       });
-     });
-   }
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('/service_worker.js').then(function (registration) {
+                // Registration was successful
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function (err) {
+                // registration failed :(
+                console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+    }
 </script>
 
 
