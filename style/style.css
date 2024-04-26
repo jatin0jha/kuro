@@ -365,7 +365,7 @@ input:checked + .slider:before {
 }
 
 .hero2 {
-    background-image: url("../heropt2.gif");
+    background-image: url("heropt2.gif");
   /* Make sure to replace with an actual image path */
   background-size: cover;
   background-position: top;
