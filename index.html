@@ -8,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="https://www.svgrepo.com/show/474291/arrow-short-left.svg">
     <link rel="manifest" href="manifest.json">
-    
     <title>ARTISTRY</title>
     <link rel="stylesheet" href="style/style.css">
 
@@ -183,7 +182,7 @@
             fill: white;
         }
 
-        .bg-dark .for-new:hover {
+        .bg-dark .for-new:hover{
             background-color: #141414;
         }
 
@@ -375,8 +374,8 @@
     <div class="layout">
         <div style="display: flex; justify-content: space-between; margin: 5px; align-items: center;">
             <div style="display: flex; align-items: center;">
-                <img src="../pikaso_texttoimage_Design-a-logo-for-Artistry-a-comprehensive-online--removebg.png" height="40px" alt="">
-                <h3 style="margin: 10px;" >ARTISTRY</h3>
+                <img src="https://www.svgrepo.com/show/474291/arrow-short-left.svg" height="40px" alt="">
+                <h3 style="margin: 0;">ARTISTRY</h3>
             </div>
             <div class="burger" onclick="toggleMenu()" target="_blank">
                 <img src="https://www.svgrepo.com/show/489710/burger-menu.svg" height="50px" alt="">
@@ -703,136 +702,183 @@
                 </script>
             </div>
             <div id="about" class="section">
-                <div class="welcome" id="welcome">
-                    <header class="hero2">
-                        <div class="container">
-                            <h1><i>Welcome to Artistry Hub</i></h1>
-                            <p>A Creative Haven for 2D & 3D Artists</p>
-                        </div>
-                    </header>
+                <div class="hero">
+                    <h1>Welcome to Artistry Hub</h1>
+                    <p>A specialized platform for 2D and 3D artists</p>
                 </div>
                 <section class="about">
-                    <div class="container">
-                        <div class="row" style="color: black">
-                            <div class="col-md-4 feature">
-                                <i class="fas fa-palette feature-icon"></i>
-                                <h2 class="feature-title" id="creative_expression">
-                                    Creative Expression
-                                </h2>
-                                <p class="feature-description" style="color: black">
-                                    Artistry Hub provides a vibrant canvas for artists to
-                                    express their creativity without limits. Whether it's 2D
-                                    illustrations or immersive 3D renders, unleash your
-                                    imagination and bring your visions to life.
-                                </p>
-                            </div>
-                            <div class="col-md-4 feature">
-                                <i class="fas fa-users feature-icon"></i>
-                                <h2 class="feature-title" id="community_connection">
-                                    Community Connection
-                                </h2>
-                                <p class="feature-description" style="color: black">
-                                    Join a supportive community of fellow artists where
-                                    inspiration thrives and collaborations flourish. Share your
-                                    ideas, connect with like-minded individuals, and embark on
-                                    artistic journeys together.
-                                </p>
-                            </div>
-                            <div class="col-md-4 feature">
-                                <i class="fas fa-globe-americas feature-icon"></i>
-                                <h2 class="feature-title" id="global_showcase">
-                                    Global Showcase
-                                </h2>
-                                <p class="feature-description" style="color: black">
-                                    Explore a diverse showcase of artwork from talented artists
-                                    around the globe. From traditional techniques to
-                                    cutting-edge innovations, discover a world of creativity
-                                    that transcends boundaries.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row mt-5">
-                            <div class="col-md-12">
-                                <h2>Join Artistry Hub Today</h2>
-                                <p>
-                                    Whether you're an experienced artist or just starting your
-                                    creative journey, Artistry Hub welcomes you with open arms.
-                                    Join our Discord today and unlock endless opportunities to
-                                    elevate your artistry.
-                                </p>
-                                <a href="https://discord.gg/83gswXnW" target="_blank" class="btn btn-primary join-button">Join Now</a>
-                            </div>
-                        </div>
-                    </div>
+                    <h2>About Our Project</h2>
+                    <p>Welcome to Artistry Hub, a specialized platform designed with 2D and 3D artists in mind. Our
+                        project is dedicated
+                        to providing a seamless and intuitive experience for artists to showcase their work, connect
+                        with fellow
+                        creators, and explore a wealth of inspiring content.</p>
+
+                    <h2>Why This Project?</h2>
+                    <p>In the dynamic world of digital artistry, finding the right platform to exhibit your creations
+                        and connect with
+                        like-minded individuals can be challenging. That's where Artistry Hub comes in. Built by
+                        artists, for artists,
+                        our project offers a tailored environment that celebrates the diversity and creativity of the 2D
+                        and 3D art
+                        community.</p>
+
+                    <h2>What Sets Us Apart</h2>
+                    <p>- **Artist-Centric Approach:** We understand the unique needs and challenges faced by 2D and 3D
+                        artists. That's
+                        why our project is designed to prioritize the needs of creators, providing them with the tools
+                        and resources
+                        they need to thrive.</p>
+
+                    <p>- **Inspiration and Collaboration:** Whether you're looking for inspiration for your next project
+                        or seeking
+                        collaborators for a new venture, Artistry Hub is the perfect place to connect with fellow
+                        artists, share ideas,
+                        and collaborate on exciting new projects.</p>
+
+                    <p>- **Diverse Showcase:** From stunning 2D illustrations to immersive 3D renders, our platform
+                        offers a diverse
+                        showcase of artwork from talented artists around the globe. Explore a wide range of styles,
+                        techniques, and
+                        genres, and discover new favorites along the way.</p>
+
+                    <h2>Join Us Today</h2>
+                    <p>Whether you're an established artist or just starting on your creative journey, Artistry Hub is
+                        here to support
+                        you every step of the way. Join our community today and unlock a world of possibilities for your
+                        artistry. Let
+                        your imagination soar and your creativity thrive with Artistry Hub.</p>
                 </section>
+
+                <div id="successPopup" class="popup success-popup">Message sent successfully!</div>
+                <div id="errorPopup" class="popup error-popup">Failed to send message. Please try again later.</div>
+
+                <div style="display: flex; max-width: 500px; margin: 20px auto;" class="form-group">
+                    <input type="text" id="messageInput" class="form-control" placeholder="Enter your message">
+                    <button onclick="sendMessage()" class="btn btn-primary">Send</button>
+                </div>
+
+
                 <script>
-                    // Select all navigation links
-                    const navButtons = document.querySelectorAll('.nav-link');
+                    function sendMessage() {
+                        const webhookUrl = 'https://discord.com/api/webhooks/1228360772162424913/bBqs3_Gzdf7gZHPgaw1paDsanyn9fV5lA1PZjBkvTFH8qkZfeQyR5sVpYBJQl4X3lkjx';
+                        const message = document.getElementById('messageInput').value;
 
-                    // Initialize variable to store the previously clicked link
-                    let previousNavButton = null;
-
-                    // Set the initial active link to #library
-                    const initialActiveLink = document.querySelector('a[href="#library"]');
-                    initialActiveLink.style.backgroundColor = 'rgb(123, 123, 123)';
-                    initialActiveLink.style.color = 'white';
-                    previousNavButton = initialActiveLink;
-
-                    // Get all sections
-                    const sections = document.querySelectorAll('.section');
-
-                    // Show the section based on the hash in the URL
-                    function showSection(hash) {
-                        // Hide all sections
-                        sections.forEach(section => {
-                            section.style.display = 'none';
-                        });
-
-                        // Show the section corresponding to the hash
-                        const targetSection = document.getElementById(hash);
-                        if (targetSection) {
-                            targetSection.style.display = 'block';
-                        }
-                    }
-
-                    // Function to handle navigation link clicks
-                    function handleNavClick(event) {
-                        event.preventDefault(); // Prevent default anchor behavior
-                        event.stopPropagation(); // Stop event propagation to prevent issues with navigation logic
-
-                        const navButton = event.currentTarget;
-
-                        // Reset the background color of the previously clicked link
-                        if (previousNavButton) {
-                            previousNavButton.style.backgroundColor = '';
-                            previousNavButton.style.color = '';
+                        // Make sure message is not empty
+                        if (message.trim() === '') {
+                            showAlert('Please enter a message', 'error-popup');
+                            return;
                         }
 
-                        // Set the background color of the clicked link
-                        navButton.style.backgroundColor = 'rgb(123, 123, 123)';
-                        navButton.style.color = 'white';
-
-                        // Update the previously clicked link
-                        previousNavButton = navButton;
-
-                        // Show the corresponding section
-                        const hash = navButton.getAttribute('href').substr(1); // Extract the hash from the href attribute
-                        showSection(hash);
+                        // Send POST request to Discord webhook
+                        fetch(webhookUrl, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ content: message })
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Failed to send message');
+                                }
+                                showAlert('Message sent successfully!', 'success-popup');
+                            })
+                            .catch(error => {
+                                console.error('Error sending message:', error);
+                                showAlert('Failed to send message. Please try again later.', 'error-popup');
+                            });
                     }
 
-                    // Add click event listener to navigation links
-                    navButtons.forEach(navButton => {
-                        navButton.addEventListener('click', handleNavClick);
-                    });
+                    function showAlert(message, className) {
+                        const popup = document.createElement('div');
+                        popup.textContent = message;
+                        popup.classList.add('popup', className);
 
-                    // Show the appropriate section when the page loads
-                    window.addEventListener('DOMContentLoaded', function () {
-                        const hash = window.location.hash.substr(1); // Extract the hash from the URL
-                        showSection(hash);
-                    });
+                        document.body.appendChild(popup);
+
+                        setTimeout(() => {
+                            popup.style.opacity = '1';
+                            setTimeout(() => {
+                                popup.style.opacity = '0';
+                                setTimeout(() => {
+                                    document.body.removeChild(popup);
+                                }, 300);
+                            }, 2000);
+                        }, 100);
+                    }
+
                 </script>
-
             </div>
+        </div>
+        <script>
+            // Select all navigation links
+            const navButtons = document.querySelectorAll('.nav-link');
+
+            // Initialize variable to store the previously clicked link
+            let previousNavButton = null;
+
+            // Set the initial active link to #library
+            const initialActiveLink = document.querySelector('a[href="#library"]');
+            initialActiveLink.style.backgroundColor = 'rgb(123, 123, 123)';
+            initialActiveLink.style.color = 'white';
+            previousNavButton = initialActiveLink;
+
+            // Get all sections
+            const sections = document.querySelectorAll('.section');
+
+            // Show the section based on the hash in the URL
+            function showSection(hash) {
+                // Hide all sections
+                sections.forEach(section => {
+                    section.style.display = 'none';
+                });
+
+                // Show the section corresponding to the hash
+                const targetSection = document.getElementById(hash);
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                }
+            }
+
+            // Function to handle navigation link clicks
+            function handleNavClick(event) {
+                event.preventDefault(); // Prevent default anchor behavior
+                event.stopPropagation(); // Stop event propagation to prevent issues with navigation logic
+
+                const navButton = event.currentTarget;
+
+                // Reset the background color of the previously clicked link
+                if (previousNavButton) {
+                    previousNavButton.style.backgroundColor = '';
+                    previousNavButton.style.color = '';
+                }
+
+                // Set the background color of the clicked link
+                navButton.style.backgroundColor = 'rgb(123, 123, 123)';
+                navButton.style.color = 'white';
+
+                // Update the previously clicked link
+                previousNavButton = navButton;
+
+                // Show the corresponding section
+                const hash = navButton.getAttribute('href').substr(1); // Extract the hash from the href attribute
+                showSection(hash);
+            }
+
+            // Add click event listener to navigation links
+            navButtons.forEach(navButton => {
+                navButton.addEventListener('click', handleNavClick);
+            });
+
+            // Show the appropriate section when the page loads
+            window.addEventListener('DOMContentLoaded', function () {
+                const hash = window.location.hash.substr(1); // Extract the hash from the URL
+                showSection(hash);
+            });
+        </script>
+
+    </div>
 
 
 
