@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="https://www.svgrepo.com/show/474291/arrow-short-left.svg">
     <link rel="manifest" href="manifest.json">
@@ -12,306 +13,352 @@
 
     <style>
         body {
-    margin: 0;
-    background-color: #f8fafd;
-}
+            margin: 0;
+            background-color: #f8fafd;
+        }
 
-a {
-    color: black;
-    text-decoration: none;
-}
+        a {
+            color: black;
+            text-decoration: none;
+        }
 
-.bg-dark{
-    color: white;
-}
+        .bg-dark {
+            color: white;
+            background-color: #131313 !important;
+        }
 
-.bg-black .section .files-grid .content-container{
-    background-color: rgb(39, 39, 39) !important;
-}
+        .bg-black .section .files-grid .content-container {
+            background-color: rgb(20, 20, 20) !important;
+        }
 
-.bg-black .section .files-grid .content-container .content-info h3{
-    color: white !important;
-}
+        .bg-black .section .files-grid .content-container .content-info h3 {
+            color: white !important;
+        }
 
-.bg-black .section .files-grid .content-container .content-info a img{
-    -webkit-filter: invert(100%); /* Safari/Chrome */
-    filter: invert(100%);
-}
+        .bg-black .section .files-grid .content-container .content-info a img {
+            -webkit-filter: invert(100%);
+            /* Safari/Chrome */
+            filter: invert(100%);
+        }
 
-.content-container {
-    border-radius: 10px;
-    display: flex;
-    width: 100%;
-    height: 250px;
-}
+        .bg-dark #menu {
+            background-color: #111111;
+        }
 
-.cover-image img {
-    border-radius: 10px;
-    height: 100%;
-    aspect-ratio: 10/13;
-    box-shadow: var(--dt-shadow-elevation-1, 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15));
-}
+        .bg-dark #messageInput {
+            background-color: rgb(0, 0, 0);
+            color: white;
+            outline: rgb(64, 64, 64);
+        }
 
-.content-info {
-    display: flex;
-    justify-content: end;
-    flex-direction: column;
-    align-items: end;
-    width: 100%;
-}
+        .content-container {
+            border-radius: 10px;
+            display: flex;
+            width: 100%;
+            height: 250px;
+        }
 
-.content-info h3 {
-    text-align: left;
-    width: 100%;
-}
+        .cover-image img {
+            border-radius: 10px;
+            height: 100%;
+            aspect-ratio: 10/13;
+            box-shadow: var(--dt-shadow-elevation-1, 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15));
+        }
 
-.content-info p {
-    color: rgb(161, 161, 161);
-    text-align: left;
-    width: 100%;
-    min-height: 100px;
-    overflow: hidden;
-}
+        .content-info {
+            display: flex;
+            justify-content: end;
+            flex-direction: column;
+            align-items: end;
+            width: 100%;
+        }
 
+        .content-info h3 {
+            text-align: left;
+            width: 100%;
+        }
 
-#loading img {
-    height: 100%;
-}
-
-#loading {
-    margin: 0 auto;
-    height: 150px;
-    width: max-content;
-}
-
-table {
-    margin: 0 auto;
-}
-
-#recent {
-    display: none;
-}
-
-#recent:target {
-    display: block;
-}
-
-.layout {
-    display: grid;
-    grid-template-columns: 250px auto;
-    grid-template-rows: 60px auto;
-    height: 100vh;
-}
-
-.files-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5px;
-}
-
-.bg-dark .search-bar{
-    background-color: black;
-}
-
-.bg-dark .search-bar .search-icon svg{
-    fill: white !important;
-}
-
-.search-bar {
-    background-color: #e9eef6;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    border-radius: 50px;
-    margin: 2px;
-}
-
-.search-icon {
-    padding: 5px;
-    margin: 4px;
-    border-radius: 50%;
-}
-
-.search-bar input {
-    background-color: #0000;
-    border: none;
-    width: 100%;
-    height: 30px;
-    padding: 0 20px;
-}
-
-.search-bar input:focus {
-    outline: none;
-}
-
-.search-bar input:focus+.search-bar {
-    background-color: white !important;
-}
+        .content-info p {
+            color: rgb(161, 161, 161);
+            text-align: left;
+            width: 100%;
+            min-height: 100px;
+            overflow: hidden;
+        }
 
 
-.for-new {
-    align-items: center;
-    border-radius: 20px;
-    box-shadow: var(--dt-shadow-elevation-1, 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15));
-    grid-template-columns: auto 1fr;
-    height: 3.5rem;
-    min-width: 6.25rem;
-    background-color: white;
-    border: none;
-    padding: 1.125rem 1.25rem 1.125rem 1rem;
-    cursor: pointer;
-}
+        #loading img {
+            height: 100%;
+        }
 
-.nav-link {
-    width: 90%;
-    margin: 10px auto;
-    padding: 10px 20px;
-    border-radius: 30px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-}
+        #loading {
+            margin: 0 auto;
+            height: 150px;
+            width: max-content;
+        }
 
-.nav-link:hover {
-    background-color: rgba(0, 0, 0, 0.077);
-}
+        table {
+            margin: 0 auto;
+        }
 
-.nav-link:active {
-    background-color: rgb(194, 231, 255);
-}
+        #recent {
+            display: none;
+        }
 
-.nav-icon {
-    background-image: url("https://www.svgrepo.com/show/297000/library-book.svg");
-}
+        #recent:target {
+            display: block;
+        }
 
-.bi {
-    display: inline-block;
-    position: relative;
-    width: 1.25rem;
-    height: 1.25rem;
-    margin-right: 0.75rem;
-    top: -1px;
-    background-size: cover;
-}
+        .layout {
+            display: grid;
+            grid-template-columns: 250px auto;
+            grid-template-rows: 60px auto;
+            height: 100vh;
+        }
 
-.bi-house-door-fill-nav-menu {
-    background-image: url("https://www.svgrepo.com/show/297000/library-book.svg");
-}
+        .files-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+        }
 
-.bi-list-nested-nav-menu {
-    background-image: url("https://www.svgrepo.com/show/324204/about-information-info-help.svg");
-}
+        .bg-dark .search-bar {
+            background-color: black;
+        }
 
-.bi-clock-fill-nav-menu {
-    background-image: url("https://www.svgrepo.com/show/304509/recent.svg");
-}
+        .bg-dark .search-bar .search-icon svg {
+            fill: white !important;
+        }
 
-#about {
-    display: none;
-}
+        .search-bar {
+            background-color: #e9eef6;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            border-radius: 50px;
+            margin: 2px;
+        }
 
-#library,
-#about:target {
-    display: block;
-}
+        .search-icon {
+            padding: 5px;
+            margin: 4px;
+            border-radius: 50%;
+        }
 
-.hero {
-    background-image: url('https://i.pinimg.com/originals/a5/7e/bf/a57ebf5a082595205a53213f496a42c1.gif');
-    /* Replace 'hero-background.jpg' with your actual image */
-    background-size: cover;
-    background-position: center;
-    color: #595959;
-    text-align: center;
-    padding: 70px 0;
-}
+        .search-bar input {
+            background-color: #0000;
+            border: none;
+            width: 100%;
+            height: 30px;
+            padding: 0 20px;
+        }
 
-.hero h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-}
+        .search-bar input:focus {
+            outline: none;
+        }
 
-/* CSS styles for about section */
-.about {
-    padding: 50px 20px;
-}
-
-.about h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-}
-
-.about p {
-    font-size: 1.2em;
-    line-height: 1.6;
-    color: rgb(164, 164, 164);
-}
-
-.popup {
-    position: fixed;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 10px 20px;
-    border-radius: 5px;
-    color: white;
-    font-size: 16px;
-    transition: opacity 0.3s ease-in-out;
-    opacity: 0;
-    /* Adjusted z-index */
-}
-
-.success-popup {
-    background-color: #28a745;
-    /* Green */
-}
-
-.error-popup {
-    background-color: #dc3545;
-    /* Red */
-}
-
-.burger {
-    display: none;
-}
-
-@media (max-width:950px) {
-    .files-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width:650px) {
-    .layout {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 60px 60px auto 0;
-        height: 100vh;
-    }
-
-    .content-container {
-        height: 200px;
-    }
-
-    .burger {
-        display: block;
-    }
-
-    #menu {
-        position: absolute;
-        background-color: #e9eef6;
-        left: 0;
-        right: 0;
-        top: 120px;
-        display: none;
-    }
+        .search-bar input:focus+.search-bar {
+            background-color: white !important;
+        }
 
 
-    .dark-mode #menu {
-        background-color: #1f272d;
-    }
-}
+        .for-new {
+            align-items: center;
+            border-radius: 20px;
+            box-shadow: var(--dt-shadow-elevation-1, 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15));
+            grid-template-columns: auto 1fr;
+            height: 3.5rem;
+            min-width: 6.25rem;
+            background-color: white;
+            border: none;
+            padding: 1.125rem 1.25rem 1.125rem 1rem;
+            cursor: pointer;
+        }
 
+        .bg-dark .for-new {
+            background-color: #000000;
+            box-shadow: var(--dt-shadow-elevation-1, 0 1px 2px 0 rgba(85, 0, 255, 0.3), 0 1px 3px 1px rgba(255, 0, 191, 0.15));
+            color: white;
+            fill: white;
+        }
+
+        .bg-dark .for-new:hover{
+            background-color: #141414;
+        }
+
+        .nav-link {
+            width: 90%;
+            margin: 10px auto;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        .nav-link .div {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(127, 127, 127, 0.077);
+        }
+
+        .nav-link:active {
+            background-color: rgb(79, 79, 79);
+        }
+
+        .nav-icon {
+            background-image: url("https://www.svgrepo.com/show/297000/library-book.svg");
+        }
+
+        .bi {
+            display: inline-block;
+            position: relative;
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 0.75rem;
+            top: -1px;
+            background-size: cover;
+        }
+
+        .bi-house-door-fill-nav-menu {
+            background-image: url("https://www.svgrepo.com/show/297000/library-book.svg");
+        }
+
+        .bg-dark .bi-house-door-fill-nav-menu {
+            -webkit-filter: invert(100%);
+            filter: invert(100%);
+        }
+
+        .bi-list-nested-nav-menu {
+            background-image: url("https://www.svgrepo.com/show/324204/about-information-info-help.svg");
+        }
+
+        .bg-dark .bi-list-nested-nav-menu {
+            -webkit-filter: invert(100%);
+            filter: invert(100%);
+        }
+
+        .bi-clock-fill-nav-menu {
+            background-image: url("https://www.svgrepo.com/show/304509/recent.svg");
+        }
+
+        .bg-dark .bi-clock-fill-nav-menu {
+            -webkit-filter: invert(100%);
+            filter: invert(100%);
+        }
+
+        #about {
+            display: none;
+        }
+
+        #library,
+        #about:target {
+            display: block;
+        }
+
+        .hero {
+            background-image: url('https://i.pinimg.com/originals/a5/7e/bf/a57ebf5a082595205a53213f496a42c1.gif');
+            /* Replace 'hero-background.jpg' with your actual image */
+            background-size: cover;
+            background-position: center;
+            color: #595959;
+            text-align: center;
+            padding: 70px 0;
+        }
+
+        .bg-dark .hero {
+            -webkit-filter: invert(100%);
+            /* Safari/Chrome */
+            filter: invert(100%);
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        /* CSS styles for about section */
+        .about {
+            padding: 50px 20px;
+        }
+
+        .about h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: rgb(164, 164, 164);
+        }
+
+        .popup {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+            /* Adjusted z-index */
+        }
+
+        .success-popup {
+            background-color: #28a745;
+            /* Green */
+        }
+
+        .error-popup {
+            background-color: #dc3545;
+            /* Red */
+        }
+
+        .burger {
+            display: none;
+        }
+
+        @media (max-width:950px) {
+            .files-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width:650px) {
+            .layout {
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: 60px 60px auto 0;
+                height: 100vh;
+            }
+
+            .content-container {
+                height: 200px;
+            }
+
+            .burger {
+                display: block;
+            }
+
+            #menu {
+                position: absolute;
+                background-color: #e9eef6;
+                left: 0;
+                right: 0;
+                top: 120px;
+                display: none;
+            }
+
+
+            .dark-mode #menu {
+                background-color: #1f272d;
+            }
+        }
     </style>
 
     <script>
@@ -375,8 +422,9 @@ table {
         <div id="menu">
             <div
                 style="padding: 8px 16px 16px; max-width: 100%;box-sizing: border-box; display: flex; align-items: center; justify-content: space-between;">
-                <a href="https://forms.gle/Y167pEFsU8ApMCMm7" target="_blank"><button class="for-new"><span><svg
-                                width="24" height="24" viewBox="0 0 24 24" focusable="false">
+                <a href="https://forms.gle/Y167pEFsU8ApMCMm7" target="_blank"><button class="for-new"
+                        style="display: flex; align-items: center;"><span><svg width="24" height="24"
+                                viewBox="0 0 24 24" focusable="false">
                                 <path d="M20 13h-7v7h-2v-7H4v-2h7V4h2v7h7v2z"></path>
                             </svg></span><span class="jYPt8c">New</span>
                     </button>
@@ -389,13 +437,16 @@ table {
 
             </div>
             <a href="#library" class="nav-link">
-                <div><span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span>Library</div>
+                <div style="display: flex; align-items: center;"><span class="bi bi-house-door-fill-nav-menu"
+                        aria-hidden="true"></span>Library</div>
             </a>
             <a href="#recent" class="nav-link">
-                <div><span class="bi bi-clock-fill-nav-menu" aria-hidden="true"></span>Recent</div>
+                <div style="display: flex; align-items: center;"><span class="bi bi-clock-fill-nav-menu"
+                        aria-hidden="true"></span>Recent</div>
             </a>
             <a href="#about" class="nav-link">
-                <div><span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>About</div>
+                <div style="display: flex; align-items: center;"><span class="bi bi-list-nested-nav-menu"
+                        aria-hidden="true"></span>About</div>
             </a>
 
 
@@ -483,43 +534,83 @@ table {
                             src="https://www.svgrepo.com/show/439171/github.svg" height="50px"
                             alt="">Contribute</button></a>
             </div>
-            
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
-                    // This event listener ensures that the JavaScript code will run after the DOM content is fully loaded.
-            
                     const toggleSwitch = document.getElementById('toggle');
                     const libPage = document.getElementById('lib-page');
                     const body = document.querySelector('body');
                     const libBookCard = document.getElementById('lib-book-card');
-                    
-                    // Retrieving necessary elements from the DOM and storing them in variables.
-            
-                    toggleSwitch.addEventListener('change', function () {
-                        // Adding an event listener for the change event on the toggle switch.
-            
-                        if (this.checked) {
-                            // If the toggle switch is checked (in the "on" position):
-            
-                            libPage.classList.remove('bg-white');
-                            libPage.classList.add('bg-black');
-                            body.classList.add('bg-dark');
-                            libBookCard.classList.remove('bg-light');
-                            libBookCard.classList.add('bg-dark');
-                            // Change the background colors and styles to the dark mode.
+
+                    // Function to set the mode in local storage
+                    function setMode(mode) {
+                        localStorage.setItem('mode', mode);
+                    }
+
+                    // Function to get the mode from local storage
+                    function getMode() {
+                        return localStorage.getItem('mode');
+                    }
+
+                    // Function to toggle the mode based on the current mode
+                    function toggleMode() {
+                        const mode = getMode();
+                        if (mode === 'dark') {
+                            setLightMode();
                         } else {
-                            // If the toggle switch is unchecked (in the "off" position):
-            
-                            libPage.classList.remove('bg-black');
-                            libPage.classList.add('bg-white');
-                            body.classList.remove('bg-dark');
-                            libBookCard.classList.remove('bg-dark');
-                            libBookCard.classList.add('bg-light');
-                            // Change the background colors and styles back to the light mode.
+                            setDarkMode();
+                        }
+                    }
+
+                    // Function to set the page to light mode
+                    function setLightMode() {
+                        libPage.classList.remove('bg-black');
+                        libPage.classList.add('bg-white');
+                        body.classList.remove('bg-dark');
+                        libBookCard.classList.remove('bg-dark');
+                        libBookCard.classList.add('bg-light');
+                        setMode('light');
+                    }
+
+                    // Function to set the page to dark mode
+                    function setDarkMode() {
+                        libPage.classList.remove('bg-white');
+                        libPage.classList.add('bg-black');
+                        body.classList.add('bg-dark');
+                        libBookCard.classList.remove('bg-light');
+                        libBookCard.classList.add('bg-dark');
+                        setMode('dark');
+                    }
+
+                    // Check the mode from local storage when the page loads
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const mode = getMode();
+                        if (mode === 'dark') {
+                            setDarkMode();
+                            toggleSwitch.checked = true;
+                        } else {
+                            setLightMode();
+                            toggleSwitch.checked = false;
                         }
                     });
+
+                    // Event listener for the toggle switch
+                    toggleSwitch.addEventListener('change', function () {
+                        if (this.checked) {
+                            setDarkMode();
+                        } else {
+                            setLightMode();
+                        }
+                    });
+
+                    // Set a value in local storage
+                    localStorage.setItem('testKey', 'testValue');
+
+                    // Retrieve the value from local storage
+                    const testValue = localStorage.getItem('testKey');
+                    console.log(testValue); // Output the retrieved value
+
                 });
-            </script>            
+            </script>
 
             <div id="recent" class="section">
                 <h1>Recent</h1>
@@ -729,7 +820,8 @@ table {
 
             // Set the initial active link to #library
             const initialActiveLink = document.querySelector('a[href="#library"]');
-            initialActiveLink.style.backgroundColor = 'rgb(194, 231, 255)';
+            initialActiveLink.style.backgroundColor = 'rgb(123, 123, 123)';
+            initialActiveLink.style.color = 'white';
             previousNavButton = initialActiveLink;
 
             // Get all sections
@@ -759,10 +851,12 @@ table {
                 // Reset the background color of the previously clicked link
                 if (previousNavButton) {
                     previousNavButton.style.backgroundColor = '';
+                    previousNavButton.style.color = '';
                 }
 
                 // Set the background color of the clicked link
-                navButton.style.backgroundColor = 'rgb(194, 231, 255)';
+                navButton.style.backgroundColor = 'rgb(123, 123, 123)';
+                navButton.style.color = 'white';
 
                 // Update the previously clicked link
                 previousNavButton = navButton;
@@ -862,20 +956,5 @@ table {
         renderFiles(filteredData);
     }
 </script>
-
-<script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
-            navigator.serviceWorker.register('/service_worker.js').then(function (registration) {
-                // Registration was successful
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            }, function (err) {
-                // registration failed :(
-                console.log('ServiceWorker registration failed: ', err);
-            });
-        });
-    }
-</script>
-
 
 </html>
