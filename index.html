@@ -4,11 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to Artistry Hub, a specialized platform designed for 2D and 3D artists. Showcase your work, connect with fellow creators, and explore inspiring content.">
+    <meta name="keywords" content="Artistry Hub, 2D artists, 3D artists, digital art, creative platform">
+    <meta name="author" content="Ded">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="https://www.svgrepo.com/show/474291/arrow-short-left.svg">
     <link rel="manifest" href="manifest.json">
-    <title>ARTISTRY</title>
+    <title>ARTISTRY - Empowering 2D and 3D Artists</title>
     <link rel="stylesheet" href="style/style.css">
 
     <style>
@@ -56,6 +59,20 @@
             display: flex;
             width: 100%;
             height: 250px;
+        }
+
+        .bg-dark .contact-btn {
+            color: white;
+            border: 2px solid rgb(89, 89, 89);
+        }
+
+        .contact-btn {
+            margin: 0 10px;
+            outline: none;
+            border: none;
+            padding: 2px;
+            border-radius: 50%;
+            border: 2px solid rgb(162, 162, 162);
         }
 
         .cover-image img {
@@ -150,7 +167,6 @@
             border: none;
             width: 100%;
             height: 30px;
-            padding: 0 20px;
         }
 
         .search-bar input:focus {
@@ -177,13 +193,14 @@
 
         .bg-dark .for-new {
             background-color: #000000;
-            box-shadow: var(--dt-shadow-elevation-1, 0 1px 2px 0 rgba(85, 0, 255, 0.3), 0 1px 3px 1px rgba(255, 0, 191, 0.15));
+            box-shadow: var(--dt-shadow-elevation-1, 0 1px 2px 0 rgba(85, 0, 255, 0.3), 0 1px 10px 1px rgba(255, 0, 191, 0.15));
             color: white;
             fill: white;
         }
 
-        .bg-dark .for-new:hover{
+        .bg-dark .for-new:hover {
             background-color: #141414;
+            transition-duration: 1s;
         }
 
         .nav-link {
@@ -221,31 +238,26 @@
             background-size: cover;
         }
 
+        .bg-dark .bi {
+            -webkit-filter: invert(100%);
+            filter: invert(100%);
+
+        }
+
         .bi-house-door-fill-nav-menu {
             background-image: url("https://www.svgrepo.com/show/297000/library-book.svg");
         }
 
-        .bg-dark .bi-house-door-fill-nav-menu {
-            -webkit-filter: invert(100%);
-            filter: invert(100%);
+        .bi-clock-fill-nav-voice {
+            background-image: url('https://www.svgrepo.com/show/497646/voice-square.svg');
         }
 
         .bi-list-nested-nav-menu {
             background-image: url("https://www.svgrepo.com/show/324204/about-information-info-help.svg");
         }
 
-        .bg-dark .bi-list-nested-nav-menu {
-            -webkit-filter: invert(100%);
-            filter: invert(100%);
-        }
-
         .bi-clock-fill-nav-menu {
             background-image: url("https://www.svgrepo.com/show/304509/recent.svg");
-        }
-
-        .bg-dark .bi-clock-fill-nav-menu {
-            -webkit-filter: invert(100%);
-            filter: invert(100%);
         }
 
         #about {
@@ -258,19 +270,14 @@
         }
 
         .hero {
-            background-image: url('https://i.pinimg.com/originals/a5/7e/bf/a57ebf5a082595205a53213f496a42c1.gif');
+            background-image: url('https://i.redd.it/qawkce7pzj581.gif');
             /* Replace 'hero-background.jpg' with your actual image */
             background-size: cover;
-            background-position: center;
+            background-position: top;
             color: #595959;
             text-align: center;
-            padding: 70px 0;
-        }
-
-        .bg-dark .hero {
-            -webkit-filter: invert(100%);
-            /* Safari/Chrome */
-            filter: invert(100%);
+            padding: 20vh 0;
+            border-radius: 10px;
         }
 
         .hero h1 {
@@ -382,9 +389,8 @@
             </div>
         </div>
         <div style="display: flex; align-items: center; width: 100%;">
-            <div class="top-row px-4" style="width: 100%;">
+            <div class="top-row px-4" style="width: 100%; padding: 0 !important;">
                 <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Search for plots..." oninput="searchFiles()">
                     <div class="search-icon">
                         <svg fill="#000000" height="25px" width="25px" version="1.1" id="Capa_1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -402,8 +408,38 @@
                             </g>
                         </svg>
                     </div>
+                    <input type="text" id="searchInput" placeholder="Search for plots..." oninput="searchFiles()">
                 </div>
             </div>
+            <a href="#contact-container" class="contact-btn">
+                <svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" style="height: 34px;" fill="#000000">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <title></title>
+                        <g fill="none" fill-rule="evenodd" id="页面-1" stroke="none" stroke-width="1">
+                            <g id="导航图标" transform="translate(-251.000000, -207.000000)">
+                                <g id="编组" transform="translate(251.000000, 207.000000)">
+                                    <rect fill="#FFFFFF" fill-opacity="0.01" fill-rule="nonzero" height="24" id="矩形"
+                                        width="24" x="0" y="0"></rect>
+                                    <path d="M18,16 C20.20915,16 22,14.20915 22,12 C22,9.79085 20.20915,8 18,8" id="路径">
+                                    </path>
+                                    <path d="M18,16 L18,16 C20.20915,16 22,14.20915 22,12 C22,9.79085 20.20915,8 18,8"
+                                        id="路径" stroke="#4a4a4a" stroke-linejoin="round" stroke-width="1.5"></path>
+                                    <path d="M6,8 C3.79086,8 2,9.79085 2,12 C2,14.20915 3.79086,16 6,16" id="路径"></path>
+                                    <path d="M6,8 C3.79086,8 2,9.79085 2,12 C2,14.20915 3.79086,16 6,16 L6,16" id="路径"
+                                        stroke="#4a4a4a" stroke-linejoin="round" stroke-width="1.5"></path>
+                                    <path
+                                        d="M6,16 L6,15.75 L6,14.5 L6,12 L6,8 C6,4.68629 8.6863,2 12,2 C15.3137,2 18,4.68629 18,8 L18,16 C18,19.3137 15.3137,22 12,22"
+                                        id="路径" stroke="#4a4a4a" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="1.5"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+            </a>
             <script>
                 const searchBarInput = document.querySelector('.search-bar input');
                 const searchBarContainer = document.querySelector('.search-bar');
@@ -429,12 +465,10 @@
                             </svg></span><span class="jYPt8c">New</span>
                     </button>
                 </a>
-
                 <label class="switch">
                     <input type="checkbox" id="toggle">
                     <span class="slider round"></span>
                 </label>
-
             </div>
             <a href="#library" class="nav-link">
                 <div style="display: flex; align-items: center;"><span class="bi bi-house-door-fill-nav-menu"
@@ -444,6 +478,10 @@
                 <div style="display: flex; align-items: center;"><span class="bi bi-clock-fill-nav-menu"
                         aria-hidden="true"></span>Recent</div>
             </a>
+            <!-- <a href="#voice-channel" class="nav-link">
+                <div style="display: flex; align-items: center;"><span class="bi bi-clock-fill-nav-voice"
+                        aria-hidden="true"></span>Voice Channel</div>
+            </a> -->
             <a href="#about" class="nav-link">
                 <div style="display: flex; align-items: center;"><span class="bi bi-list-nested-nav-menu"
                         aria-hidden="true"></span>About</div>
@@ -520,19 +558,28 @@
             </script>
 
         </div>
-        <div id="lib-page" class="bg-white p-2" style="overflow-y: scroll; border-radius: 10px;">
+        <div id="lib-page" class="bg-white p-2" style="overflow-y: scroll; border-radius: 20px;">
+
+
+            <div id="voice-channel" class="section">
+
+            </div>
+
             <div id="library" class="section">
                 <h1>Library</h1>
                 <div class="files-grid" id="myContentContainer">
                 </div>
                 <div id="loading">
-                    <img src="https://i.gifer.com/XOsX.gif" alt="Loading...">
+                    <img src="https://i.gifer.com/origin/52/52e4bb28d095ff93d3a4019d43d628bc_w200.webp"
+                        alt="Loading...">
                 </div>
 
-                <a href="https://github.com/jatin0jha/kuro"><button
+                <a href="https://github.com/jatin0jha/kuro">
+                    <button
                         style="background-color: black; color: white; border-radius: 15px; border: none; padding: 5px 20px; position: absolute; bottom: 20px; left: 20px;"><img
-                            src="https://www.svgrepo.com/show/439171/github.svg" height="50px"
-                            alt="">Contribute</button></a>
+                            src="https://www.svgrepo.com/show/439171/github.svg" height="50px" alt="">Contribute
+                    </button>
+                </a>
             </div>
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
@@ -614,93 +661,9 @@
 
             <div id="recent" class="section">
                 <h1>Recent</h1>
-                <script>// Function to handle when a user clicks on a card link
-                    function handleCardClick(event) {
-                        // Capture the data of the clicked card
-                        const cardData = {
-                            title: event.currentTarget.querySelector('.content-info h2').textContent,
-                            description: event.currentTarget.querySelector('.content-info p').textContent,
-                            pdfLink: event.currentTarget.querySelector('.content-info a').getAttribute('href'),
-                            coverImage: event.currentTarget.querySelector('.cover-image img').getAttribute('src')
-                        };
-
-                        // Store the captured card data locally
-                        saveCardDataLocally(cardData);
-
-                        // Render the recently opened card
-                        renderRecentCard(cardData);
-                    }
-
-                    // Function to save card data locally
-                    function saveCardDataLocally(cardData) {
-                        // Get the previously saved card data from local storage
-                        let recentCards = JSON.parse(localStorage.getItem('recentCards')) || [];
-
-                        // Add the new card data to the array of recent cards
-                        recentCards.push(cardData);
-
-                        // Limit the number of recent cards to keep (if needed)
-                        // Adjust the limit as per your requirement
-                        const MAX_RECENT_CARDS = 10;
-                        if (recentCards.length > MAX_RECENT_CARDS) {
-                            recentCards = recentCards.slice(-MAX_RECENT_CARDS);
-                        }
-
-                        // Save the updated recent cards data back to local storage
-                        localStorage.setItem('recentCards', JSON.stringify(recentCards));
-                    }
-
-                    // Function to render the recently opened card
-                    function renderRecentCard(cardData) {
-                        const recentContainer = document.getElementById('recent');
-
-                        // Generate HTML markup for the recent card
-                        const recentCardHTML = `
-                            <div id="lib-book-card" class="bg-light p-1 content-container">
-                                <div class="cover-image">
-                                    <a href="${cardData.pdfLink}" target="_blank">
-                                        <img src="${cardData.coverImage}" alt="">
-                                    </a>
-                                </div>
-                                <div class="p-2 content-info">
-                                    <h2 class="text-dark">${cardData.title}</h2>
-                                    <p>${cardData.description}</p>
-                                    <div style="height: 100%;"></div>
-                                    <a href="${cardData.pdfLink}" target="_blank">
-                                        <img src="https://raw.githubusercontent.com/jatin0jha/jatin0jha/ba706fea77d7890b95a1c0863b6213c48c317de2/upload.svg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                        `;
-
-                        // Append the recent card HTML to the recent container
-                        recentContainer.insertAdjacentHTML('beforeend', recentCardHTML);
-                    }
-
-                    // Add event listeners to card links in the content container
-                    document.getElementById("myContentContainer").addEventListener('click', function (event) {
-                        if (event.target.closest('.content-container')) {
-                            handleCardClick(event);
-                        }
-                    });
-
-                    // Function to render recently opened cards from local storage
-                    function renderRecentCardsFromLocalStorage() {
-                        const recentCards = JSON.parse(localStorage.getItem('recentCards')) || [];
-
-                        // Render each recent card
-                        recentCards.forEach(cardData => {
-                            renderRecentCard(cardData);
-                        });
-                    }
-
-                    // Render the recent cards when the page loads
-                    window.addEventListener('DOMContentLoaded', function () {
-                        renderRecentCardsFromLocalStorage();
-                    });
-
-                </script>
             </div>
+
+
             <div id="about" class="section">
                 <div class="hero">
                     <h1>Welcome to Artistry Hub</h1>
@@ -753,11 +716,6 @@
                 <div id="successPopup" class="popup success-popup">Message sent successfully!</div>
                 <div id="errorPopup" class="popup error-popup">Failed to send message. Please try again later.</div>
 
-                <div style="display: flex; max-width: 500px; margin: 20px auto;" class="form-group">
-                    <input type="text" id="messageInput" class="form-control" placeholder="Enter your message">
-                    <button onclick="sendMessage()" class="btn btn-primary">Send</button>
-                </div>
-
 
                 <script>
                     function sendMessage() {
@@ -807,10 +765,10 @@
                             }, 2000);
                         }, 100);
                     }
-
                 </script>
             </div>
         </div>
+
         <script>
             // Select all navigation links
             const navButtons = document.querySelectorAll('.nav-link');
@@ -878,6 +836,51 @@
             });
         </script>
 
+    </div>
+
+
+    <style>
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #000000e3;
+            display: none;
+        }
+
+        .overlay:target {
+            display: block;
+        }
+
+        .contact-container {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(14, 0, 64, 1) 100%);
+            max-width: 600px;
+            margin: 10vh auto;
+            padding: 2vh;
+            border-radius: 7px;
+            box-shadow: var(--dt-shadow-elevation-1, 0 10px 20px 0 rgba(85, 0, 255, 0.3), 0 1px 10px 1px rgba(255, 0, 191, 0.15));
+        }
+
+        .contact-container:hover {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.626),
+                    rgba(14, 0, 64, 0.65)), url('https://i.gifer.com/OKEq.gif');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+    <div class="overlay" id="contact-container">
+        <div class="contact-container">
+            <h1 class="text-light">Send Message</h1>
+            <div style="max-width: 500px; margin: 20px auto;" class="form-group">
+                <input type="text" id="messageInput" class="form-control bg-dark text-light"
+                    placeholder="Enter your message">
+                <button onclick="sendMessage()" class="btn btn-primary m-2">Send</button>
+                <a href="#library"><button class="btn btn-danger m2">Close</button></a>
+            </div>
+        </div>
     </div>
 
 
