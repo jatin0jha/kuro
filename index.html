@@ -16,624 +16,667 @@
   <style>
     @charset "utf-8";
 
-/******* Fonts Import Start **********/
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-/********* Fonts Face CSS End **********/
+    /******* Fonts Import Start **********/
+    @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+    /********* Fonts Face CSS End **********/
 
-/******* Common Element CSS Start ******/
-* {
-  margin: 0px;
-  padding: 0px;
-}
-body {
-  font-family: "Roboto", sans-serif;
-  font-size: 16px;
-}
-.clear {
-  clear: both;
-}
-img {
-  max-width: 100%;
-  border: 0px;
-}
-ul,
-ol {
-  list-style: none;
-}
-a {
-  text-decoration: none;
-  color: inherit;
-  outline: none;
-  transition: all 0.4s ease-in-out;
-  -webkit-transition: all 0.4s ease-in-out;
-}
-a:focus,
-a:active,
-a:visited,
-a:hover {
-  text-decoration: none;
-  outline: none;
-}
-a:hover {
-  color: #e73700;
-}
-h2 {
-  margin-bottom: 48px;
-  padding-bottom: 16px;
-  font-size: 20px;
-  line-height: 28px;
-  font-weight: 700;
-  position: relative;
-  text-transform: capitalize;
-}
-h3 {
-  margin: 0 0 10px;
-  font-size: 28px;
-  line-height: 36px;
-}
-button {
-  outline: none !important;
-}
-/******* Common Element CSS End *********/
+    /******* Common Element CSS Start ******/
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
 
-/* -------- title style ------- */
-.line-title {
-  position: relative;
-  width: 400px;
-}
-.line-title::before,
-.line-title::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 4px;
-  border-radius: 2px;
-}
-.line-title::before {
-  width: 100%;
-  background: #f2f2f2;
-}
-.line-title::after {
-  width: 32px;
-  background: #e73700;
-}
+    body {
+      font-family: "Roboto", sans-serif;
+      font-size: 16px;
+    }
 
-/******* Middle section CSS Start ******/
-/* -------- Landing page ------- */
-.game-section {
-  padding: 0;
-}
-.game-section .owl-stage {
-  margin: 15px 0;
-  display: flex;
-  display: -webkit-flex;
-}
-.game-section .item {
-  margin: 0 15px 60px;
-  width: 320px;
-  height: 400px;
-  display: flex;
-  display: -webkit-flex;
-  align-items: flex-end;
-  -webkit-align-items: flex-end;
-  background: #343434 no-repeat center center / cover;
-  border-radius: 16px;
-  overflow: hidden;
-  position: relative;
-  transition: all 0.4s ease-in-out;
-  -webkit-transition: all 0.4s ease-in-out;
-  cursor: pointer;
-}
-.game-section .item.active {
-  width: 500px;
-  box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
-  -webkit-box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
-}
-.game-section .item:after {
-  content: "";
-  display: block;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
-  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
-}
-.game-section .item-desc {
-  padding: 0 24px 12px;
-  color: #fff;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-  transform: translateY(calc(100% - 54px));
-  -webkit-transform: translateY(calc(100% - 54px));
-  transition: all 0.4s ease-in-out;
-  -webkit-transition: all 0.4s ease-in-out;
-}
-.game-section .item.active .item-desc {
-  transform: none;
-  -webkit-transform: none;
-}
-.game-section .item-desc p {
-  opacity: 0;
-  -webkit-transform: translateY(32px);
-  transform: translateY(32px);
-  transition: all 0.4s ease-in-out 0.2s;
-  -webkit-transition: all 0.4s ease-in-out 0.2s;
-}
-.game-section .item.active .item-desc p {
-  opacity: 1;
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-}
-.game-section .owl-theme.custom-carousel .owl-dots {
-  margin-top: -20px;
-  position: relative;
-  z-index: 5;
-}
-/******** Middle section CSS End *******/
+    .clear {
+      clear: both;
+    }
 
-/***** responsive css Start ******/
+    img {
+      max-width: 100%;
+      border: 0px;
+    }
 
-@media (min-width: 992px) and (max-width: 1199px) {
-  h2 {
-    margin-bottom: 32px;
-  }
-  h3 {
-    margin: 0 0 8px;
-    font-size: 24px;
-    line-height: 32px;
-  }
+    ul,
+    ol {
+      list-style: none;
+    }
 
-  /* -------- Landing page ------- */
-  .game-section .item {
-    margin: 0 12px 60px;
-    width: 260px;
-    height: 360px;
-  }
-  .game-section .item.active {
-    width: 400px;
-  }
-  .game-section .item-desc {
-    transform: translateY(calc(100% - 46px));
-    -webkit-transform: translateY(calc(100% - 46px));
-  }
-}
+    a {
+      text-decoration: none;
+      color: inherit;
+      outline: none;
+      transition: all 0.4s ease-in-out;
+      -webkit-transition: all 0.4s ease-in-out;
+    }
 
-@media (min-width: 768px) and (max-width: 991px) {
-  h2 {
-    margin-bottom: 32px;
-  }
-  h3 {
-    margin: 0 0 8px;
-    font-size: 24px;
-    line-height: 32px;
-  }
-  .line-title {
-    width: 330px;
-  }
+    a:focus,
+    a:active,
+    a:visited,
+    a:hover {
+      text-decoration: none;
+      outline: none;
+    }
 
-  /* -------- Landing page ------- */
-  .game-section .item {
-    margin: 0 12px 60px;
-    width: 240px;
-    height: 330px;
-  }
-  .game-section .item.active {
-    width: 360px;
-  }
-  .game-section .item-desc {
-    transform: translateY(calc(100% - 42px));
-    -webkit-transform: translateY(calc(100% - 42px));
-  }
-}
+    a:hover {
+      color: #e73700;
+    }
 
-@media (max-width: 767px) {
-  body {
-    font-size: 14px;
-  }
-  h2 {
-    margin-bottom: 20px;
-  }
-  h3 {
-    margin: 0 0 8px;
-    font-size: 19px;
-    line-height: 24px;
-  }
-  .line-title {
-    width: 250px;
-  }
+    h2 {
+      margin-bottom: 48px;
+      padding-bottom: 16px;
+      font-size: 20px;
+      line-height: 28px;
+      font-weight: 700;
+      position: relative;
+      text-transform: capitalize;
+    }
 
-  /* -------- Landing page ------- */
-  .game-section .item {
-    margin: 0 10px 40px;
-    width: 200px;
-    height: 280px;
-  }
-  .game-section .item.active {
-    width: 270px;
-    box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
-    -webkit-box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
-  }
-  .game-section .item-desc {
-    padding: 0 14px 5px;
-    transform: translateY(calc(100% - 42px));
-    -webkit-transform: translateY(calc(100% - 42px));
-  }
-}
+    h3 {
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 36px;
+    }
 
+    button {
+      outline: none !important;
+    }
 
-body {
-  background-color: #F0EFE3;
-  margin: 0;
-  padding: 0;
-  color: #65645c;
-}
+    /******* Common Element CSS End *********/
 
-.main-grid {
-  display: grid;
-  grid-template-columns: 80px auto;
-  height: 100vh;
-}
+    /* -------- title style ------- */
+    .line-title {
+      position: relative;
+      width: 400px;
+    }
 
-.nav-grid {
-  display: grid;
-  grid-template-rows: 100px auto 100px;
-  height: 100vh;
-}
-
-.logo {
-  margin: 15px;
-}
-
-.github-links {
-  margin: 15px;
-}
-
-.nav-icon {
-  margin: 15px;
-  padding: 10px;
-}
-
-.nav-icon:hover {
-  background-color: #96998519;
-  border-radius: 50%;
-}
-
-.nav-icon:hover path {
-  fill: rgb(100, 104, 91);
-}
-
-.nav-icon.active {
-  background-color: #dc3545;
-  border-radius: 50%;
-}
-
-.nav-icon.active svg path {
-  fill: white;
-}
-
-
-.nav-icon svg g path {
-  fill: #46463f;
-}
-
-.lib-grid {
-  display: grid;
-  grid-template-rows: 50px auto;
-  border-left: 2px solid #e0dccc;
-}
-
-.top-search-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 10px;
-}
-
-.top-search-bar form {
-  position: relative;
-  height: max-content;
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.top-search-bar form input {
-  background-color: rgba(0, 0, 0, 0);
-  outline: none;
-  border: none;
-  width: 100%;
-}
-
-.book-shadow {
-  aspect-ratio: 5/7;
-  width: 100%;
-  box-shadow: -10px 5px 10px rgba(0, 0, 0, 0.344);
-}
-
-.book-cover {
-  aspect-ratio: 5/7;
-  border-radius: 0 10px 10px 0;
-  width: 100%;
-  border-right: 2px solid rgb(255, 255, 255);
-  box-shadow: 1px 0px 0px black;
-}
-
-.book-card:hover {
-  scale: 1.05;
-}
-
-.book-card {
-  width: min-content;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  width: 100%;
-}
-
-.book-card p {
-  text-align: center;
-  margin-top: 10px;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 18px;
-}
-
-a {
-  text-decoration: none;
-}
-
-.main-sec-container {
-  height: calc(100vh - 50px);
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
-.content-container {
-  width: min-content;
-  grid-template-columns: ;
-}
-
-.files-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-
-#loading img {
-  height: 100%;
-}
-
-#loading {
-  margin: 0 auto;
-  height: 150px;
-  width: max-content;
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 255, 0);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgb(100, 102, 89);
-  border-radius: 10px;
-}
-
-.dropdown {
-  display: none;
-}
-
-@media (max-width:1350px) {
-  .files-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  }
-}
-
-@media (max-width:1200px) {
-  .files-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  }
-}
-
-@media (max-width:1000px) {
-  .files-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-}
-
-@media (max-width:800px) {
-  .files-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-
-@media (max-width:650px) {
-  .files-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-  }
-
-  .book-card {
-      padding: 5px !important;
-  }
-}
-
-@media (max-width:450px) {
-  .files-grid {
-      display: grid;
-  }
-
-  .main-grid {
-      grid-template-columns: 1fr;
-      grid-template-rows: 70px auto;
-      height: 100vh;
-  }
-
-  .logo {
-      margin: 0 10px;
-      width: 50px;
-      display: flex;
-  }
-
-  .main-sec-container {
-      height: calc(100vh - 120px);
-  }
-
-  .nav-grid {
-      grid-template-columns: 50px auto 50px;
-      grid-template-rows: 1fr;
-      height: auto;
-  }
-
-  .nav-menu-icons {
-      display: none;
-  }
-
-  .git-logo-which-float {
+    .line-title::before,
+    .line-title::after {
+      content: "";
       position: absolute;
-      width: 60px;
       bottom: 0;
       left: 0;
-  }
+      height: 4px;
+      border-radius: 2px;
+    }
 
-  .github-links {
-      margin: 0;
-  }
+    .line-title::before {
+      width: 100%;
+      background: #f2f2f2;
+    }
 
-  .dropdown {
-      position: relative;
-      display: inline-block;
-  }
+    .line-title::after {
+      width: 32px;
+      background: #e73700;
+    }
 
-  .dropbtn {
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
+    /******* Middle section CSS Start ******/
+    /* -------- Landing page ------- */
+    .game-section {
       padding: 0;
-  }
+    }
 
-  .dropbtn img {
-      margin: 0;
-      width: 50px;
-  }
+    .game-section .owl-stage {
+      margin: 15px 0;
+      display: flex;
+      display: -webkit-flex;
+    }
 
-  .dropdown-content {
-      display: none;
+    .game-section .item {
+      margin: 0 15px 60px;
+      width: 320px;
+      height: 400px;
+      display: flex;
+      display: -webkit-flex;
+      align-items: flex-end;
+      -webkit-align-items: flex-end;
+      background: #343434 no-repeat center center / cover;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.4s ease-in-out;
+      -webkit-transition: all 0.4s ease-in-out;
+      cursor: pointer;
+    }
+
+    .game-section .item.active {
+      width: 500px;
+      box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
+      -webkit-box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .game-section .item:after {
+      content: "";
+      display: block;
       position: absolute;
-      right: 0;
-      background-color: #f9f9f9;
-      min-width: 160px;
-      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-      z-index: 2;
-  }
+      height: 100%;
+      width: 100%;
+      left: 0;
+      top: 0;
+      background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+    }
 
-  .dropdown-content a {
-      color: black;
-      padding: 12px 16px;
+    .game-section .item-desc {
+      padding: 0 24px 12px;
+      color: #fff;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      transform: translateY(calc(100% - 54px));
+      -webkit-transform: translateY(calc(100% - 54px));
+      transition: all 0.4s ease-in-out;
+      -webkit-transition: all 0.4s ease-in-out;
+    }
+
+    .game-section .item.active .item-desc {
+      transform: none;
+      -webkit-transform: none;
+    }
+
+    .game-section .item-desc p {
+      opacity: 0;
+      -webkit-transform: translateY(32px);
+      transform: translateY(32px);
+      transition: all 0.4s ease-in-out 0.2s;
+      -webkit-transition: all 0.4s ease-in-out 0.2s;
+    }
+
+    .game-section .item.active .item-desc p {
+      opacity: 1;
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+
+    .game-section .owl-theme.custom-carousel .owl-dots {
+      margin-top: -20px;
+      position: relative;
+      z-index: 5;
+    }
+
+    /******** Middle section CSS End *******/
+
+    /***** responsive css Start ******/
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+      h2 {
+        margin-bottom: 32px;
+      }
+
+      h3 {
+        margin: 0 0 8px;
+        font-size: 24px;
+        line-height: 32px;
+      }
+
+      /* -------- Landing page ------- */
+      .game-section .item {
+        margin: 0 12px 60px;
+        width: 260px;
+        height: 360px;
+      }
+
+      .game-section .item.active {
+        width: 400px;
+      }
+
+      .game-section .item-desc {
+        transform: translateY(calc(100% - 46px));
+        -webkit-transform: translateY(calc(100% - 46px));
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+      h2 {
+        margin-bottom: 32px;
+      }
+
+      h3 {
+        margin: 0 0 8px;
+        font-size: 24px;
+        line-height: 32px;
+      }
+
+      .line-title {
+        width: 330px;
+      }
+
+      /* -------- Landing page ------- */
+      .game-section .item {
+        margin: 0 12px 60px;
+        width: 240px;
+        height: 330px;
+      }
+
+      .game-section .item.active {
+        width: 360px;
+      }
+
+      .game-section .item-desc {
+        transform: translateY(calc(100% - 42px));
+        -webkit-transform: translateY(calc(100% - 42px));
+      }
+    }
+
+    @media (max-width: 767px) {
+      body {
+        font-size: 14px;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+      }
+
+      h3 {
+        margin: 0 0 8px;
+        font-size: 19px;
+        line-height: 24px;
+      }
+
+      .line-title {
+        width: 250px;
+      }
+
+      /* -------- Landing page ------- */
+      .game-section .item {
+        margin: 0 10px 40px;
+        width: 200px;
+        height: 280px;
+      }
+
+      .game-section .item.active {
+        width: 270px;
+        box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
+        -webkit-box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
+      }
+
+      .game-section .item-desc {
+        padding: 0 14px 5px;
+        transform: translateY(calc(100% - 42px));
+        -webkit-transform: translateY(calc(100% - 42px));
+      }
+    }
+
+
+    body {
+      background-color: #F0EFE3;
+      margin: 0;
+      padding: 0;
+      color: #65645c;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 80px auto;
+      height: 100vh;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-rows: 100px auto 100px;
+      height: 100vh;
+    }
+
+    .logo {
+      margin: 15px;
+    }
+
+    .github-links {
+      margin: 15px;
+    }
+
+    .nav-icon {
+      margin: 15px;
+      padding: 10px;
+    }
+
+    .nav-icon:hover {
+      background-color: #96998519;
+      border-radius: 50%;
+    }
+
+    .nav-icon:hover path {
+      fill: rgb(100, 104, 91);
+    }
+
+    .nav-icon.active {
+      background-color: #dc3545;
+      border-radius: 50%;
+    }
+
+    .nav-icon.active svg path {
+      fill: white;
+    }
+
+
+    .nav-icon svg g path {
+      fill: #46463f;
+    }
+
+    .lib-grid {
+      display: grid;
+      grid-template-rows: 50px auto;
+      border-left: 2px solid #e0dccc;
+    }
+
+    .top-search-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 10px;
+    }
+
+    .top-search-bar form {
+      position: relative;
+      height: max-content;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .top-search-bar form input {
+      background-color: rgba(0, 0, 0, 0);
+      outline: none;
+      border: none;
+      width: 100%;
+    }
+
+    .book-shadow {
+      aspect-ratio: 5/7;
+      width: 100%;
+      box-shadow: -10px 5px 10px rgba(0, 0, 0, 0.344);
+    }
+
+    .book-cover {
+      aspect-ratio: 5/7;
+      border-radius: 0 10px 10px 0;
+      width: 100%;
+      border-right: 2px solid rgb(255, 255, 255);
+      box-shadow: 1px 0px 0px black;
+    }
+
+    .book-card:hover {
+      scale: 1.05;
+    }
+
+    .book-card {
+      width: min-content;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      width: 100%;
+    }
+
+    .book-card p {
+      text-align: center;
+      margin-top: 10px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 18px;
+    }
+
+    a {
       text-decoration: none;
+    }
+
+    .main-sec-container {
+      height: calc(100vh - 50px);
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+
+    .content-container {
+      width: min-content;
+      grid-template-columns: ;
+    }
+
+    .files-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    #loading img {
+      height: 100%;
+    }
+
+    #loading {
+      margin: 0 auto;
+      height: 150px;
+      width: max-content;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 255, 0);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgb(100, 102, 89);
+      border-radius: 10px;
+    }
+
+    .dropdown {
+      display: none;
+    }
+
+    @media (max-width:1350px) {
+      .files-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      }
+    }
+
+    @media (max-width:1200px) {
+      .files-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      }
+    }
+
+    @media (max-width:1000px) {
+      .files-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+    }
+
+    @media (max-width:800px) {
+      .files-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    @media (max-width:650px) {
+      .files-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .book-card {
+        padding: 5px !important;
+      }
+    }
+
+    @media (max-width:450px) {
+      .files-grid {
+        display: grid;
+      }
+
+
+      .aalu-bhujia {
+        display: grid;
+        grid-template-rows: auto 50px;
+        height: 80vh !important;
+      }
+
+      .main-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 70px auto;
+        height: 100vh;
+      }
+
+      .logo {
+        margin: 0 10px;
+        width: 50px;
+        display: flex;
+      }
+
+      .main-sec-container {
+        height: calc(100vh - 120px);
+      }
+
+      .nav-grid {
+        grid-template-columns: 50px auto 50px;
+        grid-template-rows: 1fr;
+        height: auto;
+      }
+
+      .nav-menu-icons {
+        display: none;
+      }
+
+      .git-logo-which-float {
+        position: absolute;
+        width: 60px;
+        bottom: 0;
+        left: 0;
+      }
+
+      .github-links {
+        margin: 0;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropbtn {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .dropbtn img {
+        margin: 0;
+        width: 50px;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        z-index: 2;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #ddd;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section:target {
       display: block;
-  }
-
-  .dropdown-content a:hover {
-      background-color: #ddd;
-  }
-
-  .dropdown:hover .dropdown-content {
-      display: block;
-  }
-
-}
-
-.section {
-  display: none;
-}
-
-.section:target {
-  display: block;
-}
+    }
 
 
-.popup {
-  position: fixed;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px 20px;
-  border-radius: 5px;
-  color: white;
-  font-size: 16px;
-  transition: opacity 0.3s ease-in-out;
-  opacity: 0;
-  /* Adjusted z-index */
-}
+    .popup {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      border-radius: 5px;
+      color: white;
+      font-size: 16px;
+      transition: opacity 0.3s ease-in-out;
+      opacity: 0;
+      /* Adjusted z-index */
+    }
 
-.success-popup {
-  background-color: #28a745;
-  /* Green */
-}
+    .success-popup {
+      background-color: #28a745;
+      /* Green */
+    }
 
-.error-popup {
-  background-color: #dc3545;
-  /* Red */
-}
+    .error-popup {
+      background-color: #dc3545;
+      /* Red */
+    }
 
-.burger {
-  display: none;
-}
+    .burger {
+      display: none;
+    }
 
-.hero {
-  background-image: url('https://i.redd.it/qawkce7pzj581.gif');
-  /* Replace 'hero-background.jpg' with your actual image */
-  background-size: cover;
-  background-position: top;
-  text-align: center;
-  padding: 20vh 0;
-  border-radius: 10px;
-}
+    .hero {
+      background-image: url('https://i.redd.it/qawkce7pzj581.gif');
+      /* Replace 'hero-background.jpg' with your actual image */
+      background-size: cover;
+      background-position: top;
+      text-align: center;
+      padding: 20vh 0;
+      border-radius: 10px;
+    }
 
-.hero h1 {
-  font-size: 3em;
-  margin-bottom: 20px;
-}
+    .hero h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
 
-.about {
-  padding: 50px 20px;
-}
+    .about {
+      padding: 50px 20px;
+    }
 
-.about h2 {
-  font-size: 2em;
-  margin-bottom: 20px;
-}
+    .about h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
 
-.about p {
-  font-size: 1.2em;
-  line-height: 1.6;
-}
+    .about p {
+      font-size: 1.2em;
+      line-height: 1.6;
+    }
 
-.theme-switch{
-  aspect-ratio: 1;
-  width: 100%;
-  background-image: url('https://www.svgrepo.com/show/432159/dark.svg');
-  background-size: cover;
-  scale: 1.2;
-}
+    .theme-switch {
+      aspect-ratio: 1;
+      width: 100%;
+      background-image: url('https://www.svgrepo.com/show/432159/dark.svg');
+      background-size: cover;
+      scale: 1.2;
+    }
 
-.theme-switch:hover{
-  background-image: url('https://www.svgrepo.com/show/529974/sun.svg');
-  filter: invert(100%);
-  -webkit-filter: invert(100%);
-}
+    .theme-switch:hover {
+      background-image: url('https://www.svgrepo.com/show/529974/sun.svg');
+      filter: invert(100%);
+      -webkit-filter: invert(100%);
+    }
   </style>
 </head>
 
@@ -750,6 +793,7 @@ a {
               }
 
               const themeSwitch = document.getElementById('theme-switch');
+              const themeLink = document.getElementById('theme-link');
 
               // Function to toggle the theme
               function toggleTheme() {
@@ -763,6 +807,10 @@ a {
               }
 
               themeSwitch.addEventListener('click', toggleTheme);
+              themeLink.addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent the default link behavior
+                toggleTheme();
+              });
             </script>
 
           </div>
@@ -776,6 +824,21 @@ a {
                   <path fill-rule="evenodd" clip-rule="evenodd"
                     d="M6.85929 1.25001C6.88904 1.25001 6.91919 1.25002 6.94976 1.25002L6.98675 1.25001C7.33818 1.24999 7.56433 1.24998 7.78542 1.27065C8.7367 1.35961 9.63905 1.73337 10.3746 2.34313C10.5456 2.48485 10.7055 2.64477 10.954 2.89329L11.5303 3.46969C12.3761 4.3154 12.7012 4.6311 13.0768 4.84005C13.2948 4.96134 13.526 5.05713 13.766 5.12552C14.1793 5.24333 14.6324 5.25002 15.8284 5.25002L16.253 5.25002C17.526 5.25 18.5521 5.24998 19.364 5.35206C20.2054 5.45784 20.9204 5.68358 21.5077 6.21185C21.6061 6.30032 21.6997 6.39394 21.7882 6.49231C22.3165 7.07965 22.5422 7.79459 22.648 8.63601C22.75 9.4479 22.75 10.4741 22.75 11.747V14.0564C22.75 15.8942 22.75 17.3498 22.5969 18.489C22.4393 19.6615 22.1071 20.6104 21.3588 21.3588C20.6104 22.1071 19.6615 22.4393 18.489 22.5969C17.3498 22.75 15.8942 22.75 14.0564 22.75H9.94361C8.10584 22.75 6.65021 22.75 5.51099 22.5969C4.33857 22.4393 3.38962 22.1071 2.64126 21.3588C1.8929 20.6104 1.56078 19.6615 1.40315 18.489C1.24999 17.3498 1.25 15.8942 1.25002 14.0564L1.25002 6.94976C1.25002 6.91919 1.25001 6.88904 1.25001 6.85929C1.2499 6.06338 1.24982 5.55685 1.33237 5.11935C1.6949 3.19788 3.19788 1.6949 5.11935 1.33237C5.55685 1.24982 6.06338 1.2499 6.85929 1.25001ZM6.94976 2.75002C6.03312 2.75002 5.67873 2.75329 5.39746 2.80636C4.08277 3.05441 3.05441 4.08277 2.80636 5.39746C2.75329 5.67873 2.75002 6.03312 2.75002 6.94976V14C2.75002 15.9068 2.75161 17.2615 2.88978 18.2892C3.02504 19.2953 3.27871 19.8749 3.70192 20.2981C4.12513 20.7213 4.70478 20.975 5.71087 21.1103C6.73853 21.2484 8.0932 21.25 10 21.25H14C15.9068 21.25 17.2615 21.2484 18.2892 21.1103C19.2953 20.975 19.8749 20.7213 20.2981 20.2981C20.7213 19.8749 20.975 19.2953 21.1103 18.2892C21.2484 17.2615 21.25 15.9068 21.25 14V11.7979C21.25 10.4621 21.2486 9.5305 21.1597 8.82312C21.0731 8.13448 20.9141 7.76356 20.6729 7.49539C20.6198 7.43637 20.5637 7.3802 20.5046 7.32712C20.2365 7.08592 19.8656 6.92692 19.1769 6.84034C18.4695 6.75141 17.538 6.75002 16.2021 6.75002H15.8284C15.7912 6.75002 15.7545 6.75002 15.7182 6.75003C14.6702 6.75025 13.9944 6.75038 13.3548 6.56806C13.0041 6.46811 12.6661 6.32811 12.3475 6.15083C11.7663 5.82747 11.2885 5.3495 10.5476 4.60833C10.522 4.58265 10.496 4.55666 10.4697 4.53035L9.91943 3.98009C9.63616 3.69682 9.52778 3.58951 9.41731 3.49793C8.91403 3.08073 8.29664 2.825 7.64576 2.76413C7.50289 2.75077 7.35038 2.75002 6.94976 2.75002ZM12 11.25C12.4142 11.25 12.75 11.5858 12.75 12V13.25H14C14.4142 13.25 14.75 13.5858 14.75 14C14.75 14.4142 14.4142 14.75 14 14.75H12.75V16C12.75 16.4142 12.4142 16.75 12 16.75C11.5858 16.75 11.25 16.4142 11.25 16V14.75H10C9.5858 14.75 9.25002 14.4142 9.25002 14C9.25002 13.5858 9.5858 13.25 10 13.25H11.25V12C11.25 11.5858 11.5858 11.25 12 11.25Z"
                     fill="#4a4f40"></path>
+                </g>
+              </svg>
+            </a>
+          </div>
+          <div class="nav-icon">
+            <a href="#chat">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22Z"
+                    stroke="#1C274C" stroke-width="1.5"></path>
+                  <path opacity="0.5" d="M8 10.5H16" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path>
+                  <path opacity="0.5" d="M8 14H13.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path>
                 </g>
               </svg>
             </a>
@@ -807,6 +870,7 @@ a {
           <div class="dropdown-content">
             <a href="#library-main">Home</a>
             <a href="https://forms.gle/TNQC6wzXyyGmSByH9">New</a>
+            <a href="#chat">Chat</a>
             <a href="#about">about</a>
           </div>
         </div>
@@ -826,6 +890,189 @@ a {
       </div>
 
       <div class="main-sec-container">
+        <style>
+          .chatForm {
+            display: flex;
+            align-items: center;
+            height: 40px;
+            background-color: white;
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 30px;
+            padding: 0 10px;
+          }
+
+          .dark-theme .chatForm {
+            background-color: #000000;
+          }
+
+          .chatInput {
+            width: 100%;
+            background-color: #00000000;
+            border: none;
+            outline: none;
+            color: white;
+            margin: 0 10px;
+          }
+
+          #messages {
+            overflow-y: scroll;
+            padding: 20px;
+          }
+
+          .chatSubmit {
+            height: 30px;
+            aspect-ratio: 1;
+            background-image: url('https://www.svgrepo.com/show/525502/send-square.svg');
+            background-size: cover;
+            background-position: center;
+            filter: invert(100%);
+            -webkit-filter: invert(100%);
+            background-color: transparent;
+            border: none;
+            rotate: 90deg;
+          }
+
+          #popup {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #4CAF50;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+          }
+
+          #popup.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+          }
+
+          .aalu-bhujia {
+            display: grid;
+            grid-template-rows: auto 50px;
+            height: calc(100vh - 70px);
+          }
+        </style>
+
+
+        <div id="chat" class="section">
+          <div class="aalu-bhujia">
+
+            <div id="messages"></div>
+            <div id="popup">Message sent successfully!</div>
+            <form id="messageForm" class="chatForm">
+              <input id="message" class="chatInput" placeholder="write here" type="text">
+              <input id="sendButton" type="submit" class="chatSubmit" value="">
+            </form>
+
+            <script>
+              // Function to get the user's name using a popup
+              function getUserName() {
+                return prompt("Please enter your name:");
+              }
+            
+              // Function to get or set the user's name from/to local storage
+              function setUsername() {
+                let username = localStorage.getItem("username");
+                if (!username) {
+                  username = getUserName();
+                  localStorage.setItem("username", username);
+                }
+                return username;
+              }
+            
+              async function fetchData() {
+                try {
+                  const response = await fetch('https://script.google.com/macros/s/AKfycbwpy4g8FciXf1d3dpqjN7Sbjvt57GJyHdclqck1Jmq5FZThQokqr21tThxezc_4IPvdng/exec');
+                  const data = await response.json();
+                  if (data.error) throw new Error(data.error);
+                  displayData(data.content);
+                } catch (error) {
+                  console.error('Error:', error);
+                  document.getElementById('messages').innerText = 'Failed to fetch data';
+                }
+              }
+            
+              function displayData(data) {
+                const messages = data.map(row =>
+                  `<div class="message">
+                    <div><strong>${row[1]}</strong>: ${row[2]}</div>
+                    <div class="timestamp">${row[0]}</div>
+                  </div>`).join('');
+                document.getElementById('messages').innerHTML = messages;
+              }
+            
+              // Define list of cuss words (for demonstration purposes)
+              const cussWords = ["badword1", "badword2", "badword3"];
+            
+              // Function to check for cuss words
+              function containsCussWords(message) {
+                const lowerCaseMessage = message.toLowerCase();
+                return cussWords.some(word => lowerCaseMessage.includes(word));
+              }
+            
+              // Function to check for spam (e.g., messages sent too quickly)
+              let lastMessageTime = 0;
+              const spamInterval = 5000; // 5 seconds interval
+            
+              async function sendMessage(event) {
+                event.preventDefault();
+                const message = document.getElementById('message').value;
+                const username = setUsername(); // Get or set the username
+                const currentTime = Date.now();
+            
+                // Check for cuss words
+                if (containsCussWords(message)) {
+                  showPopup("Your message contains inappropriate language.");
+                  return;
+                }
+            
+                // Check for spam
+                if (currentTime - lastMessageTime < spamInterval) {
+                  showPopup("You are sending messages too quickly. Please wait a few seconds.");
+                  return;
+                }
+            
+                try {
+                  const response = await fetch(`https://script.google.com/macros/s/AKfycbwpy4g8FciXf1d3dpqjN7Sbjvt57GJyHdclqck1Jmq5FZThQokqr21tThxezc_4IPvdng/exec?message=${encodeURIComponent(message)}&username=${encodeURIComponent(username)}`);
+                  const data = await response.text();
+                  showPopup('Message sent successfully!');
+                  document.getElementById('messageForm').reset();
+                  fetchData();
+                  lastMessageTime = currentTime;
+                } catch (error) {
+                  console.error('Error:', error);
+                  showPopup("Failed to send message");
+                }
+              }
+            
+              function showPopup(message) {
+                const popup = document.getElementById('popup');
+                popup.textContent = message;
+                popup.className = 'show';
+                setTimeout(() => {
+                  popup.className = popup.className.replace('show', '');
+                }, 3000);
+              }
+            
+              window.onload = function () {
+                setUsername(); // Ensure username is set
+                fetchData();
+                document.getElementById('messageForm').addEventListener('submit', sendMessage);
+              };
+            </script>
+            
+          </div>
+        </div>
 
         <div id="library-main" class="section">
           <section class="game-section">
@@ -887,60 +1134,77 @@ a {
             <div style="max-width: 500px; margin: 20px auto;" class="form-group">
               <input type="text" id="messageInput" class="form-control bg-dark text-light"
                 placeholder="Enter your message">
-              <button onclick="sendMessage()" class="btn btn-primary m-2">Send</button>
+              <button onclick="sendMessagess()" class="btn btn-primary m-2">Send</button>
               <a href="#library-main"><button class="btn btn-danger m2">Close</button></a>
             </div>
           </div>
         </div>
 
         <script>
-          function sendMessage() {
-            const webhookUrl = 'https://discord.com/api/webhooks/1228360772162424913/bBqs3_Gzdf7gZHPgaw1paDsanyn9fV5lA1PZjBkvTFH8qkZfeQyR5sVpYBJQl4X3lkjx';
-            const message = document.getElementById('messageInput').value;
+          function getUserName() {
+            return prompt("Please enter your name:");
+          }
 
-            // Make sure message is not empty
-            if (message.trim() === '') {
-              showAlert('Please enter a message', 'error-popup');
-              return;
+          function setUsername() {
+            let username = localStorage.getItem("username");
+            if (!username) {
+              username = getUserName();
+              localStorage.setItem("username", username);
             }
-
-            // Send POST request to Discord webhook
-            fetch(webhookUrl, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ content: message })
-            })
-              .then(response => {
-                if (!response.ok) {
-                  throw new Error('Failed to send message');
-                }
-                showAlert('Message sent successfully!', 'success-popup');
-              })
-              .catch(error => {
-                console.error('Error sending message:', error);
-                showAlert('Failed to send message. Please try again later.', 'error-popup');
-              });
+            return username;
           }
 
-          function showAlert(message, className) {
-            const popup = document.createElement('div');
+          async function fetchData() {
+            try {
+              const response = await fetch('https://script.google.com/macros/s/AKfycbwPOLwGq_2CTXFFm5jV1iTM8iMxVm92dBF2AgQuLPWphZLVmgTWOzdsk-kC7z2stNNR/exec');
+              const data = await response.json();
+              if (data.error) throw new Error(data.error);
+              displayData(data.content);
+            } catch (error) {
+              console.error('Error:', error);
+              document.getElementById('messages').innerText = 'Failed to fetch data';
+            }
+          }
+
+          function displayData(data) {
+            const messages = data.map(row =>
+              `<div class="message">
+                      <div><strong>${row[1]}</strong>: ${row[2]}</div>
+                      <div class="timestamp">${row[0]}</div>
+                  </div>`).join('');
+            document.getElementById('messages').innerHTML = messages;
+          }
+
+          async function sendMessage(event) {
+            event.preventDefault();
+            const message = document.getElementById('message').value;
+            const username = setUsername();
+            try {
+              const response = await fetch(`https://script.google.com/macros/s/AKfycbwPOLwGq_2CTXFFm5jV1iTM8iMxVm92dBF2AgQuLPWphZLVmgTWOzdsk-kC7z2stNNR/exec?message=${encodeURIComponent(message)}&username=${encodeURIComponent(username)}`);
+              const data = await response.text();
+              showPopup('Message sent successfully!');
+              document.getElementById('messageForm').reset();
+              fetchData();
+            } catch (error) {
+              console.error('Error:', error);
+              alert("Failed to send message");
+            }
+          }
+
+          function showPopup(message) {
+            const popup = document.getElementById('popup');
             popup.textContent = message;
-            popup.classList.add('popup', className);
-
-            document.body.appendChild(popup);
-
+            popup.className = 'show';
             setTimeout(() => {
-              popup.style.opacity = '1';
-              setTimeout(() => {
-                popup.style.opacity = '0';
-                setTimeout(() => {
-                  document.body.removeChild(popup);
-                }, 300);
-              }, 2000);
-            }, 100);
+              popup.className = popup.className.replace('show', '');
+            }, 3000);
           }
+
+          window.onload = function () {
+            setUsername();
+            fetchData();
+            document.getElementById('messageForm').addEventListener('submit', sendMessage);
+          };
         </script>
 
         <div id="about" class="section">
