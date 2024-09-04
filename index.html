@@ -13,7 +13,7 @@
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css'>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css'>
   <link rel="icon" href="https://www.svgrepo.com/show/474291/arrow-short-left.svg">
-  <style>
+    <style>
     @charset "utf-8";
 
     /******* Fonts Import Start **********/
@@ -63,6 +63,196 @@
 
     a:hover {
       color: #e73700;
+    }
+
+
+    .chatForm {
+      display: flex;
+      align-items: center;
+      height: 40px;
+      background-color: white;
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
+      border-radius: 30px;
+      padding: 0 10px;
+    }
+
+    .dark-theme .chatForm {
+      background-color: #000000;
+    }
+
+    .chatInput {
+      width: 100%;
+      background-color: #00000000;
+      border: none;
+      outline: none;
+      color: white;
+      margin: 0 10px;
+    }
+
+    #messages {
+      overflow-y: scroll;
+      padding: 20px;
+    }
+
+    .chatSubmit {
+      height: 30px;
+      aspect-ratio: 1;
+      background-image: url('https://www.svgrepo.com/show/525502/send-square.svg');
+      background-size: cover;
+      background-position: center;
+      filter: invert(100%);
+      -webkit-filter: invert(100%);
+      background-color: transparent;
+      border: none;
+      rotate: 90deg;
+    }
+
+    #popup {
+      visibility: hidden;
+      min-width: 250px;
+      margin-left: -125px;
+      background-color: #4CAF50;
+      color: #fff;
+      text-align: center;
+      border-radius: 2px;
+      padding: 16px;
+      position: fixed;
+      z-index: 1;
+      left: 50%;
+      bottom: 30px;
+      font-size: 17px;
+    }
+
+    #popup.show {
+      visibility: visible;
+      -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    .aalu-bhujia {
+      display: grid;
+      grid-template-rows: auto 50px;
+      height: calc(100vh - 70px);
+    }
+
+    #loadMoreButton {
+      background-color: transparent;
+      padding: 5px 15px;
+      border-radius: 10px;
+      margin: 20px auto;
+    }
+
+    .nav-icon-new {
+      margin: 20px;
+    }
+
+    .theme-img {
+      background-image: url('https://www.svgrepo.com/show/529974/sun.svg');
+      background-size: cover;
+      background-position: center;
+      aspect-ratio: 1;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .dark-theme .theme-img {
+      background-image: url('https://www.svgrepo.com/show/505710/moon.svg');
+      filter: invert(100%);
+      -webkit-filter: invert(100%);
+    }
+
+    .dark-theme {
+      background-color: rgb(23, 23, 23);
+    }
+
+    .dark-theme .nav-icon svg g path {
+      fill: #ffffff;
+    }
+
+    .dark-theme .top-search-bar img {
+      filter: invert(100%);
+      -webkit-filter: invert(100%);
+    }
+
+    .dark-theme .book-card p {
+      color: white;
+    }
+
+    .dark-theme #searchInput {
+      color: white;
+    }
+
+    .dark-theme .lib-grid {
+      border-left: 2px solid #000000;
+    }
+
+
+    .overlay {
+      position: absolute;
+      background-color: #07223F;
+      border-radius: 7px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: none;
+    }
+
+    .overlay:target {
+      display: block;
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 100vh;
+      padding: 2vh;
+      color: rgb(255, 255, 255);
+      align-items: center;
+    }
+
+    .contact-container h1 {
+      background-image: url('https://asset.gecdesigns.com/img/wallpapers/beautiful-fantasy-wallpaper-ultra-hd-wallpaper-4k-sr10012418-1706506236698-cover.webp');
+      background-position: left;
+      background-size: cover;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 20px;
+    }
+
+    .send-msg-btn {
+      background-color: #282828;
+      color: rgb(255, 255, 255);
+      border: none;
+      outline: none;
+      padding: 4px 20px;
+      margin: 8px;
+      border-radius: 10px;
+    }
+
+    .close-msg-btn {
+      background-color: rgb(0, 0, 0);
+      color: rgb(255, 255, 255);
+      border: none;
+      outline: none;
+      padding: 4px 20px;
+      margin: 8px;
+      border-radius: 10px;
+    }
+
+    .Contact-form-input {
+      background-color: #0000002c;
+      border: none;
+      outline: none;
+      border-radius: 7px;
+      padding: 10px;
+      color: white;
+      width: 90%;
+      margin: 0 8px;
     }
 
     h2 {
@@ -705,83 +895,6 @@
           </div>
 
           <div class="nav-icon-new">
-            <style>
-              .nav-icon-new {
-                margin: 20px;
-              }
-
-              .theme-img {
-                background-image: url('https://www.svgrepo.com/show/529974/sun.svg');
-                background-size: cover;
-                background-position: center;
-                aspect-ratio: 1;
-                width: 100%;
-                cursor: pointer;
-              }
-
-              .dark-theme .theme-img {
-                background-image: url('https://www.svgrepo.com/show/505710/moon.svg');
-                filter: invert(100%);
-                -webkit-filter: invert(100%);
-              }
-
-              .dark-theme {
-                background-color: rgb(23, 23, 23);
-              }
-
-              .dark-theme .nav-icon svg g path {
-                fill: #ffffff;
-              }
-
-              .dark-theme .top-search-bar img {
-                filter: invert(100%);
-                -webkit-filter: invert(100%);
-              }
-
-              .dark-theme .book-card p {
-                color: white;
-              }
-
-              .dark-theme #searchInput {
-                color: white;
-              }
-
-              .dark-theme .lib-grid {
-                border-left: 2px solid #000000;
-              }
-
-
-              .overlay {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background-color: #000000e3;
-                display: none;
-              }
-
-              .overlay:target {
-                display: block;
-              }
-
-              .contact-container {
-                background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(14, 0, 64, 1) 100%);
-                max-width: 600px;
-                margin: 10vh auto;
-                padding: 2vh;
-                border-radius: 7px;
-                box-shadow: var(--dt-shadow-elevation-1, 0 10px 20px 0 rgba(85, 0, 255, 0.3), 0 1px 10px 1px rgba(255, 0, 191, 0.15));
-              }
-
-              .contact-container:hover {
-                background-image: linear-gradient(rgba(0, 0, 0, 0.626),
-                    rgba(14, 0, 64, 0.65)), url('https://i.gifer.com/OKEq.gif');
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
-              }
-            </style>
             <div class="theme-img" id="theme-switch"></div>
             <script>
               // Check if there's a saved theme preference in local storage
@@ -890,78 +1003,6 @@
       </div>
 
       <div class="main-sec-container">
-        <style>
-          .chatForm {
-            display: flex;
-            align-items: center;
-            height: 40px;
-            background-color: white;
-            max-width: 600px;
-            width: 100%;
-            margin: 0 auto;
-            border-radius: 30px;
-            padding: 0 10px;
-          }
-
-          .dark-theme .chatForm {
-            background-color: #000000;
-          }
-
-          .chatInput {
-            width: 100%;
-            background-color: #00000000;
-            border: none;
-            outline: none;
-            color: white;
-            margin: 0 10px;
-          }
-
-          #messages {
-            overflow-y: scroll;
-            padding: 20px;
-          }
-
-          .chatSubmit {
-            height: 30px;
-            aspect-ratio: 1;
-            background-image: url('https://www.svgrepo.com/show/525502/send-square.svg');
-            background-size: cover;
-            background-position: center;
-            filter: invert(100%);
-            -webkit-filter: invert(100%);
-            background-color: transparent;
-            border: none;
-            rotate: 90deg;
-          }
-
-          #popup {
-            visibility: hidden;
-            min-width: 250px;
-            margin-left: -125px;
-            background-color: #4CAF50;
-            color: #fff;
-            text-align: center;
-            border-radius: 2px;
-            padding: 16px;
-            position: fixed;
-            z-index: 1;
-            left: 50%;
-            bottom: 30px;
-            font-size: 17px;
-          }
-
-          #popup.show {
-            visibility: visible;
-            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-          }
-
-          .aalu-bhujia {
-            display: grid;
-            grid-template-rows: auto 50px;
-            height: calc(100vh - 70px);
-          }
-        </style>
 
 
         <div id="chat" class="section">
@@ -1273,15 +1314,13 @@
           </div>
         </div>
 
-
         <div class="overlay" id="contact-container">
           <div class="contact-container">
-            <h1 class="text-light">Send Message</h1>
-            <div style="max-width: 500px; margin: 20px auto;" class="form-group">
-              <input type="text" id="messageInput" class="form-control bg-dark text-light"
-                placeholder="Enter your message">
-              <button onclick="sendMessagess()" class="btn btn-primary m-2">Send</button>
-              <a href="#library-main"><button class="btn btn-danger m2">Close</button></a>
+            <h1 class="contact-form-title">Send Message</h1>
+            <div class="form-group">
+              <input type="text" id="messageInput" class="Contact-form-input" placeholder="Enter your message"> <br>
+              <button onclick="sendMessagess()" class="send-msg-btn">Send</button>
+              <a href="#library-main"><button class="close-msg-btn">Close</button></a>
             </div>
           </div>
         </div>
@@ -1425,8 +1464,11 @@
       window.location.hash = '#library-main';
     </script>
 
+   
     <script>
       let searchData; // To store the original data for reset
+      let currentPage = 0; // To keep track of the current page
+      const itemsPerPage = 10; // Number of items to load per page
 
       // Hide the content container and show the loading animation
       document.getElementById("myContentContainer").style.display = "none";
@@ -1435,25 +1477,27 @@
       fetch('https://script.googleusercontent.com/macros/echo?user_content_key=q4wwBgNWIKYx4Eu7_GOqNuiQS1U6pATiPYRrojAmxjq9ELwCCRmmdDKDbnTZ8DcZm2u_5E-VUyM-TEBO7JbGIFHn_N0BhvcBm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnN3qIGTLz4U0QCznjMAiFIBjg3sDBxIuBUFb6llJZ-HsCkaRr-U-pvhhonTEC3cIx8Mz7f7RLIjIfcJSmWxs5bNBKABpDR5oUg&lib=MTKY7IWoEIUZ-OaLI0TuvsCUIHiZ-_zcK')
         .then(res => res.json())
         .then(data => {
-          // Once the data is loaded, hide the loading animation and show the content container
           document.getElementById("myContentContainer").style.display = "grid";
           document.getElementById("loading").style.display = "none";
 
           searchData = data.content; // Store the original data for reset
-          renderFiles(data.content); // Render the files initially
+          renderFiles(searchData); // Render the files initially
         })
         .catch(error => {
           console.error('Error fetching data:', error);
-          // In case of an error, hide the loading animation and show an error message
           document.getElementById("loading").innerHTML = "Error fetching data. Please try again later :')";
         });
 
-      // Function to render files based on search input
-      function renderFiles(data) {
+      // Function to render files based on pagination
+      function renderFiles(data, append = false) {
         let content = '';
+        const start = currentPage * itemsPerPage;
+        const end = start + itemsPerPage;
+
+        const itemsToDisplay = data.slice(start, end);
 
         // Iterate over the data to create content for each item
-        data.forEach(item => {
+        itemsToDisplay.forEach(item => {
           let title = item[2];
           let description = item[3];
           let pdfLink = item[4];
@@ -1462,44 +1506,48 @@
           // Check if the cover image URL is valid
           if (coverImage && (coverImage.startsWith("http://") || coverImage.startsWith("https://"))) {
             let itemHTML = `
-              <div class="book-card">
-                  <div class="book-shadow">
-                      <a href="${pdfLink}" target="_blank"><img class="book-cover"
-                          src="${coverImage}" loading="lazy" alt=""></a>
-                  </div>
-                  <a href="${pdfLink}" target="_blank"><p>${title}</p></a>
-              </div>`;
+          <div class="book-card">
+              <div class="book-shadow">
+                  <a href="${pdfLink}" target="_blank"><img class="book-cover"
+                      src="${coverImage}" loading="lazy" alt=""></a>
+              </div>
+              <a href="${pdfLink}" target="_blank"><p>${title}</p></a>
+          </div>`;
             content += itemHTML;
           }
         });
 
-        // Populate the content into the content container
-        document.getElementById("myContentContainer").innerHTML = content;
+        if (append) {
+          document.getElementById("myContentContainer").innerHTML += content; // Append new content
+        } else {
+          document.getElementById("myContentContainer").innerHTML = content; // Replace existing content
+        }
+
+        // Show or hide the Load More button based on the remaining items
+        if (end < data.length) {
+          document.getElementById("loadMoreButton").style.display = "block";
+        } else {
+          document.getElementById("loadMoreButton").style.display = "none";
+        }
+      }
+
+      // Function to handle "Load More" button click
+      function loadMore() {
+        currentPage++;
+        renderFiles(searchData, true); // Append new items
       }
 
       // Function to handle search input
       function searchFiles() {
-        let searchTerm = document.getElementById("searchInput").value.toLowerCase();
-        let filteredData = searchData.filter(item => {
-          let title = item[2].toLowerCase();
-          let description = item[3].toLowerCase();
-          return title.includes(searchTerm) || description.includes(searchTerm);
-        });
-        renderFiles(filteredData);
-      }
-
-      function searchFiles() {
         let searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
 
-        // Check if the search term is empty
         if (searchTerm === "") {
-          // If empty, display the game section
           document.querySelector(".game-section").style.display = "block";
+          currentPage = 0; // Reset to the first page
           renderFiles(searchData); // Render the original data
-          return; // Exit the function early
+          return;
         }
 
-        // Hide the game section
         document.querySelector(".game-section").style.display = "none";
 
         let filteredData = searchData.filter(item => {
@@ -1507,8 +1555,29 @@
           let description = item[3].toLowerCase();
           return title.includes(searchTerm) || description.includes(searchTerm);
         });
+
+        currentPage = 0; // Reset to the first page for new search results
         renderFiles(filteredData);
       }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const lazyImages = document.querySelectorAll('img[data-src]');
+
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.dataset.src;
+              img.removeAttribute('data-src');
+              observer.unobserve(img);
+            }
+          });
+        });
+
+        lazyImages.forEach(image => {
+          imageObserver.observe(image);
+        });
+      });
 
     </script>
 
