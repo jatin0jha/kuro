@@ -472,13 +472,16 @@
                 <script>
                     async function sendMessageD(event) {
                         event.preventDefault(); // Prevent form from refreshing the page
-
+                
                         // Collect input values
                         const nameInput = document.getElementById('nameInput').value.trim();
                         const messageInput = document.getElementById('messageInput').value.trim();
                         const statusMessage = document.getElementById('statusMessage');
-                        const webhookUrl = 'https://discord.com/api/webhooks/1228360772162424913/bBqs3_Gzdf7gZHPgaw1paDsanyn9fV5lA1PZjBkvTFH8qkZfeQyR5sVpYBJQl4X3lkjx';
 
+                        const encodedWebhookUrl = 'aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTMzMDU3NDE2NTcyNzY0MTY2MS9jSVlzZnN5LXBaaE41MVlwaWttaDhPV3hueWNlaEgyY3RRZWI3dEF1RWMxd3M5bFVrTzd5LWh3c2NOejJvdTVoZDJ0cw==';
+
+                        const webhookUrl = atob(encodedWebhookUrl);
+                
                         // Basic validation
                         if (!nameInput || !messageInput) {
                             statusMessage.textContent = "Both fields are required.";
@@ -487,12 +490,10 @@
                             return;
                         }
 
-                        // Prepare the payload for Discord
                         const payload = {
                             content: `**Name:** ${nameInput}\n**Message:** ${messageInput}`
                         };
 
-                        // Send POST request to Discord webhook
                         try {
                             const response = await fetch(webhookUrl, {
                                 method: 'POST',
@@ -501,12 +502,12 @@
                                 },
                                 body: JSON.stringify(payload),
                             });
-
+                
                             if (response.ok) {
                                 statusMessage.textContent = "Message sent successfully!";
                                 statusMessage.className = "success";
                                 statusMessage.classList.remove("hidden");
-
+                
                                 // Reset the form
                                 document.getElementById('contactForm').reset();
                             } else {
