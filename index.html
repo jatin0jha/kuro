@@ -154,19 +154,31 @@
 
         .book-shadow {
             aspect-ratio: 5/7;
-            box-shadow: -10px 5px 10px rgba(0, 0, 0, 0.344);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 0 10px 10px 0;
+            overflow: hidden;
         }
 
         .book-cover {
             aspect-ratio: 5/7;
             border-radius: 0 10px 10px 0;
             width: 100%;
-            border-right: 2px solid rgb(255, 255, 255);
-            box-shadow: 1px 0px 0px black;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
 
         .book-card:hover {
-            scale: 1.05;
+            transform: translateY(-5px);
+        }
+
+        .book-card:hover .book-shadow {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .book-card:hover .book-cover {
+            transform: scale(1.05);
         }
 
         .book-card {
@@ -175,20 +187,29 @@
             flex-direction: column;
             align-items: center;
             width: 96%;
+            transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
         .book-card p {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 15px;
             font-family: 'Times New Roman', Times, serif;
             font-size: 18px;
+            color: #333;
+            font-weight: 500;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .files-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-            gap: 10px;
-            margin: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 20px;
+            padding: 20px;
         }
 
         .chatGrid {
@@ -319,62 +340,6 @@
             line-height: 1.6;
         }
 
-        .chatGri {
-            display: grid;
-            grid-template-rows: auto 60px;
-            height: calc(100vh - 100px);
-        }
-
-        .sendTxt {
-            background-color: rgb(230, 230, 219);
-            margin: 10px;
-            border-radius: 10px;
-            display: flex;
-        }
-
-        .sendTxt input {
-            background: transparent;
-            border-radius: 10px;
-            width: 100%;
-            border: none;
-            outline: none;
-            padding: 10px;
-        }
-
-        .message {
-            max-width: 70%;
-            display: inline-block;
-            clear: both;
-            margin: 5px 0;
-        }
-
-        .message.user {
-            text-align: right;
-            float: right;
-        }
-
-        .message.other {
-            text-align: left;
-            float: left;
-        }
-
-        .timestamp {
-            font-size: 0.8em;
-            color: #6c757d;
-        }
-
-        .sendTxt button {
-            border-radius: 10px;
-            border: none;
-            outline: none;
-            background-color: #d4d3c9;
-            aspect-ratio: 2;
-        }
-
-        .MsgGrid {
-            padding: 5px;
-            overflow-y: scroll;
-        }
 
 
 
@@ -398,29 +363,29 @@
 
         @media (max-width:1350px) {
             .files-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 25px;
             }
         }
 
         @media (max-width:1200px) {
             .files-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr 1fr;
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 20px;
             }
         }
 
         @media (max-width:1000px) {
             .files-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 15px;
             }
         }
 
         @media (max-width:800px) {
             .files-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 15px;
             }
         }
     </style>
@@ -433,7 +398,6 @@
             <div class="history">
                 <div class="chatInstance active" data-section="library" onclick="showSection('library')">Home</div>
                 <div class="chatInstance" data-section="contact-us" onclick="showSection('contact-us')">Contact us</div>
-                <div class="chatInstance" data-section="chats" onclick="showSection('chats')">Chats</div>
                 <div class="chatInstance" data-section="about" onclick="showSection('about')">About</div>
             </div>
             <button onclick="themeSwitch()" class="theme-switch"></button>
@@ -459,7 +423,7 @@
                 </div>
             </div>
             <div id="contact-us" class="section" style="display: none;">
-                <form id="contactForm" onsubmit="sendMessageD(event)">
+                <form id="reviewForm" onsubmit="sendMessageD(event)">
                     <h1>Artistory</h1>
                     <p>If you have any questions, comments, or feedback, feel free to reach out to us. We're here to
                         help and would love to hear from you!</p>
@@ -470,68 +434,38 @@
                 </form>
 
                 <script>
-                    async function sendMessageD(event) {
-                        event.preventDefault(); // Prevent form from refreshing the page
-                
-                        // Collect input values
-                        const nameInput = document.getElementById('nameInput').value.trim();
-                        const messageInput = document.getElementById('messageInput').value.trim();
-                        const statusMessage = document.getElementById('statusMessage');
-
-                        const encodedWebhookUrl = 'aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTMzMDU3NDE2NTcyNzY0MTY2MS9jSVlzZnN5LXBaaE41MVlwaWttaDhPV3hueWNlaEgyY3RRZWI3dEF1RWMxd3M5bFVrTzd5LWh3c2NOejJvdTVoZDJ0cw==';
-
-                        const webhookUrl = atob(encodedWebhookUrl);
-                
-                        // Basic validation
-                        if (!nameInput || !messageInput) {
-                            statusMessage.textContent = "Both fields are required.";
-                            statusMessage.className = "error";
-                            statusMessage.classList.remove("hidden");
-                            return;
-                        }
-
+                    document.getElementById('reviewForm').addEventListener('submit', function (event) {
+                        event.preventDefault(); // Prevent default form submission
+        
+                        // Get form data
+                        const name = document.getElementById('name').value;
+                        const reviewText = document.getElementById('reviewText').value;
+        
+                        // Prepare payload
                         const payload = {
-                            content: `**Name:** ${nameInput}\n**Message:** ${messageInput}`
+                            name: name,
+                            reviewText: reviewText
                         };
-
-                        try {
-                            const response = await fetch(webhookUrl, {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify(payload),
+        
+                        fetch('https://script.google.com/macros/s/AKfycbwxJoNFpwk2LhE4759NG3yQ9qUuKTSZA9SM-aGpdT5xKYA5jWoGtn5DzEybRD0qAaBT/exec', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            mode: 'no-cors', // Add this line
+                            body: JSON.stringify(payload),
+                        })
+                            .then(() => {
+                                alert('Thank you for your review! It has been submitted.');
+                                document.getElementById('reviewForm').reset(); // Reset the form
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('There was an error submitting your review. Please try again.');
                             });
-                
-                            if (response.ok) {
-                                statusMessage.textContent = "Message sent successfully!";
-                                statusMessage.className = "success";
-                                statusMessage.classList.remove("hidden");
-                
-                                // Reset the form
-                                document.getElementById('contactForm').reset();
-                            } else {
-                                throw new Error('Failed to send message. Please try again later.');
-                            }
-                        } catch (error) {
-                            console.error(error);
-                            statusMessage.textContent = error.message;
-                            statusMessage.className = "error";
-                            statusMessage.classList.remove("hidden");
-                        }
-                    }
+                    });
                 </script>
 
-
-            </div>
-            <div id="chats" class="section" style="display: none;">
-                <div class="chatGri">
-                    <div id="messages" class="MsgGrid"></div>
-                    <form id="messageForm" class="sendTxt">
-                        <input id="message" type="text" placeholder="Send a message..." required>
-                        <button type="submit">Send</button>
-                    </form>
-                </div>
             </div>
 
             <div id="about" class="section" style="display: none;">
@@ -719,78 +653,6 @@
         }
     </script>
 
-    <script>
-        let lastMessageTimestamp = null; // Keep track of the last message timestamp to prevent duplication
-
-        function getUserName() {
-            return prompt("Please enter your name:");
-        }
-
-        function setUsername() {
-            let username = localStorage.getItem("username");
-            if (!username) {
-                username = getUserName();
-                localStorage.setItem("username", username);
-            }
-            return username;
-        }
-
-        async function fetchMessages() {
-            try {
-                const response = await fetch('https://script.google.com/macros/s/AKfycbwpy4g8FciXf1d3dpqjN7Sbjvt57GJyHdclqck1Jmq5FZThQokqr21tThxezc_4IPvdng/exec');
-                const data = await response.json();
-                if (data.error) throw new Error(data.error);
-
-                const newMessages = data.content.filter(message => {
-                    const timestamp = new Date(message[0]);
-                    return !lastMessageTimestamp || timestamp > lastMessageTimestamp;
-                });
-
-                if (newMessages.length) {
-                    lastMessageTimestamp = new Date(newMessages[newMessages.length - 1][0]);
-                    newMessages.forEach(row => displayMessage({ timestamp: row[0], username: row[1], message: row[2] }));
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
-
-        function displayMessage({ timestamp, username, message }) {
-            const isUser = username === setUsername();
-            const messageElement = `
-                            <div class="message ${isUser ? 'user' : 'other'}">
-                                <div><strong>${username}</strong>: ${message}</div>
-                                <div class="timestamp">${timestamp}</div>
-                            </div>
-                        `;
-            document.getElementById('messages').innerHTML += messageElement;
-        }
-
-        async function sendMessage(event) {
-            event.preventDefault();
-            const message = document.getElementById('message').value;
-            const username = setUsername();
-
-            try {
-                await fetch(`https://script.google.com/macros/s/AKfycbwpy4g8FciXf1d3dpqjN7Sbjvt57GJyHdclqck1Jmq5FZThQokqr21tThxezc_4IPvdng/exec?message=${encodeURIComponent(message)}&username=${encodeURIComponent(username)}`);
-                document.getElementById('messageForm').reset();
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
-
-        // Poll for new messages every 2 seconds
-        function startPolling() {
-            setInterval(fetchMessages, 2000); // Fetch messages every 2 seconds
-        }
-
-        window.onload = function () {
-            setUsername();
-            fetchMessages(); // Initial fetch
-            startPolling(); // Start polling for real-time updates
-            document.getElementById('messageForm').addEventListener('submit', sendMessage);
-        };
-    </script>
 
     <script>
         function themeSwitch() {
@@ -812,16 +674,8 @@
             }
         }
 
-        function initChatApp() {
-            setUsername();
-            fetchMessages(); // Initial fetch
-            startPolling(); // Start polling for real-time updates
-            document.getElementById('messageForm').addEventListener('submit', sendMessage);
-        }
-
         // Use event listeners to avoid overwriting onload
         window.addEventListener("load", applySavedTheme); // Apply theme on load
-        window.addEventListener("load", initChatApp); // Initialize the chat app on load
     </script>
 
 </body>
