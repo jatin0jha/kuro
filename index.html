@@ -4,680 +4,2157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://www.svgrepo.com/show/474291/arrow-short-left.svg">
+    <title>Artistory — Browse &amp; read the catalog</title>
     <meta name="description"
-        content="Welcome to Artistry Hub, a specialized platform designed for 2D and 3D artists. Showcase your work, connect with fellow creators, and explore inspiring content.">
-    <meta name="keywords" content="Artistry Hub, 2D artists, 3D artists, digital art, creative platform">
-    <meta name="google-adsense-account" content="ca-pub-6321515918255529">
-    <meta name="author" content="Ded">
-    <title>Artistoty</title>
+        content="Artistory is a curated digital bookshelf. Search the catalog, open PDFs in a new tab, and discover featured titles.">
+    <meta name="theme-color" content="#f7f6f1">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Artistory">
+    <meta property="og:description"
+        content="Browse the catalog, search titles, and read books online from Artistory.">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none'%3E%3Cpath stroke='%232a2a28' stroke-width='1.5' d='M6 24c3-6 6-9 10-11 1.5 4.5 4.5 7.5 10 9-3.5 1.5-7 3-10 5-1.5-1.5-4.5-2-10-3z'/%3E%3Cpath stroke='%23e07a7a' stroke-width='1.5' stroke-linecap='round' d='M10 10c1.5 1.5 3 2 6 1.5M16 7v3'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <style>
+        :root {
+            --bg: #f7f6f1;
+            --surface: #ffffff;
+            --text: #2a2a28;
+            --muted: #8a8983;
+            --accent: #e07a7a;
+            --accent-soft: #f3d4d4;
+            --dark: #1f1f1e;
+            --border: #e8e7e2;
+            --serif: "Cormorant Garamond", Georgia, serif;
+            --sans: "Outfit", system-ui, sans-serif;
+            --rail: 76px;
+            --panel: 320px;
+            --shadow: 0 12px 40px rgba(42, 42, 40, 0.08);
+            --shadow-book: 0 18px 36px rgba(42, 42, 40, 0.22);
+            --float-bg: rgba(255, 255, 255, 0.88);
+            --float-blur: 14px;
+            --float-radius: 20px;
+            --float-shadow: 0 10px 40px rgba(42, 42, 40, 0.14);
+            --float-pad-y: 8px;
+            --float-pad-x: 12px;
+            --float-gap: 6px;
+            --dock-hit: 46px;
+            --dock-hit-radius: 14px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html,
         body {
-            background-color: #F0EFE3;
             margin: 0;
-            color: #65645c;
+            min-height: 100%;
+            background: #ebeae4;
+            color: var(--text);
+            font-family: var(--sans);
+            -webkit-font-smoothing: antialiased;
         }
 
-        .dark-mode {
-            background-color: rgb(23, 23, 23);
-            filter: invert(1);
-        }
-
-        .dark-mode img {
-            filter: invert(1);
-        }
-
-        .dark-mode .book-shadow {
-            filter: invert(1);
-        }
-
-        .dark-mode .book-shadow img {
-            filter: invert(0);
-        }
-
-        .theme-switch {
-            aspect-ratio: 1;
+        button {
+            font: inherit;
+            cursor: pointer;
             border: none;
-            background-image: url('https://www.svgrepo.com/show/529974/sun.svg');
-            background-size: cover;
-            height: 30px;
-            background-color: rgb(227, 227, 214);
-            border-radius: 50%;
-        }
-
-        .dark-mode .theme-switch {
-            background-image: url('https://www.svgrepo.com/show/529729/moon.svg');
-        }
-
-        a {
-            text-decoration: none;
+            background: none;
             color: inherit;
-            outline: none;
-            transition: all 0.4s ease-in-out;
-            -webkit-transition: all 0.4s ease-in-out;
         }
 
-        nav {
+        .app {
             display: flex;
-            margin: 5px;
+            min-height: calc(100vh - 48px);
+            padding: 0 16px;
+            gap: 0;
+            background: var(--bg);
+            box-shadow: 0 24px 80px rgba(42, 42, 40, 0.12);
+        }
+
+        /* —— Icon rail —— */
+        .rail-container{
+            height: calc(100vh - 32px);
             position: sticky;
-            top: 10px;
-            z-index: 5;
+            top: 16px;
+            left: 0;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        ::-webkit-scrollbar {
-            width: 3px;
-            height: 0;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #00000000;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #5f5f5f;
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #989898;
-        }
-
-        .mainGrid {
-            display: grid;
-            grid-template-columns: 230px auto;
-            transition: grid-template-columns 0.3s ease;
-        }
-
-        .mainGrid.collapsed {
-            grid-template-columns: 0 auto;
-        }
-
-        .sideBar {
-            height: calc(100vh - 24px);
-            padding: 12px;
-            transition: background-color 0.3s ease;
-            border-right: 1px solid rgb(217, 217, 217);
-        }
-
-        .sideBar h4 {
-            overflow: hidden;
-            margin: 20px 0;
-        }
-
-        .responsive-logo {
-            width: 40px;
-        }
-
-        .history {
-            height: calc(100vh - 110px);
-            overflow-x: scroll;
-        }
-
-        .chatInstance {
-            padding: 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin: 5px 0;
-        }
-
-        .chatInstance:hover {
-            background-color: #d4d3c9;
-        }
-
-        .history .active {
-            background-color: #d4d3c9;
-        }
-
-        .copy-button {
-            background-color: transparent;
-            outline: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-        }
-
-        .search-bar {
-            outline: none;
-            border: none;
-            background-color: #d4d3c96a;
-            color: rgb(0, 0, 0);
-            padding: 10px 10px;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-            margin: 0 auto;
-            width: calc(100% - 40px);
-            margin-left: 5px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgb(206, 205, 199);
-        }
-
-        .book-shadow {
-            aspect-ratio: 5/7;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 0 10px 10px 0;
-            overflow: hidden;
-        }
-
-        .book-cover {
-            aspect-ratio: 5/7;
-            border-radius: 0 10px 10px 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .book-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .book-card:hover .book-shadow {
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .book-card:hover .book-cover {
-            transform: scale(1.05);
-        }
-
-        .book-card {
-            width: min-content;
+        .rail {
+            width: var(--rail);
+            flex-shrink: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 96%;
-            transition: transform 0.3s ease;
+            padding: 12px 0 20px;
+            background: var(--surface);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            height: calc(100vh - 32px);
+            z-index: 20;
+        }
+
+        .rail-logo {
+            width: 36px;
+            height: 36px;
+            margin-bottom: 28px;
+            color: var(--text);
+        }
+
+        .rail-nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            width: 100%;
+            min-height: 0;
+        }
+
+        .rail-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: var(--muted);
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .rail-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .rail-btn.active {
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        .rail-btn:hover:not(.active) {
+            background: #f3f2ed;
+        }
+
+        a.rail-btn,
+        a.mobile-dock-btn {
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .rail-add,
+        .mobile-dock-btn.nav-add {
+            margin-top: auto;
+            color: var(--text);
+        }
+
+        .rail-add:hover,
+        .mobile-dock-btn.nav-add:hover {
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        .mobile-dock-btn.nav-add {
+            margin-top: 0;
+        }
+
+        /* —— Main shell —— */
+        .shell {
+            flex: 1;
+            min-width: 0;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .view {
+            display: none;
+            animation: fadeIn 0.35s ease;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        .app:not(.catalog-view) .side-panel {
+            display: none;
+        }
+
+        .app:not(.catalog-view) .search-wrap {
+            display: none;
+        }
+
+        /* —— Contact & About (from main.html) —— */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            max-width: 520px;
+            margin: 8px 0 40px;
+        }
+
+        .contact-form h1 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            font-weight: 600;
+            margin: 0 0 12px;
+        }
+
+        .contact-form > p {
+            margin: 0 0 24px;
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--muted);
+        }
+
+        .contact-form input[type="text"],
+        .contact-form textarea {
+            margin: 0 0 12px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            font: inherit;
+            color: var(--text);
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form input[type="submit"] {
+            align-self: flex-start;
+            margin-top: 8px;
+            padding: 12px 26px;
+            border-radius: 999px;
+            border: none;
+            background: var(--dark);
+            color: #fff;
+            font: inherit;
+            font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
         }
 
-        .book-card p {
+        .form-status {
+            margin-top: 12px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .form-status.success {
+            display: block;
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .form-status.failure {
+            display: block;
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        .about-hero {
+            background-image: url("https://i.pinimg.com/originals/fb/ec/6b/fbec6b7428573f785bac244d23550949.gif");
+            background-size: cover;
+            background-position: center;
             text-align: center;
-            margin-top: 15px;
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 18px;
-            color: #333;
+            padding: 12vh 24px;
+            border-radius: 16px;
+            margin-bottom: 32px;
+        }
+
+        .about-hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 600;
+            margin: 0 0 12px;
+        }
+
+        .about-hero p {
+            margin: 0;
+            font-size: 16px;
+            color: var(--muted);
+        }
+
+        .about-body {
+            padding: 0 4px 40px;
+            max-width: 720px;
+        }
+
+        .about-body h2 {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 28px 0 12px;
+        }
+
+        .about-body p {
+            margin: 0 0 16px;
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--muted);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .app.catalog-view .top-bar {
+            position: sticky;
+            top: 0;
+            z-index: 35;
+            margin: -4px -24px 20px;
+            padding: 10px 24px 12px;
+            background: transparent;
+        }
+
+        .search-wrap {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: var(--float-gap);
+            max-width: min(440px, 100%);
+            padding: var(--float-pad-y) var(--float-pad-x);
+            background: var(--float-bg);
+            backdrop-filter: blur(var(--float-blur));
+            -webkit-backdrop-filter: blur(var(--float-blur));
+            border: 1px solid var(--border);
+            border-radius: var(--float-radius);
+            box-shadow: var(--float-shadow);
+            transition: box-shadow 0.2s ease, transform 0.25s cubic-bezier(0.4, 2, 0.6, 1);
+        }
+
+        .search-wrap:focus-within {
+            box-shadow: var(--float-shadow), 0 0 0 1px rgba(224, 122, 122, 0.2);
+        }
+
+        .search-icon {
+            flex-shrink: 0;
+            width: var(--dock-hit);
+            height: var(--dock-hit);
+            border-radius: var(--dock-hit-radius);
+            display: grid;
+            place-items: center;
+            color: var(--muted);
+            transition: background 0.2s, color 0.2s, transform 0.25s cubic-bezier(0.4, 2, 0.6, 1);
+        }
+
+        .search-wrap:focus-within .search-icon,
+        .search-wrap:has(input:not(:placeholder-shown)) .search-icon {
+            background: var(--accent-soft);
+            color: var(--accent);
+            transform: scale(1.06);
+        }
+
+        .search-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .search-wrap input {
+            flex: 1;
+            min-width: 0;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 0 4px;
+            min-height: var(--dock-hit);
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text);
+        }
+
+        .search-wrap input::placeholder {
+            color: var(--muted);
+            opacity: 0.85;
+        }
+
+        .search-wrap input::-webkit-search-decoration,
+        .search-wrap input::-webkit-search-cancel-button {
+            display: none;
+        }
+
+        .search-clear {
+            flex-shrink: 0;
+            width: var(--dock-hit);
+            height: var(--dock-hit);
+            border-radius: var(--dock-hit-radius);
+            display: grid;
+            place-items: center;
+            color: var(--muted);
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.85);
+            transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.4, 2, 0.6, 1), background 0.2s ease,
+                color 0.2s ease;
+        }
+
+        .search-clear.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        .search-clear:active {
+            transform: scale(0.96);
+        }
+
+        .search-clear.visible:active {
+            transform: scale(1.02);
+        }
+
+        .search-clear svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .profile-chip {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--serif);
+            font-size: 1.125rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--text);
+        }
+
+        .bell {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: var(--muted);
+        }
+
+        /* —— Home hero —— */
+        .hero-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-copy h1 {
+            font-family: var(--serif);
+            font-size: clamp(2.2rem, 4vw, 3.1rem);
+            font-weight: 600;
+            line-height: 1.12;
+            margin: 0 0 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-copy p {
+            margin: 0 0 24px;
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--muted);
+            max-width: 420px;
+        }
+
+        .btn-dark {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--dark);
+            color: #fff;
+            padding: 14px 26px;
+            border-radius: 999px;
+            font-size: 14px;
             font-weight: 500;
-            max-width: 200px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-dark:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .open-book {
+            position: relative;
+            height: 220px;
+            perspective: 900px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .book-3d {
+            position: relative;
+            width: 280px;
+            height: 180px;
+            transform-style: preserve-3d;
+            transform: rotateX(8deg) rotateY(-12deg);
+        }
+
+        .book-page {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, #fffef9 0%, #f5f0e6 100%);
+            box-shadow: var(--shadow-book);
+            border-radius: 4px 8px 8px 4px;
+        }
+
+        .book-page.left {
+            left: 0;
+            transform-origin: right center;
+            transform: rotateY(-18deg);
+            background: linear-gradient(160deg, #2d5a4a 0%, #1a3d32 40%, #0f2920 100%);
             overflow: hidden;
-            text-overflow: ellipsis;
+        }
+
+        .book-page.left.has-cover {
+            background: #2a2a28;
+        }
+
+        .book-page.left.has-cover::after {
+            opacity: 0.35;
+        }
+
+        .book-page.left img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .book-page.left::after {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            background: radial-gradient(circle at 30% 40%, rgba(255, 200, 120, 0.35), transparent 55%),
+                linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.2));
+            border-radius: 2px;
+        }
+
+        .book-page.right {
+            right: 0;
+            padding: 16px 18px;
+            font-family: var(--serif);
+            font-size: 11px;
+            line-height: 1.5;
+            color: #4a4a46;
+        }
+
+        .book-spine {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 8px;
+            height: 100%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #c4b8a8, #e8e0d4, #c4b8a8);
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .section-head h2 {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .section-head .count {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--muted);
             white-space: nowrap;
         }
 
-        .files-grid {
+        .section-head .count span {
+            color: var(--accent);
+        }
+
+        .dots-btn {
+            color: var(--muted);
+            padding: 4px 8px;
+            letter-spacing: 2px;
+        }
+
+        .popular-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 30px;
-            margin: 20px;
-            padding: 20px;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+            margin-bottom: 36px;
         }
 
-        .chatGrid {
-            height: 100vh;
-            overflow-y: scroll;
+        .popular-grid--catalog {
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         }
 
-        .addBook {
-            position: fixed;
-            bottom: 10px;
-            right: 20px;
-            background-color: #000000;
-            padding: 12px 24px;
-            border-radius: 10px;
-            color: #eeede2;
+        .cover--photo {
+            background: #eceae4;
+        }
+
+        .cover--photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 0 6px 6px 0;
         }
 
         #loading {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: calc(100vh - 200px);
+            gap: 8px;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: #ebeae4;
+            padding: 24px;
+            text-align: center;
         }
 
-        #filter {
-            border: none;
-            padding: 3px 8px;
-            margin: 5px;
-            border-radius: 5px;
-            outline: none;
+        .load-error-text {
+            margin: 0;
+            max-width: 320px;
+            font-size: 15px;
+            line-height: 1.5;
+            color: var(--text);
         }
 
-        #contact-us form {
+        #loading img {
+            border-radius: 50%;
+            height: 250px;
+        }
+
+        .app-status {
+            font-size: 14px;
+            color: var(--muted);
+            margin: 0 0 20px;
+            min-height: 1.4em;
+        }
+
+        .app-status:empty {
+            display: none;
+        }
+
+        .app-status.is-error {
+            color: var(--accent);
+        }
+
+        /* Mobile floating dock (portfolio-style) */
+        .mobile-dock-wrap {
+            display: none;
+        }
+
+        #app[hidden] + .mobile-dock-wrap {
+            display: none !important;
+        }
+
+        .mobile-dock {
             display: flex;
-            flex-direction: column;
-            height: calc(100vh - 200px);
-            align-items: left;
+            align-items: center;
             justify-content: center;
-            margin: 10px;
-            max-width: 700px;
+            gap: var(--float-gap);
+            padding: var(--float-pad-y) var(--float-pad-x);
+            border-radius: var(--float-radius);
+            background: var(--float-bg);
+            backdrop-filter: blur(var(--float-blur));
+            -webkit-backdrop-filter: blur(var(--float-blur));
+            border: 1px solid var(--border);
+            box-shadow: var(--float-shadow);
+            max-width: min(100%, calc(100vw - 24px));
+        }
+
+        .mobile-dock-btn {
+            position: relative;
+            width: var(--dock-hit);
+            height: var(--dock-hit);
+            border-radius: var(--dock-hit-radius);
+            display: grid;
+            place-items: center;
+            color: var(--muted);
+            transition: background 0.2s, color 0.2s, transform 0.25s cubic-bezier(0.4, 2, 0.6, 1);
+        }
+
+        .mobile-dock-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .mobile-dock-btn.active {
+            background: var(--accent-soft);
+            color: var(--accent);
+            transform: scale(1.06);
+        }
+
+        .mobile-dock-btn:active {
+            transform: scale(0.96);
+        }
+
+        .mobile-dock-btn.active:active {
+            transform: scale(1.02);
+        }
+
+        .mini-book {
+            cursor: pointer;
+            transition: transform 0.25s;
+        }
+
+        .mini-book:hover {
+            transform: translateY(-4px);
+        }
+
+        .cover {
+            aspect-ratio: 2 / 3;
+            border-radius: 0 6px 6px 0;
+            box-shadow: var(--shadow-book);
+            margin-bottom: 12px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.12) 0%, transparent 18%, transparent 82%, rgba(255, 255, 255, 0.08) 100%);
+            pointer-events: none;
+        }
+
+        /* Book cover palettes (no external assets) */
+        .cover--ice {
+            background: linear-gradient(165deg, #1a2838 0%, #3d5a73 45%, #8fb4c9 100%);
+        }
+
+        .cover--beasts {
+            background: linear-gradient(160deg, #2c1810 0%, #6b3a28 50%, #c49a6c 100%);
+        }
+
+        .cover--thrones {
+            background: linear-gradient(155deg, #1c1c1c 0%, #4a4a4a 40%, #9a9a9a 100%);
+        }
+
+        .cover--wise {
+            background: linear-gradient(150deg, #3d2914 0%, #7a5230 55%, #d4a574 100%);
+        }
+
+        .cover--beauty {
+            background: linear-gradient(160deg, #0f2a4a 0%, #1e4a7a 50%, #4a90c2 100%);
+        }
+
+        .cover--fire {
+            background: linear-gradient(145deg, #6b1010 0%, #c42b2b 35%, #e8a040 85%);
+        }
+
+        .cover--narnia {
+            background: linear-gradient(155deg, #0a1628 0%, #1e3a5f 60%, #4a7ab0 100%);
+        }
+
+        .cover--deadpool {
+            background: linear-gradient(150deg, #1a0508 0%, #8b1a28 55%, #e8e8e8 100%);
+        }
+
+        .cover--legend {
+            background: linear-gradient(155deg, #1a3320 0%, #3d6b45 55%, #8fbc8f 100%);
+        }
+
+        .mini-book span {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1.35;
+        }
+
+        .mini-book small {
+            display: block;
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        .series-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 18px;
+            background: var(--surface);
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(42, 42, 40, 0.06);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .series-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .series-card:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .load-retry {
+            margin-top: 16px;
+            padding: 10px 22px;
+            border-radius: 999px;
+            border: none;
+            background: var(--dark);
+            color: #fff;
+            font: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .load-retry:hover {
+            opacity: 0.92;
+        }
+
+        .series-thumb {
+            width: 72px;
+            height: 48px;
+            border-radius: 4px;
+            flex-shrink: 0;
+            position: relative;
+            background: linear-gradient(135deg, #2a4060, #1c2836);
+            box-shadow: var(--shadow-book);
+        }
+
+        .series-thumb::before,
+        .series-thumb::after {
+            content: "";
+            position: absolute;
+            top: 4px;
+            width: 22px;
+            height: 40px;
+            border-radius: 0 3px 3px 0;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .series-thumb::before {
+            left: 8px;
+            background: linear-gradient(160deg, #4a6080, #2a3848);
+            transform: rotate(-6deg);
+        }
+
+        .series-thumb::after {
+            left: 28px;
+            background: linear-gradient(160deg, #6b8098, #3d5060);
+            transform: rotate(4deg);
+        }
+
+        .series-card .meta {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .series-card strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .series-card span {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .vol-badge {
+            font-size: 12px;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        /* —— Library view —— */
+        .library-hero {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 32px;
+            margin-bottom: 32px;
+            align-items: start;
+        }
+
+        .library-hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 3.5vw, 2.75rem);
+            margin: 0 0 14px;
+            font-weight: 600;
+        }
+
+        .library-hero .lead {
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.65;
+            max-width: 380px;
+            margin: 0 0 22px;
+        }
+
+        .author-spotlight {
+            text-align: right;
+        }
+
+        .author-spotlight .author-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-bottom: 14px;
         }
 
 
-        #contact-us form input {
-            width: max-content;
-            margin: 5px 0;
-            padding: 5px;
-            border-radius: 10px;
-            border: 1px solid rgb(184, 186, 175);
-            background-color: rgba(255, 255, 255, 0.34);
-            backdrop-filter: blur(10px);
-            outline: none;
+        .author-spotlight .name {
+            font-weight: 600;
+            font-size: 15px;
         }
 
-        #contact-us form textarea {
-            margin: 5px 0;
-            padding: 5px;
-            border-radius: 10px;
-            border: 1px solid rgb(184, 186, 175);
-            background-color: rgba(255, 255, 255, 0.34);
-            backdrop-filter: blur(10px);
-            outline: none;
-            resize: none;
+        .author-spotlight .role {
+            font-size: 12px;
+            color: var(--muted);
         }
 
-        #contact-us form input[type=submit] {
-            max-width: min-content;
-            margin: 5px 0;
-            padding: 3px 10px;
-            border-radius: 10px;
-            border: 1px solid rgb(184, 186, 175);
-            background-color: rgba(255, 255, 255, 0.34);
-            backdrop-filter: blur(10px);
-            outline: none;
+        .author-spotlight blockquote {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--muted);
+            font-style: italic;
+            max-width: 320px;
             margin-left: auto;
         }
 
-        #statusMessage {
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 5px;
+        .carousel-wrap {
+            position: relative;
+            padding: 20px 0 48px;
+            overflow: hidden;
+        }
+
+        .carousel {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: clamp(8px, 2vw, 24px);
+            min-height: 280px;
+            perspective: 1200px;
+        }
+
+        .carousel-item {
+            flex-shrink: 0;
+            width: 120px;
+            transition: transform 0.35s ease, opacity 0.35s;
+            cursor: pointer;
+            text-align: center;
+            transform-style: preserve-3d;
+        }
+
+        .carousel-item .cover {
+            width: 100%;
+            transition: transform 0.35s, box-shadow 0.35s;
+            transform-origin: center bottom;
+        }
+
+        .carousel-item.center {
+            width: 168px;
+            z-index: 2;
+        }
+
+        .carousel-item.center .cover {
+            transform: translateY(-20px) scale(1.08) rotateY(0deg);
+            box-shadow: 0 28px 52px rgba(42, 42, 40, 0.32);
+        }
+
+        .carousel-item.side.left .cover {
+            transform: rotateY(22deg) scale(0.96);
+        }
+
+        .carousel-item.side.right .cover {
+            transform: rotateY(-22deg) scale(0.96);
+        }
+
+        .carousel-item.side {
+            opacity: 0.9;
+        }
+
+        .carousel-item.far {
+            opacity: 0.5;
+            transform: scale(0.88);
+        }
+
+        .carousel-item.far.left .cover {
+            transform: rotateY(32deg) scale(0.9);
+        }
+
+        .carousel-item.far.right .cover {
+            transform: rotateY(-32deg) scale(0.9);
+        }
+
+        .carousel-item.hidden-slide {
+            opacity: 0;
+            pointer-events: none;
+            width: 0;
+            overflow: hidden;
+        }
+
+        .carousel-caption {
+            text-align: center;
+            margin-top: 8px;
             font-size: 14px;
-            display: none;
+            font-weight: 500;
+        }
+
+        .carousel-caption small {
+            display: block;
+            color: var(--muted);
+            font-weight: 400;
+            font-size: 12px;
+        }
+
+        .circle-btn {
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            display: grid;
+            place-items: center;
+            color: var(--muted);
+        }
+
+        .carousel-arrows {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            gap: 8px;
+        }
+
+        .carousel-arrows--static {
+            position: static;
+            justify-content: flex-end;
+            margin-bottom: 8px;
+        }
+
+        .carousel-arrows .circle-btn {
+            width: 32px;
+            height: 32px;
+        }
+
+        .library-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .library-footer .tick {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .library-footer .tick svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .library-footer em {
+            font-style: normal;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .library-footer .count {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .library-footer .count span {
+            color: var(--accent);
+        }
+
+        ::selection {
+            background: var(--accent-soft);
+        }
+
+        /* —— Right panel —— */
+        .side-panel {
+            width: var(--panel);
+            flex-shrink: 0;
+            padding: 8px 0 24px 20px;
+            border-left: 1px solid var(--border);
+            transition: opacity 0.3s, width 0.3s, padding 0.3s;
+        }
+
+        .panel-book-title {
+            font-family: var(--serif);
+            font-size: 1.65rem;
+            font-weight: 600;
+            margin: 24px 0 8px;
+            line-height: 1.2;
+        }
+
+        .progress-label {
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .progress-track {
+            height: 4px;
+            background: #eceae4;
+            border-radius: 999px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 51%;
+            background: var(--accent);
+            border-radius: 999px;
+        }
+
+        .panel-blurb {
+            font-size: 13px;
+            line-height: 1.65;
+            color: var(--muted);
+            margin: 0 0 8px;
+        }
+
+        .panel-author {
+            text-align: right;
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 32px;
+        }
+
+        .schedule-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .schedule-head h3 {
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .schedule-head .arrows {
+            display: flex;
+            gap: 6px;
+        }
+
+        .schedule-head .arrows .circle-btn {
+            width: 28px;
+            height: 28px;
+            font-size: 12px;
+        }
+
+        .week-strip {
+            display: flex;
+            justify-content: space-between;
+            gap: 4px;
+            margin-bottom: 36px;
+        }
+
+        .day-pill {
+            flex: 1;
             text-align: center;
+            padding: 10px 4px;
+            border-radius: 12px;
+            font-size: 11px;
+            color: var(--muted);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
         }
 
-        .success {
-            background-color: #d4edda;
-            color: #155724;
+        .day-pill strong {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            margin-top: 4px;
         }
 
-        .failure {
-            background-color: #f8d7da;
-            color: #721c24;
+        .day-pill.active {
+            background: var(--accent-soft);
         }
 
-        .hidden {
-            display: none;
+        .day-pill.active,
+        .day-pill.active strong {
+            color: var(--accent);
         }
 
-        .hero {
-            background-image: url('https://i.pinimg.com/originals/fb/ec/6b/fbec6b7428573f785bac244d23550949.gif');
-            /* Replace 'hero-background.jpg' with your actual image */
-            background-size: cover;
-            background-position: center;
-            text-align: center;
-            padding: 20vh 0;
-            border-radius: 10px;
-            margin: 10px;
+        .friends-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
         }
 
-        .hero h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
+        .friends-head h3 {
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            margin: 0;
         }
 
-        .about {
-            padding: 50px 20px;
+        .friend-feed {
+            position: relative;
+            padding-left: 8px;
         }
 
-        .about h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
+        .friend-feed::before {
+            content: "";
+            position: absolute;
+            left: 23px;
+            top: 24px;
+            bottom: 24px;
+            border-left: 1px dashed var(--border);
         }
 
-        .about p {
-            font-size: 1.2em;
-            line-height: 1.6;
+        .friend-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 22px;
+            position: relative;
         }
 
+        .friend-body {
+            flex: 1;
+            min-width: 0;
+        }
 
+        .friend-body .fname {
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
 
+        .friend-body p {
+            margin: 0;
+            font-size: 12px;
+            line-height: 1.55;
+            color: var(--muted);
+        }
 
-        /* Media query for screen width under 675px */
-        @media (max-width: 675px) {
-            .mainGrid {
-                grid-template-columns: 0 auto;
+        .friend-body a {
+            color: var(--accent);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .friend-body time {
+            display: block;
+            font-size: 11px;
+            color: #b5b4ae;
+            margin-top: 6px;
+        }
+
+        @media (max-width: 1100px) {
+            .side-panel {
+                display: none;
             }
 
-            .mainGrid.collapsed {
-                grid-template-columns: 200px auto;
-                transition: grid-template-columns 0.3s ease;
+            .hero-row,
+            .library-hero {
+                grid-template-columns: 1fr;
             }
 
-
-            .mainGrid .sideBar {
-                background-color: transparent;
+            .popular-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-        }
-
-        @media (max-width:1350px) {
-            .files-grid {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-                gap: 25px;
-            }
-        }
-
-        @media (max-width:1200px) {
-            .files-grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-                gap: 20px;
-            }
-        }
-
-        @media (max-width:1000px) {
-            .files-grid {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-                gap: 15px;
-            }
-        }
-
-        @media (max-width:800px) {
-            .files-grid {
+            .popular-grid--catalog {
                 grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-                gap: 15px;
+            }
+
+            .author-spotlight {
+                text-align: left;
+            }
+
+            .author-spotlight blockquote {
+                margin-left: 0;
+            }
+
+            .author-spotlight .author-row {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 640px) {
+            html,
+            body {
+                background: var(--bg);
+            }
+
+            .app {
+                flex-direction: column;
+                min-height: 100vh;
+                min-height: 100dvh;
+                margin: 0;
+                padding: 0;
+                padding-top: env(safe-area-inset-top, 0);
+                border-radius: 0;
+                box-shadow: none;
+                gap: 0;
+            }
+
+            .rail-container {
+                display: none;
+            }
+
+            .mobile-dock-wrap {
+                display: flex;
+                position: fixed;
+                left: 0;
+                right: 0;
+                bottom: max(10px, env(safe-area-inset-bottom));
+                justify-content: center;
+                z-index: 50;
+                pointer-events: none;
+                padding: 0 max(12px, env(safe-area-inset-left)) 0 max(12px, env(safe-area-inset-right));
+            }
+
+            .mobile-dock {
+                pointer-events: auto;
+                --dock-hit: 42px;
+                padding: 6px 8px;
+                gap: 4px;
+            }
+
+            .mobile-dock-btn svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .shell {
+                flex: 1;
+                width: 100%;
+                padding: 10px max(8px, env(safe-area-inset-left))
+                    calc(76px + env(safe-area-inset-bottom, 0));
+                padding-right: max(8px, env(safe-area-inset-right));
+            }
+
+            .top-bar {
+                flex-wrap: nowrap;
+                gap: 8px;
+                margin-bottom: 16px;
+            }
+
+            .app.catalog-view .top-bar {
+                top: max(8px, env(safe-area-inset-top, 0));
+                margin: 0 0 14px;
+                padding: 0 max(8px, env(safe-area-inset-left)) 0 max(8px, env(safe-area-inset-right));
+                justify-content: center;
+            }
+
+            .search-wrap {
+                flex: 1;
+                width: 100%;
+                max-width: none;
+            }
+
+            .search-wrap input {
+                font-size: 16px;
+            }
+
+            .profile-chip {
+                display: none;
+            }
+
+            .hero-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+                margin-bottom: 18px;
+            }
+
+            .open-book {
+                display: none;
+            }
+
+            .hero-copy h1 {
+                font-size: clamp(1.45rem, 6.5vw, 1.85rem);
+                margin-bottom: 10px;
+            }
+
+            .hero-copy p {
+                font-size: 14px;
+                line-height: 1.55;
+                margin-bottom: 14px;
+                max-width: none;
+            }
+
+            .btn-dark {
+                padding: 11px 18px;
+                font-size: 13px;
+            }
+
+            .section-head {
+                margin-bottom: 10px;
+                gap: 8px;
+            }
+
+            .section-head h2 {
+                font-size: 1.15rem;
+            }
+
+            .section-head .count {
+                font-size: 11px;
+            }
+
+            .popular-grid,
+            .popular-grid--catalog {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 8px;
+                margin-bottom: 20px;
+            }
+
+            .mini-book {
+                min-width: 0;
+            }
+
+            .mini-book span {
+                font-size: 12px;
+                line-height: 1.3;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .mini-book small {
+                font-size: 10px;
+                margin-top: 3px;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .cover {
+                margin-bottom: 6px;
+                border-radius: 0 4px 4px 0;
+            }
+
+            .series-card {
+                padding: 12px;
+                gap: 12px;
+                margin-bottom: 8px;
+            }
+
+            .series-thumb {
+                width: 56px;
+                height: 40px;
+            }
+
+            .series-card strong {
+                font-size: 13px;
+            }
+
+            .series-card span {
+                font-size: 11px;
+            }
+
+            .contact-form {
+                max-width: none;
+                margin-bottom: 24px;
+            }
+
+            .about-hero {
+                padding: 10vh 16px;
+                border-radius: 12px;
+                margin-bottom: 20px;
+            }
+
+            .about-body {
+                padding-bottom: 24px;
+            }
+
+            .app-status {
+                margin-bottom: 10px;
+                font-size: 13px;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="mainGrid" id="mainGrid">
-        <div class="sideBar">
-            <h4>Artistory</h4>
-            <div class="history">
-                <div class="chatInstance active" data-section="library" onclick="showSection('library')">Home</div>
-                <div class="chatInstance" data-section="contact-us" onclick="showSection('contact-us')">Contact us</div>
-                <div class="chatInstance" data-section="about" onclick="showSection('about')">About</div>
-            </div>
-            <button onclick="themeSwitch()" class="theme-switch"></button>
-        </div>
-        <div class="chatGrid">
-            <nav>
-                <img src="https://www.svgrepo.com/show/474291/arrow-short-left.svg" onclick="navSlider()"
-                    class="responsive-logo" alt="">
-                <input type="text" id="searchInput" class="search-bar" oninput="searchFiles()"
-                    placeholder="Search for books..." />
+    <div id="loading">
+        <img src="https://i.pinimg.com/originals/04/67/92/046792dc1254482c009f0737858bae18.gif" alt="Loading...">
+    </div>
+    <div class="app" id="app" hidden>
+        <div class="rail-container">
+            
+        <aside class="rail" aria-label="Main navigation">
+            <svg class="rail-logo" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"
+                aria-hidden="true">
+                <path d="M8 28c4-8 8-12 12-14 2 6 6 10 12 12-4 2-8 4-12 6-2-2-6-3-12-4z" />
+                <path d="M12 12c2 2 4 3 8 2M20 8v4" stroke-linecap="round" />
+            </svg>
+            <nav class="rail-nav">
+                <button type="button" class="rail-btn active" data-view="home" title="Home" aria-label="Home">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.5z" />
+                    </svg>
+                </button>
+                <button type="button" class="rail-btn" data-view="contact" title="Contact" aria-label="Contact">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M4 6h16v12H4V6z" />
+                        <path d="m4 7 8 6 8-6" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <button type="button" class="rail-btn" data-view="about" title="About" aria-label="About">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 10v6M12 7h.01" stroke-linecap="round" />
+                    </svg>
+                </button>
+                <a class="rail-btn rail-add" href="https://forms.gle/Y167pEFsU8ApMCMm7" target="_blank"
+                    rel="noopener noreferrer" title="Add book" aria-label="Add book">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path
+                            d="M2 12c0-4.714 0-7.071 1.464-8.536C4.929 2 7.286 2 12 2c4.714 0 7.071 0 8.536 1.464C22 4.929 22 7.286 22 12c0 4.714 0 7.071-1.464 8.536C19.071 22 16.714 22 12 22c-4.714 0-7.071 0-8.536-1.464C2 19.071 2 16.714 2 12Z" />
+                        <path d="M12 9v6M9 12h6" />
+                    </svg>
+                </a>
             </nav>
-            <div id="library" class="section">
-                <select id="filter">
-                    <option>First uploaded</option>
-                    <option>Last uploaded</option>
-                    <option>A - Z</option>
-                </select>
-                <div class="files-grid" id="myContentContainer">
+        </aside>
+
+    </div>
+        <main class="shell">
+            <p class="app-status" id="app-status" role="status"></p>
+            <header class="top-bar">
+                <div class="search-wrap">
+                    <span class="search-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="11" cy="11" r="7" />
+                            <path d="m20 20-4-4" stroke-linecap="round" />
+                        </svg>
+                    </span>
+                    <input type="search" id="search-input" placeholder="Search titles and descriptions…"
+                        aria-label="Search books" autocomplete="off" spellcheck="false">
+                    <button type="button" class="search-clear" id="search-clear" aria-label="Clear search"
+                        title="Clear">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 6 6 18M6 6l12 12" stroke-linecap="round" />
+                        </svg>
+                    </button>
                 </div>
-                <div id="loading">
-                    <img src="https://i.pinimg.com/originals/04/67/92/046792dc1254482c009f0737858bae18.gif"
-                        style="border-radius: 50%; height: 250px;" alt="Loading...">
+                <div class="profile-chip">
+                    <span class="name">Artistory</span>
                 </div>
-            </div>
-            <div id="contact-us" class="section" style="display: none;">
-                <form id="reviewForm" onsubmit="sendMessageD(event)">
+            </header>
+
+            <!-- Home -->
+            <section class="view active" id="view-home">
+                <div class="hero-row">
+                    <div class="hero-copy">
+                        <h1 id="hero-title">Welcome to Artistory</h1>
+                        <p id="hero-lead">Browse the full catalog and pick up where you left off.</p>
+                        <button type="button" class="btn-dark" data-action="open-hero-pdf">Start reading ↗</button>
+                    </div>
+                    <div class="open-book" aria-hidden="true">
+                        <div class="book-3d">
+                            <div class="book-page left" id="hero-cover-page"></div>
+                            <div class="book-spine"></div>
+                            <div class="book-page right" id="hero-snippet">Open a book from the shelf to begin…</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-head">
+                    <h2>All books</h2>
+                    <span class="count" id="home-book-count"></span>
+                </div>
+                <div class="popular-grid popular-grid--catalog" id="home-books-grid"></div>
+
+                <div class="section-head">
+                    <h2>Featured</h2>
+                </div>
+                <div class="series-card" id="featured-card" hidden role="button" tabindex="0"
+                    aria-label="Open featured book">
+                    <div class="series-thumb" id="featured-thumb"></div>
+                    <div class="meta">
+                        <strong id="featured-title"></strong>
+                        <span id="featured-sub"></span>
+                    </div>
+                    <span class="vol-badge" id="featured-badge">Read</span>
+                </div>
+            </section>
+
+            <!-- Contact -->
+            <section class="view" id="view-contact">
+                <form class="contact-form" id="reviewForm">
                     <h1>Artistory</h1>
                     <p>If you have any questions, comments, or feedback, feel free to reach out to us. We're here to
                         help and would love to hear from you!</p>
-                    <input type="text" id="nameInput" placeholder="Enter name" required>
-                    <textarea id="messageInput" rows="5" placeholder="Write message" required></textarea>
+                    <label class="sr-only" for="nameInput">Your name</label>
+                    <input type="text" id="nameInput" name="name" placeholder="Enter name" required
+                        autocomplete="name">
+                    <label class="sr-only" for="messageInput">Message</label>
+                    <textarea id="messageInput" name="message" rows="5" placeholder="Write message" required></textarea>
                     <input type="submit" value="Send">
-                    <div id="statusMessage" class="hidden"></div>
+                    <div id="statusMessage" class="form-status" role="status"></div>
                 </form>
+            </section>
 
-                <script>
-                    document.getElementById('reviewForm').addEventListener('submit', function (event) {
-                        event.preventDefault(); // Prevent default form submission
-        
-                        // Get form data
-                        const name = document.getElementById('name').value;
-                        const reviewText = document.getElementById('reviewText').value;
-        
-                        // Prepare payload
-                        const payload = {
-                            name: name,
-                            reviewText: reviewText
-                        };
-        
-                        fetch('https://script.google.com/macros/s/AKfycbwxJoNFpwk2LhE4759NG3yQ9qUuKTSZA9SM-aGpdT5xKYA5jWoGtn5DzEybRD0qAaBT/exec', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            mode: 'no-cors', // Add this line
-                            body: JSON.stringify(payload),
-                        })
-                            .then(() => {
-                                alert('Thank you for your review! It has been submitted.');
-                                document.getElementById('reviewForm').reset(); // Reset the form
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                                alert('There was an error submitting your review. Please try again.');
-                            });
-                    });
-                </script>
-
-            </div>
-
-            <div id="about" class="section" style="display: none;">
-
-                <div class="hero">
-                    <h1>Welcome to Artistry Hub</h1>
-                    <p>A specialized platform for 2D and 3D artists</p>
+            <!-- About -->
+            <section class="view" id="view-about">
+                <div class="about-hero">
+                    <h1>Welcome to Artistory</h1>
+                    <p>A calm place to browse and read from our shared bookshelf</p>
                 </div>
-                <section class="about">
-                    <h2>About Our Project</h2>
-                    <p>Welcome to Artistry Hub, a specialized platform designed with 2D and 3D artists in mind. Our
-                        project is dedicated
-                        to providing a seamless and intuitive experience for artists to showcase their work, connect
-                        with fellow
-                        creators, and explore a wealth of inspiring content.</p>
+                <div class="about-body">
+                    <h2>What is Artistory?</h2>
+                    <p>Artistory is a reading catalog: every title links to its PDF so you can open it in a new tab and
+                        read at your own pace. Search by title or description, pick a cover from the grid, or start from
+                        the featured pick on the home page.</p>
 
-                    <h2>Why This Project?</h2>
-                    <p>In the dynamic world of digital artistry, finding the right platform to exhibit your
-                        creations
-                        and connect with
-                        like-minded individuals can be challenging. That's where Artistry Hub comes in. Built by
-                        artists, for artists,
-                        our project offers a tailored environment that celebrates the diversity and creativity of
-                        the 2D
-                        and 3D art
-                        community.</p>
+                    <h2>For readers</h2>
+                    <p>The full library loads from our live catalog. Your last opened book is remembered on this device
+                        so the featured section and side panel stay in sync while you explore.</p>
 
-                    <h2>What Sets Us Apart</h2>
-                    <p><b>Artist-Centric Approach:</b> We understand the unique needs and challenges faced by 2D and
-                        3D
-                        artists. That's
-                        why our project is designed to prioritize the needs of creators, providing them with the
-                        tools
-                        and resources
-                        they need to thrive.</p>
+                    <h2>For contributors</h2>
+                    <p>Have a book to share? Use <strong>Add book</strong> in the navigation to submit details through
+                        our Google Form. We review submissions before they appear in the catalog.</p>
 
-                    <p><b>Inspiration and Collaboration:</b> Whether you're looking for inspiration for your next
-                        project
-                        or seeking
-                        collaborators for a new venture, Artistry Hub is the perfect place to connect with fellow
-                        artists, share ideas,
-                        and collaborate on exciting new projects.</p>
+                    <h2>Get in touch</h2>
+                    <p>Questions, broken links, or feedback? Visit <strong>Contact</strong> in the menu and send us a
+                        message—we read every note.</p>
+                </div>
+            </section>
 
-                    <p><b>Diverse Showcase:</b> From stunning 2D illustrations to immersive 3D renders, our platform
-                        offers a diverse
-                        showcase of artwork from talented artists around the globe. Explore a wide range of styles,
-                        techniques, and
-                        genres, and discover new favorites along the way.</p>
+        </main>
 
-                    <h2>Join Us Today</h2>
-                    <p>Whether you're an established artist or just starting on your creative journey, Artistry Hub
-                        is
-                        here to support
-                        you every step of the way. Join our community today and unlock a world of possibilities for
-                        your
-                        artistry. Let
-                        your imagination soar and your creativity thrive with Artistry Hub.</p>
-                </section>
-            </div>
-        </div>
-        <a href="https://forms.gle/Y167pEFsU8ApMCMm7" class="addBook" target="_blank">Add Book</a>
+        <aside class="side-panel" id="side-panel">
+            <h2 class="panel-book-title" id="panel-book-title">—</h2>
+            <div class="progress-label" id="panel-status">Now reading</div>
+            <p class="panel-blurb" id="panel-blurb"></p>
+        </aside>
+    </div>
+
+    <div class="mobile-dock-wrap">
+        <nav class="mobile-dock" aria-label="Mobile navigation">
+            <button type="button" class="mobile-dock-btn active" data-view="home" title="Home" aria-label="Home">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.5z" />
+                </svg>
+            </button>
+            <button type="button" class="mobile-dock-btn" data-view="contact" title="Contact" aria-label="Contact">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M4 6h16v12H4V6z" />
+                    <path d="m4 7 8 6 8-6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+            <button type="button" class="mobile-dock-btn" data-view="about" title="About" aria-label="About">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 10v6M12 7h.01" stroke-linecap="round" />
+                </svg>
+            </button>
+            <a class="mobile-dock-btn nav-add" href="https://forms.gle/Y167pEFsU8ApMCMm7" target="_blank"
+                rel="noopener noreferrer" title="Add book" aria-label="Add book">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path
+                        d="M2 12c0-4.714 0-7.071 1.464-8.536C4.929 2 7.286 2 12 2c4.714 0 7.071 0 8.536 1.464C22 4.929 22 7.286 22 12c0 4.714 0 7.071-1.464 8.536C19.071 22 16.714 22 12 22c-4.714 0-7.071 0-8.536-1.464C2 19.071 2 16.714 2 12Z" />
+                    <path d="M12 9v6M9 12h6" />
+                </svg>
+            </a>
+        </nav>
     </div>
 
     <script>
-        function navSlider() {
-            const mainGrid = document.getElementById("mainGrid");
-            mainGrid.classList.toggle("collapsed");
-        }
-    </script>
+        (() => {
+            const BOOKS_API =
+                "https://script.google.com/macros/s/AKfycbyImb2_8Fpd2NHIQTlq2dRM5c3kgAQzzGCYJq3wRsgJjqA3rBTbOVAL3N3DAlD_xJm-/exec";
+            const CONTACT_API =
+                "https://script.google.com/macros/s/AKfycbwxJoNFpwk2LhE4759NG3yQ9qUuKTSZA9SM-aGpdT5xKYA5jWoGtn5DzEybRD0qAaBT/exec";
+            const STORAGE_KEY = "artistory:lastBookId";
+            const CATALOG_VIEWS = new Set(["home"]);
+            const FALLBACK_COVERS = [
+                "cover--ice",
+                "cover--beasts",
+                "cover--thrones",
+                "cover--wise",
+                "cover--beauty",
+                "cover--fire",
+                "cover--narnia",
+                "cover--deadpool",
+                "cover--legend"
+            ];
 
-    <script>
-        let searchData; // To store the original data for reset
+            const state = {
+                view: "home",
+                allBooks: [],
+                filteredBooks: [],
+                search: "",
+                currentBookId: null,
+                heroBookId: null
+            };
 
-        // Hide the content container and show the loading animation
-        document.getElementById("myContentContainer").style.display = "none";
-        document.getElementById("loading").style.display = "flex";
+            const dom = {
+                app: document.getElementById("app"),
+                loading: document.getElementById("loading"),
+                appStatus: document.getElementById("app-status"),
+                searchInput: document.getElementById("search-input"),
+                searchClear: document.getElementById("search-clear"),
+                homeGrid: document.getElementById("home-books-grid"),
+                homeBookCount: document.getElementById("home-book-count"),
+                panelTitle: document.getElementById("panel-book-title"),
+                panelBlurb: document.getElementById("panel-blurb"),
+                heroTitle: document.getElementById("hero-title"),
+                heroLead: document.getElementById("hero-lead"),
+                heroSnippet: document.getElementById("hero-snippet"),
+                heroCoverPage: document.getElementById("hero-cover-page"),
+                featuredCard: document.getElementById("featured-card"),
+                featuredTitle: document.getElementById("featured-title"),
+                featuredSub: document.getElementById("featured-sub"),
+                featuredThumb: document.getElementById("featured-thumb")
+            };
 
-        fetch('https://script.google.com/macros/s/AKfycbyImb2_8Fpd2NHIQTlq2dRM5c3kgAQzzGCYJq3wRsgJjqA3rBTbOVAL3N3DAlD_xJm-/exec')
-            .then(res => res.json())
-            .then(data => {
-                // Once the data is loaded, hide the loading animation and show the content container
-                document.getElementById("myContentContainer").style.display = "grid";
-                document.getElementById("loading").style.display = "none";
+            function escapeHtml(text) {
+                return String(text ?? "")
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;");
+            }
 
-                searchData = data.content; // Store the original data for reset
-                renderFiles(data.content); // Render the files initially
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-                // In case of an error, hide the loading animation and show an error message
-                document.getElementById("loading").innerHTML = "Error fetching data. Please try again later :')";
-            });
+            function excerpt(text, max = 120) {
+                const t = String(text ?? "").trim();
+                if (t.length <= max) return t;
+                return t.slice(0, max).trim() + "…";
+            }
 
-        // Function to render files based on search input
-        function renderFiles(data) {
-            let content = '';
+            function normalizeBook(row, index) {
+                const coverUrl = row[5];
+                if (!coverUrl || (!coverUrl.startsWith("http://") && !coverUrl.startsWith("https://"))) {
+                    return null;
+                }
+                return {
+                    id: index,
+                    title: row[2] || "Untitled",
+                    description: row[3] || "",
+                    pdfUrl: row[4] || "",
+                    coverUrl
+                };
+            }
 
-            // Iterate over the data to create content for each item
-            data.forEach(item => {
-                let title = item[2];
-                let description = item[3];
-                let pdfLink = item[4];
-                let coverImage = item[5]; // Assuming the cover image URL is in the 6th column
+            function attachCoverFallback(img, index) {
+                img.addEventListener("error", () => {
+                    const wrap = img.closest(".cover");
+                    if (!wrap) return;
+                    wrap.classList.remove("cover--photo");
+                    wrap.classList.add(FALLBACK_COVERS[index % FALLBACK_COVERS.length]);
+                    img.remove();
+                }, { once: true });
+            }
 
-                // Check if the cover image URL is valid
-                if (coverImage && (coverImage.startsWith("http://") || coverImage.startsWith("https://"))) {
-                    let itemHTML = `<a href="${pdfLink}" target="_blank">
-                        <div class="book-card">
-                            <div class="book-shadow">
-                                <img class="book-cover"
-                                    src="${coverImage}" loading="lazy" alt="">
-                            </div>
-                            <p>${title}</p>
-                        </div></a>`;
-                    content += itemHTML;
+            function coverMarkup(book, index) {
+                const alt = escapeHtml(book.title);
+                const src = escapeHtml(book.coverUrl);
+                return `<div class="cover cover--photo"><img src="${src}" alt="${alt}" loading="lazy"></div>`;
+            }
+
+            function getBookById(id) {
+                return state.allBooks.find(b => b.id === id) ?? null;
+            }
+
+            function getCurrentBook() {
+                if (state.currentBookId != null) {
+                    const found = getBookById(state.currentBookId);
+                    if (found) return found;
+                }
+                return state.filteredBooks[0] ?? null;
+            }
+
+            function getHeroBook() {
+                if (state.heroBookId != null) {
+                    const found = getBookById(state.heroBookId);
+                    if (found) return found;
+                }
+                return null;
+            }
+
+            function pickRandomHeroBook() {
+                const pool = state.allBooks;
+                if (!pool.length) {
+                    state.heroBookId = null;
+                    return;
+                }
+                const book = pool[Math.floor(Math.random() * pool.length)];
+                state.heroBookId = book.id;
+            }
+
+            function getDefaultBookId() {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved != null) {
+                    const id = Number(saved);
+                    if (state.filteredBooks.some(b => b.id === id)) return id;
+                }
+                return state.filteredBooks[0]?.id ?? null;
+            }
+
+            function setStatus(message, isError = false) {
+                dom.appStatus.textContent = message;
+                dom.appStatus.classList.toggle("is-error", isError);
+            }
+
+            function showApp() {
+                dom.loading.style.display = "none";
+                dom.app.hidden = false;
+            }
+
+            function showLoadingError(message) {
+                dom.app.hidden = true;
+                dom.loading.style.display = "flex";
+                dom.loading.innerHTML =
+                    `<p class="load-error-text">${escapeHtml(message)}</p>` +
+                    `<button type="button" class="load-retry" id="retry-load">Try again</button>`;
+                document.getElementById("retry-load")?.addEventListener("click", () => {
+                    dom.loading.innerHTML =
+                        `<img src="https://i.pinimg.com/originals/04/67/92/046792dc1254482c009f0737858bae18.gif" alt="Loading…">`;
+                    loadBooks();
+                }, { once: true });
+            }
+
+            function applySearchFilter() {
+                const term = state.search.trim().toLowerCase();
+                state.filteredBooks = !term
+                    ? [...state.allBooks]
+                    : state.allBooks.filter(b => {
+                        const title = b.title.toLowerCase();
+                        const desc = b.description.toLowerCase();
+                        return title.includes(term) || desc.includes(term);
+                    });
+            }
+
+            function renderBookGrid(container) {
+                container.innerHTML = "";
+                if (!state.filteredBooks.length) {
+                    container.innerHTML = `<p class="app-status">No books match your search.</p>`;
+                    return;
+                }
+                state.filteredBooks.forEach((book, i) => {
+                    const article = document.createElement("article");
+                    article.className = "mini-book";
+                    article.dataset.bookId = String(book.id);
+                    article.innerHTML =
+                        coverMarkup(book, i) +
+                        `<span>${escapeHtml(book.title)}</span>` +
+                        `<small>${escapeHtml(excerpt(book.description, 48) || "Open to read")}</small>`;
+                    const img = article.querySelector("img");
+                    if (img) attachCoverFallback(img, i);
+                    container.appendChild(article);
+                });
+            }
+
+            function renderFeatured(book) {
+                if (!book) {
+                    dom.featuredCard.hidden = true;
+                    return;
+                }
+                dom.featuredCard.hidden = false;
+                dom.featuredCard.dataset.bookId = String(book.id);
+                dom.featuredTitle.textContent = book.title;
+                dom.featuredSub.textContent = excerpt(book.description, 64) || "Tap to read";
+                dom.featuredThumb.style.backgroundImage = `url("${book.coverUrl}")`;
+                dom.featuredThumb.style.backgroundSize = "cover";
+                dom.featuredThumb.style.backgroundPosition = "center";
+            }
+
+            function renderSidePanel(book) {
+                const active = book ?? getCurrentBook();
+                if (!active) {
+                    dom.panelTitle.textContent = "—";
+                    dom.panelBlurb.textContent = "";
+                    return;
+                }
+                dom.panelTitle.textContent = active.title;
+                dom.panelBlurb.textContent = active.description || "No description available.";
+            }
+
+            function openPdfUrl(url) {
+                const trimmed = String(url ?? "").trim();
+                if (!trimmed || (!trimmed.startsWith("http://") && !trimmed.startsWith("https://"))) {
+                    setStatus("This book does not have a readable PDF link yet.", true);
+                    return false;
+                }
+                window.open(trimmed, "_blank", "noopener,noreferrer");
+                setStatus("");
+                return true;
+            }
+
+            function renderHero() {
+                const book = getHeroBook();
+                if (!book) {
+                    dom.heroTitle.textContent = "Welcome to Artistory";
+                    dom.heroLead.textContent = "Your catalog will appear here once loaded.";
+                    dom.heroSnippet.textContent = "Open a book from the shelf to begin…";
+                    dom.heroCoverPage.classList.remove("has-cover");
+                    dom.heroCoverPage.innerHTML = "";
+                    return;
+                }
+                dom.heroTitle.textContent = book.title;
+                dom.heroLead.textContent =
+                    excerpt(book.description, 140) || "Open this title from the shelf below.";
+                dom.heroSnippet.textContent = excerpt(book.description, 90) || book.title;
+                dom.heroCoverPage.classList.add("has-cover");
+                dom.heroCoverPage.innerHTML =
+                    `<img src="${escapeHtml(book.coverUrl)}" alt="${escapeHtml(book.title)}" loading="eager">`;
+                const img = dom.heroCoverPage.querySelector("img");
+                if (img) {
+                    img.addEventListener("error", () => {
+                        dom.heroCoverPage.classList.remove("has-cover");
+                        dom.heroCoverPage.innerHTML = "";
+                    }, { once: true });
+                }
+            }
+
+            function renderCounts() {
+                const shown = state.filteredBooks.length;
+                const total = state.allBooks.length;
+                if (dom.homeBookCount) {
+                    dom.homeBookCount.innerHTML = `<span>${shown}</span> / ${total} books`;
+                }
+            }
+
+            function renderAll() {
+                renderBookGrid(dom.homeGrid);
+                renderFeatured(getCurrentBook() ?? getHeroBook());
+                renderSidePanel();
+                renderHero();
+                renderCounts();
+            }
+
+            function openBook(id) {
+                const book = getBookById(id);
+                if (!book) return;
+                state.currentBookId = book.id;
+                localStorage.setItem(STORAGE_KEY, String(book.id));
+                renderFeatured(book);
+                renderSidePanel(book);
+                openPdfUrl(book.pdfUrl);
+            }
+
+            function openHeroBook() {
+                const book = getHeroBook();
+                if (book) openBook(book.id);
+                else openDefaultBook();
+            }
+
+            function openDefaultBook() {
+                const id = getDefaultBookId();
+                if (id != null) openBook(id);
+            }
+
+            function setView(name) {
+                state.view = name;
+                document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+                document.getElementById("view-" + name)?.classList.add("active");
+
+                document.querySelectorAll(".rail-nav .rail-btn[data-view], .mobile-dock-btn[data-view]").forEach(btn => {
+                    btn.classList.toggle("active", btn.dataset.view === name);
+                });
+
+                dom.app.classList.toggle("catalog-view", CATALOG_VIEWS.has(name));
+            }
+
+            function initContactForm() {
+                const form = document.getElementById("reviewForm");
+                const statusEl = document.getElementById("statusMessage");
+                if (!form || !statusEl) return;
+
+                form.addEventListener("submit", (event) => {
+                    event.preventDefault();
+                    const name = document.getElementById("nameInput").value.trim();
+                    const reviewText = document.getElementById("messageInput").value.trim();
+                    if (!name || !reviewText) return;
+
+                    statusEl.className = "form-status";
+                    statusEl.textContent = "";
+
+                    fetch(CONTACT_API, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        mode: "no-cors",
+                        body: JSON.stringify({ name, reviewText })
+                    })
+                        .then(() => {
+                            statusEl.textContent = "Thank you for your message! It has been submitted.";
+                            statusEl.classList.add("success");
+                            form.reset();
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                            statusEl.textContent = "There was an error submitting your message. Please try again.";
+                            statusEl.classList.add("failure");
+                        });
+                });
+            }
+
+            function activateBookTarget(target) {
+                const bookTarget = target.closest("[data-book-id]");
+                if (!bookTarget) return false;
+                const id = Number(bookTarget.dataset.bookId);
+                if (Number.isNaN(id)) return false;
+                openBook(id);
+                return true;
+            }
+
+            document.addEventListener("click", (e) => {
+                if (activateBookTarget(e.target)) return;
+
+                const viewTarget = e.target.closest("[data-view]");
+                if (viewTarget) {
+                    setView(viewTarget.dataset.view);
+                    return;
+                }
+
+                const actionTarget = e.target.closest("[data-action]");
+                if (!actionTarget) return;
+
+                switch (actionTarget.dataset.action) {
+                    case "open-default-pdf":
+                        openDefaultBook();
+                        break;
+                    case "open-hero-pdf":
+                        openHeroBook();
+                        break;
+                    default:
+                        break;
                 }
             });
 
-            // Populate the content into the content container
-            document.getElementById("myContentContainer").innerHTML = content;
-        }
-        // Function to handle search input
-        function searchFiles() {
-            const searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
-
-            // Filter files based on the search term
-            let filteredData = searchData.filter(item => {
-                const title = item[2]?.toLowerCase() || ""; // Safely access title
-                const description = item[3]?.toLowerCase() || ""; // Safely access description
-                return title.includes(searchTerm) || description.includes(searchTerm);
+            document.addEventListener("keydown", (e) => {
+                if (e.key !== "Enter" && e.key !== " ") return;
+                const card = e.target.closest("#featured-card[data-book-id]");
+                if (!card || card.hidden) return;
+                e.preventDefault();
+                activateBookTarget(card);
             });
 
-            // Apply filter to the search results
-            applyFilter(filteredData);
-        }
-
-        // Add event listener to the filter dropdown
-        document.getElementById("filter").addEventListener("change", () => searchFiles());
-
-        function applyFilter(data) {
-            const filterValue = document.getElementById("filter").value;
-
-            // Clone the data to avoid modifying the original array
-            let sortedData = [...data];
-
-            switch (filterValue) {
-                case "First uploaded":
-                    // Assuming books are already in the order of first uploaded
-                    // Do nothing, render as is
-                    break;
-                case "Last uploaded":
-                    // Reverse the order for last uploaded
-                    sortedData.reverse();
-                    break;
-                case "A - Z":
-                    // Sort alphabetically by title (column index 2)
-                    sortedData.sort((a, b) => a[2].localeCompare(b[2]));
-                    break;
-                default:
-                    break;
+            function syncSearchClearUi() {
+                if (!dom.searchClear || !dom.searchInput) return;
+                dom.searchClear.classList.toggle("visible", dom.searchInput.value.length > 0);
             }
 
-            // Render the sorted and filtered files
-            renderFiles(sortedData);
-        }
-    </script>
+            dom.searchInput.addEventListener("input", () => {
+                state.search = dom.searchInput.value;
+                syncSearchClearUi();
+                applySearchFilter();
+                renderAll();
+            });
 
-    <script>
-        function showSection(sectionId) {
-            // Remove 'active' class from all navigation links
-            const chatInstances = document.querySelectorAll('.chatInstance');
-            chatInstances.forEach(instance => instance.classList.remove('active'));
+            dom.searchClear?.addEventListener("click", () => {
+                dom.searchInput.value = "";
+                state.search = "";
+                syncSearchClearUi();
+                applySearchFilter();
+                renderAll();
+                dom.searchInput.focus();
+            });
 
-            // Add 'active' class to the clicked link
-            const activeLink = document.querySelector(`.chatInstance[data-section="${sectionId}"]`);
-            if (activeLink) activeLink.classList.add('active');
-
-            // Hide all sections
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => (section.style.display = 'none'));
-
-            // Show the corresponding section
-            const activeSection = document.getElementById(sectionId);
-            if (activeSection) activeSection.style.display = 'block';
-        }
-    </script>
-
-
-    <script>
-        function themeSwitch() {
-            var element = document.body;
-            element.classList.toggle("dark-mode");
-
-            // Save the current theme to localStorage
-            if (element.classList.contains("dark-mode")) {
-                localStorage.setItem("theme", "dark");
-            } else {
-                localStorage.setItem("theme", "light");
+            async function loadBooks() {
+                dom.app.hidden = true;
+                dom.loading.style.display = "flex";
+                try {
+                    const res = await fetch(BOOKS_API);
+                    if (!res.ok) throw new Error("Network error");
+                    const data = await res.json();
+                    const rows = data.content ?? [];
+                    state.allBooks = rows
+                        .map((row, i) => normalizeBook(row, i))
+                        .filter(Boolean);
+                    applySearchFilter();
+                    showApp();
+                    if (!state.allBooks.length) {
+                        setStatus("No books with covers found in the catalog.", true);
+                        setView("home");
+                        return;
+                    }
+                    setStatus("");
+                    pickRandomHeroBook();
+                    const savedId = getDefaultBookId();
+                    if (savedId != null) {
+                        state.currentBookId = savedId;
+                    }
+                    renderAll();
+                    setView("home");
+                } catch (err) {
+                    console.error(err);
+                    showLoadingError("Error fetching data. Please try again later :')");
+                }
             }
-        }
 
-        function applySavedTheme() {
-            const savedTheme = localStorage.getItem("theme");
-            if (savedTheme === "dark") {
-                document.body.classList.add("dark-mode");
-            }
-        }
-
-        // Use event listeners to avoid overwriting onload
-        window.addEventListener("load", applySavedTheme); // Apply theme on load
+            initContactForm();
+            loadBooks();
+        })();
     </script>
-
 </body>
 
 </html>
