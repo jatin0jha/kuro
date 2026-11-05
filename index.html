@@ -49,7 +49,7 @@
         *,
         *::before,
         *::after {
-            box-sizing: border-box;
+            box-sizing: border-box;1
         }
 
         html,
@@ -763,6 +763,31 @@
             inset: 0;
             background: linear-gradient(90deg, rgba(0, 0, 0, 0.12) 0%, transparent 18%, transparent 82%, rgba(255, 255, 255, 0.08) 100%);
             pointer-events: none;
+            z-index: 1;
+        }
+
+        .cover-date {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            z-index: 2;
+            max-width: calc(100% - 16px);
+            padding: 4px 9px;
+            border-radius: 999px;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            line-height: 1.2;
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            box-shadow: 0 2px 10px rgba(42, 42, 40, 0.12);
+            pointer-events: none;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         /* Book cover palettes (no external assets) */
@@ -1173,6 +1198,24 @@
             border-radius: 999px;
         }
 
+        .panel-upload {
+            display: block;
+            font-size: 12px;
+            color: #b5b4ae;
+            margin: 0 0 12px;
+        }
+
+        .panel-upload:empty {
+            display: none;
+        }
+
+        .featured-date {
+            display: block;
+            font-size: 12px;
+            color: #b5b4ae;
+            margin-top: 4px;
+        }
+
         .panel-blurb {
             font-size: 13px;
             line-height: 1.65;
@@ -1498,6 +1541,13 @@
                 border-radius: 0 4px 4px 0;
             }
 
+            .cover-date {
+                top: 5px;
+                left: 5px;
+                padding: 3px 7px;
+                font-size: 9px;
+            }
+
             .series-card {
                 padding: 12px;
                 gap: 12px;
@@ -1640,6 +1690,7 @@
                     <div class="meta">
                         <strong id="featured-title"></strong>
                         <span id="featured-sub"></span>
+                        <time class="featured-date" id="featured-date"></time>
                     </div>
                     <span class="vol-badge" id="featured-badge">Read</span>
                 </div>
@@ -1692,6 +1743,7 @@
         <aside class="side-panel" id="side-panel">
             <h2 class="panel-book-title" id="panel-book-title">—</h2>
             <div class="progress-label" id="panel-status">Now reading</div>
+            <time class="panel-upload" id="panel-upload"></time>
             <p class="panel-blurb" id="panel-blurb"></p>
         </aside>
     </div>
@@ -1765,6 +1817,7 @@
                 homeGrid: document.getElementById("home-books-grid"),
                 homeBookCount: document.getElementById("home-book-count"),
                 panelTitle: document.getElementById("panel-book-title"),
+                panelUpload: document.getElementById("panel-upload"),
                 panelBlurb: document.getElementById("panel-blurb"),
                 heroTitle: document.getElementById("hero-title"),
                 heroLead: document.getElementById("hero-lead"),
@@ -1773,6 +1826,7 @@
                 featuredCard: document.getElementById("featured-card"),
                 featuredTitle: document.getElementById("featured-title"),
                 featuredSub: document.getElementById("featured-sub"),
+                featuredDate: document.getElementById("featured-date"),
                 featuredThumb: document.getElementById("featured-thumb")
             };
 
@@ -1790,18 +1844,53 @@
                 return t.slice(0, max).trim() + "…";
             }
 
+            function parseUploadedAt(raw) {
+                const value = String(raw ?? "").trim();
+                if (!value || value === "Timestamp") return null;
+                const ms = Date.parse(value);
+                if (Number.isNaN(ms)) return null;
+                return { ms, iso: new Date(ms).toISOString() };
+            }
+
+            function formatUploadedAt(book) {
+                if (book?.uploadedAtMs == null) return "";
+                return new Intl.DateTimeFormat(undefined, { dateStyle: "medium" }).format(book.uploadedAtMs);
+            }
+
+            function formatUploadCapsule(book) {
+                if (book?.uploadedAtMs == null) return "";
+                return new Intl.DateTimeFormat(undefined, {
+                    month: "short",
+                    day: "numeric",
+                    year: "2-digit"
+                }).format(book.uploadedAtMs);
+            }
+
             function normalizeBook(row, index) {
+                const title = String(row[2] ?? "").trim();
+                if (title === "Tittle" || title === "Title") return null;
+
                 const coverUrl = row[5];
                 if (!coverUrl || (!coverUrl.startsWith("http://") && !coverUrl.startsWith("https://"))) {
                     return null;
                 }
+
+                const uploaded = parseUploadedAt(row[0]);
+
                 return {
                     id: index,
-                    title: row[2] || "Untitled",
+                    title: title || "Untitled",
                     description: row[3] || "",
                     pdfUrl: row[4] || "",
-                    coverUrl
+                    coverUrl,
+                    uploadedAt: uploaded?.iso ?? null,
+                    uploadedAtMs: uploaded?.ms ?? null,
+                    type: String(row[6] ?? "").trim()
                 };
+            }
+
+            function sortBooksNewestFirst(books) {
+                books.sort((a, b) => (b.uploadedAtMs ?? 0) - (a.uploadedAtMs ?? 0));
             }
 
             function attachCoverFallback(img, index) {
@@ -1814,10 +1903,15 @@
                 }, { once: true });
             }
 
-            function coverMarkup(book, index) {
+            function coverMarkup(book) {
                 const alt = escapeHtml(book.title);
                 const src = escapeHtml(book.coverUrl);
-                return `<div class="cover cover--photo"><img src="${src}" alt="${alt}" loading="lazy"></div>`;
+                const capsule = formatUploadCapsule(book);
+                const dateBadge =
+                    capsule && book.uploadedAt
+                        ? `<time class="cover-date" datetime="${escapeHtml(book.uploadedAt)}">${escapeHtml(capsule)}</time>`
+                        : "";
+                return `<div class="cover cover--photo">${dateBadge}<img src="${src}" alt="${alt}" loading="lazy"></div>`;
             }
 
             function getBookById(id) {
@@ -1904,7 +1998,7 @@
                     article.className = "mini-book";
                     article.dataset.bookId = String(book.id);
                     article.innerHTML =
-                        coverMarkup(book, i) +
+                        coverMarkup(book) +
                         `<span>${escapeHtml(book.title)}</span>` +
                         `<small>${escapeHtml(excerpt(book.description, 48) || "Open to read")}</small>`;
                     const img = article.querySelector("img");
@@ -1922,6 +2016,17 @@
                 dom.featuredCard.dataset.bookId = String(book.id);
                 dom.featuredTitle.textContent = book.title;
                 dom.featuredSub.textContent = excerpt(book.description, 64) || "Tap to read";
+                const featuredDateLabel = formatUploadedAt(book);
+                if (dom.featuredDate) {
+                    if (featuredDateLabel && book.uploadedAt) {
+                        dom.featuredDate.dateTime = book.uploadedAt;
+                        dom.featuredDate.textContent = `Added ${featuredDateLabel}`;
+                        dom.featuredDate.hidden = false;
+                    } else {
+                        dom.featuredDate.textContent = "";
+                        dom.featuredDate.hidden = true;
+                    }
+                }
                 dom.featuredThumb.style.backgroundImage = `url("${book.coverUrl}")`;
                 dom.featuredThumb.style.backgroundSize = "cover";
                 dom.featuredThumb.style.backgroundPosition = "center";
@@ -1931,10 +2036,20 @@
                 const active = book ?? getCurrentBook();
                 if (!active) {
                     dom.panelTitle.textContent = "—";
+                    if (dom.panelUpload) dom.panelUpload.textContent = "";
                     dom.panelBlurb.textContent = "";
                     return;
                 }
                 dom.panelTitle.textContent = active.title;
+                const panelDateLabel = formatUploadedAt(active);
+                if (dom.panelUpload) {
+                    if (panelDateLabel && active.uploadedAt) {
+                        dom.panelUpload.dateTime = active.uploadedAt;
+                        dom.panelUpload.textContent = `Added ${panelDateLabel}`;
+                    } else {
+                        dom.panelUpload.textContent = "";
+                    }
+                }
                 dom.panelBlurb.textContent = active.description || "No description available.";
             }
 
@@ -2130,6 +2245,7 @@
                     state.allBooks = rows
                         .map((row, i) => normalizeBook(row, i))
                         .filter(Boolean);
+                    sortBooksNewestFirst(state.allBooks);
                     applySearchFilter();
                     showApp();
                     if (!state.allBooks.length) {
